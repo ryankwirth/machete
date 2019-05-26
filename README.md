@@ -1,4 +1,4 @@
-# machete
+# Machete
 
 ## Project setup
 ```
