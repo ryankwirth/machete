@@ -1,5 +1,5 @@
 import config from './config';
-import parser from './parser';
+import utils from './utils';
 
 let pageLoader;
 
@@ -15,7 +15,7 @@ function getYouTubeInitialData(url) {
 function parseVideoRenderer({ playlistVideoRenderer }) {
     // Get the title accessibility data, then extract the title, artist, and view count.
     const label = playlistVideoRenderer.title.accessibility.accessibilityData.label;
-    const { title, artist, views } = parser.extractFromLabel(label);
+    const { title, artist, views } = utils.extractFromLabel(label);
 
     // Get the video length and thumbnail data.
     const length = parseInt(playlistVideoRenderer.lengthSeconds);
