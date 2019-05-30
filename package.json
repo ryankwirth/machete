@@ -19,6 +19,7 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^2.6.5",
+    "needle": "^2.4.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {

@@ -7,11 +7,19 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import CoreService from './services/core';
 
 export default {
   name: 'app',
   components: {
     HelloWorld
+  },
+  mounted() {
+    CoreService.init()
+      .then(CoreService.getMostPopular)
+      .then((mostPopular) => {
+        console.log(mostPopular);
+      });
   }
 }
 </script>
