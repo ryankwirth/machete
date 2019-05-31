@@ -3,42 +3,30 @@ import utils from './utils';
 
 let pageLoader;
 
-function getYouTubeInitialData(url) {
-    return pageLoader.get(url)
-        .then((body) => {
-            const [,firstSplit] = body.split('window["ytInitialData"] = ', 2);
-            const [secondSplit] = firstSplit.split(';', 1);
-            return JSON.parse(secondSplit);
-        });
-}
+function parseVideo($, el) {
+    // Get the label data and extract title/artist information
+    const label = $(el).find('.pl-video-title-link').text();
+    const { title, artist } = utils.extractFromLabel(label.trim());
 
-function parseVideoRenderer({ playlistVideoRenderer }) {
-    // Get the title accessibility data, then extract the title, artist, and view count.
-    const label = playlistVideoRenderer.title.accessibility.accessibilityData.label;
-    const { title, artist, views } = utils.extractFromLabel(label);
-
-    // Get the video length and thumbnail data.
-    const length = parseInt(playlistVideoRenderer.lengthSeconds);
-    const thumbnail = playlistVideoRenderer.thumbnail.thumbnails[0];
+    // Extract the other pieces of data we need
+    const id = $(el).data('video-id');
+    const owner = $(el).find('.pl-video-owner a').text();
+    const thumbnail = $(el).find('img').data('thumb');
+    const length = $(el).find('.timestamp').text();
 
     return {
+        id,
         title,
         artist,
-        views,
-        length,
-        thumbnail
+        owner,
+        thumbnail,
+        length
     };
 }
 
 function scrapePlaylist(playlistId) {
-    return getYouTubeInitialData(`${config.urls.baseUrl}/playlist?list=${playlistId}`)
-        .then((ytInitialData) => {
-            const videos = ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0]
-                .tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer
-                .contents[0].playlistVideoListRenderer.contents;
-            
-            return videos.map((video) => parseVideoRenderer(video));
-        });
+    return pageLoader.get(`${config.urls.baseUrl}/playlist?list=${playlistId}`)
+        .then(($) => $('tr').map((i, el) => parseVideo($, el)));
 }
 
 const YouTubeService = {
