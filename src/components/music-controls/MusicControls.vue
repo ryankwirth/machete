@@ -1,6 +1,12 @@
 <template>
   <div class="music-controls">
-    <Buttons/>
+    <Buttons
+      :is-playing="isPlaying"
+      @next="onNext"
+      @play="onPlay"
+      @pause="onPause"
+      @previous="onPrevious"
+    />
     <Playback/>
     <Volume/>
   </div>
@@ -17,6 +23,27 @@ export default {
     Buttons,
     Playback,
     Volume
+  },
+  data() {
+    return {
+      isPlaying: false
+    }
+  },
+  methods: {
+    onNext() {
+      console.log('onNextClicked')
+    },
+    onPlay() {
+      console.log('onPlayClicked')
+      this.isPlaying = true
+    },
+    onPause() {
+      console.log('onPauseClicked')
+      this.isPlaying = false
+    },
+    onPrevious() {
+      console.log('onPreviousClicked')
+    }
   }
 }
 </script>
