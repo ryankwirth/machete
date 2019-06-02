@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <MusicControls/>
+    <MusicControls />
   </div>
 </template>
 
 <script>
-import MusicControls from './components/music-controls';
-import CoreService from './services/core';
+import MusicControls from './components/music-controls'
+import CoreService from './services/core'
 
 export default {
   name: 'app',
@@ -17,8 +17,8 @@ export default {
     CoreService.init()
       .then(CoreService.getMostPopular)
       .then((mostPopular) => {
-        console.log(mostPopular);
-      });
+        console.log(mostPopular)
+      })
   }
 }
 </script>

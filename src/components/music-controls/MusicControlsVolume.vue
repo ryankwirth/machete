@@ -1,17 +1,17 @@
 <template>
-  <div class="volume">
+  <div class="music-controls-volume">
     TODO
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Volume'
+  name: 'MusicControlsVolume'
 }
 </script>
 
 <style scoped>
-.volume {
+.music-controls-volume {
   flex: 0 1 auto;
 }
 </style>
