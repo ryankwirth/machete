@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MusicControls />
+    <MusicControls/>
   </div>
 </template>
 

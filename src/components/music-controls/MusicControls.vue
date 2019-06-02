@@ -1,8 +1,8 @@
 <template>
   <div class="music-controls">
-    <Buttons />
-    <Playback />
-    <Volume />
+    <Buttons/>
+    <Playback/>
+    <Volume/>
   </div>
 </template>
 
