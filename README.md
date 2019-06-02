@@ -6,6 +6,9 @@ yarn install
 ```
 
 ### Compiles and hot-reloads for development
+NOTE: When running Machete outside of Electron, be sure to change
+your user agent to ensure YouTube sends static HTML pages for scraping.
+
 ```
 yarn run serve
 ```

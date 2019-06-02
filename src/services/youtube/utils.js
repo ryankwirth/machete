@@ -1,5 +1,8 @@
 const Utils = {
-    extractFromLabel: function(title, artist = '') {
+    parseLabel: function(title, artist = '') {
+        // Strip any "(Official ...)" or otherwise extraneous subtitles
+        title = title.replace(/ (\(|\[)(?!feat|ft|Remix).+(\)|\])/g, '');
+
         // Attempt to extract the title/artist information
         const standardFormatMatch = title.match(/^(.+) - (.+)/);
         if (standardFormatMatch) {
@@ -8,6 +11,10 @@ const Utils = {
         }
 
         return { title, artist };
+    },
+
+    parseTimestamp: function(timestamp) {
+        return timestamp;
     }
 }
 

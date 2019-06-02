@@ -6,19 +6,19 @@ let pageLoader;
 function parseVideo($, el) {
     // Get the label data and extract title/artist information
     const label = $(el).find('.pl-video-title-link').text();
-    const { title, artist } = utils.extractFromLabel(label.trim());
+    const owner = $(el).find('.pl-video-owner a').text();
+    const { title, artist } = utils.parseLabel(label.trim(), owner.trim());
 
     // Extract the other pieces of data we need
     const id = $(el).data('video-id');
-    const owner = $(el).find('.pl-video-owner a').text();
     const thumbnail = $(el).find('img').data('thumb');
-    const length = $(el).find('.timestamp').text();
+    const timestamp = $(el).find('.timestamp').text();
+    const length = utils.parseTimestamp(timestamp);
 
     return {
         id,
         title,
         artist,
-        owner,
         thumbnail,
         length
     };
