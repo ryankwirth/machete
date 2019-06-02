@@ -1,6 +1,6 @@
 <template>
   <div class="music-controls-buttons">
-    <ButtonIcon
+    <BaseButton
       icon-name="previous"
       width="48"
       height="48"
@@ -9,9 +9,9 @@
       @click="onPreviousClicked"
     >
       <IconPrevious/>
-    </ButtonIcon>
+    </BaseButton>
 
-    <ButtonIcon
+    <BaseButton
       :icon-name="playPauseIconName"
       width="48"
       height="48"
@@ -21,9 +21,9 @@
     >
       <IconPlay v-if="isPlaying"/>
       <IconPause v-else/>
-    </ButtonIcon>
+    </BaseButton>
 
-    <ButtonIcon
+    <BaseButton
       icon-name="next"
       width="48"
       height="48"
@@ -32,12 +32,12 @@
       @click="onNextClicked"
     >
       <IconNext/>
-    </ButtonIcon>
+    </BaseButton>
   </div>
 </template>
 
 <script>
-import ButtonIcon from '@/components/ButtonIcon.vue'
+import BaseButton from '@/components/BaseButton.vue'
 import IconNext from '@/components/icons/IconNext.vue'
 import IconPause from '@/components/icons/IconPause.vue'
 import IconPlay from '@/components/icons/IconPlay.vue'
@@ -46,7 +46,7 @@ import IconPrevious from '@/components/icons/IconPrevious.vue'
 export default {
   name: 'MusicControlsButtons',
   components: {
-    ButtonIcon,
+    BaseButton,
     IconNext,
     IconPause,
     IconPlay,
