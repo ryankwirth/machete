@@ -1,20 +1,43 @@
 <template>
   <div class="music-controls-buttons">
-    <BaseIcon icon-name="previous" width="48" height="48" @click.native="onPreviousClicked">
+    <ButtonIcon
+      icon-name="previous"
+      width="48"
+      height="48"
+      icon-color-default="#FF6600"
+      icon-color-hover="#000000"
+      @click="onPreviousClicked"
+    >
       <IconPrevious/>
-    </BaseIcon>
-    <BaseIcon :icon-name="playPauseIconName" width="48" height="48" @click.native="onPlayPauseClicked">
+    </ButtonIcon>
+
+    <ButtonIcon
+      :icon-name="playPauseIconName"
+      width="48"
+      height="48"
+      icon-color-default="#FF6600"
+      icon-color-hover="#000000"
+      @click="onPlayPauseClicked"
+    >
       <IconPlay v-if="isPlaying"/>
       <IconPause v-else/>
-    </BaseIcon>
-    <BaseIcon icon-name="next" width="48" height="48" @click.native="onNextClicked">
+    </ButtonIcon>
+
+    <ButtonIcon
+      icon-name="next"
+      width="48"
+      height="48"
+      icon-color-default="#FF6600"
+      icon-color-hover="#000000"
+      @click="onNextClicked"
+    >
       <IconNext/>
-    </BaseIcon>
+    </ButtonIcon>
   </div>
 </template>
 
 <script>
-import BaseIcon from '@/components/BaseIcon.vue'
+import ButtonIcon from '@/components/ButtonIcon.vue'
 import IconNext from '@/components/icons/IconNext.vue'
 import IconPause from '@/components/icons/IconPause.vue'
 import IconPlay from '@/components/icons/IconPlay.vue'
@@ -23,7 +46,7 @@ import IconPrevious from '@/components/icons/IconPrevious.vue'
 export default {
   name: 'MusicControlsButtons',
   components: {
-    BaseIcon,
+    ButtonIcon,
     IconNext,
     IconPause,
     IconPlay,
@@ -33,6 +56,11 @@ export default {
     isPlaying: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    playPauseIconName() {
+      return this.isPlaying ? 'play' : 'pause'
     }
   },
   methods: {
@@ -49,11 +77,6 @@ export default {
     onPreviousClicked() {
       this.$emit('previous')
     }
-  },
-  computed: {
-    playPauseIconName() {
-      return this.isPlaying ? 'play' : 'pause'
-    }
   }
 }
 </script>
@@ -61,9 +84,5 @@ export default {
 <style scoped>
 .music-controls-buttons {
   flex: 0 1 auto;
-}
-
-.music-controls-buttons > * {
-  cursor: pointer;
 }
 </style>
