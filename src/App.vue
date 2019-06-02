@@ -1,18 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <MusicControls/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MusicControls from './components/music-controls';
 import CoreService from './services/core';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    MusicControls
   },
   mounted() {
     CoreService.init()
