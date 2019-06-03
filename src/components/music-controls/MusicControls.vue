@@ -30,20 +30,14 @@ export default {
     }
   },
   methods: {
-    onNext() {
-      console.log('onNextClicked')
-    },
+    onNext() {},
     onPlay() {
-      console.log('onPlayClicked')
       this.isPlaying = true
     },
     onPause() {
-      console.log('onPauseClicked')
       this.isPlaying = false
     },
-    onPrevious() {
-      console.log('onPreviousClicked')
-    }
+    onPrevious() {}
   }
 }
 </script>

@@ -1,15 +1,20 @@
 <template>
-  <BaseIcon
-    :icon-name="iconName"
-    :width="width"
-    :height="height"
-    :icon-color="iconColor"
-    @click.native="onClick"
-    @mouseover.native="hover = true"
-    @mouseleave.native="hover = false"
+  <div
+    class="button"
+    :style="{ padding: padding + 'px' }"
+    @click="$emit('click')"
+    @mouseover="hover = true"
+    @mouseleave="hover = false"
   >
-    <slot/>
-  </BaseIcon>
+    <BaseIcon
+      :icon-name="iconName"
+      :width="width"
+      :height="height"
+      :icon-color="iconColor"
+    >
+      <slot/>
+    </BaseIcon>
+  </div>
 </template>
 
 <script>
@@ -23,6 +28,7 @@ export default {
     iconName: String,
     width: [Number, String],
     height: [Number, String],
+    padding: [Number, String],
     iconColorDefault: String,
     iconColorHover: String
   },
@@ -35,17 +41,13 @@ export default {
     iconColor() {
       return this.hover ? this.iconColorHover : this.iconColorDefault
     }
-  },
-  methods: {
-    onClick() {
-      this.$emit('click')
-    }
   }
 }
 </script>
 
 <style scoped>
-* {
+.button {
+  display: inline-block;
   cursor: pointer;
 }
 </style>

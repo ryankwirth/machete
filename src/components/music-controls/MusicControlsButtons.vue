@@ -1,43 +1,20 @@
 <template>
   <div class="music-controls-buttons">
-    <BaseButton
-      icon-name="previous"
-      width="48"
-      height="48"
-      icon-color-default="#FF6600"
-      icon-color-hover="#000000"
-      @click="onPreviousClicked"
-    >
+    <Button icon-name="previous" @click="onPreviousClicked">
       <IconPrevious/>
-    </BaseButton>
-
-    <BaseButton
-      :icon-name="playPauseIconName"
-      width="48"
-      height="48"
-      icon-color-default="#FF6600"
-      icon-color-hover="#000000"
-      @click="onPlayPauseClicked"
-    >
+    </Button>
+    <Button :icon-name="playPauseIconName" @click="onPlayPauseClicked">
       <IconPlay v-if="isPlaying"/>
       <IconPause v-else/>
-    </BaseButton>
-
-    <BaseButton
-      icon-name="next"
-      width="48"
-      height="48"
-      icon-color-default="#FF6600"
-      icon-color-hover="#000000"
-      @click="onNextClicked"
-    >
+    </Button>
+    <Button icon-name="next" @click="onNextClicked">
       <IconNext/>
-    </BaseButton>
+    </Button>
   </div>
 </template>
 
 <script>
-import BaseButton from '@/components/BaseButton.vue'
+import Button from './MusicControlsButtonsItem.vue'
 import IconNext from '@/components/icons/IconNext.vue'
 import IconPause from '@/components/icons/IconPause.vue'
 import IconPlay from '@/components/icons/IconPlay.vue'
@@ -46,7 +23,7 @@ import IconPrevious from '@/components/icons/IconPrevious.vue'
 export default {
   name: 'MusicControlsButtons',
   components: {
-    BaseButton,
+    Button,
     IconNext,
     IconPause,
     IconPlay,
