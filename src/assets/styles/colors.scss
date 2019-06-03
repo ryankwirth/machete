@@ -1,27 +1,65 @@
-/* Light Theme */
+/** Color Definitions **/
+$primary-light: #FFFFFF;
+$primary-dark: #363636;
+
+$primary-variant-light: #E6E6E6;
+$primary-variant-dark: #545454;
+
+$secondary-light: #363636;
+$secondary-dark: #FFFFFF;
+
+$accent-light: #2196F3;
+$accent-dark: $accent-light;
+
+$error-light: #FF0000;
+$error-dark: $error-light;
+
+$info-light: #0000FF;
+$info-dark: $info-light;
+
+$success-light: #00FF66;
+$success-dark: $success-light;
+
+$warning-light: #FFFF00;
+$warning-dark: $warning-light;
+
+/** Helpers **/
+@mixin def($type, $color) {
+  .c-#{$type} {
+    color: $color;
+  }
+  
+  .cb-#{$type} {
+    background-color: $color;
+  }
+}
+
+/** Light Theme **/
 #app:not([dark]) {
-  color: #363636;
-  background-color: #FFFFFF;
+  color: $secondary-light;
+  background-color: $primary-light;
 
-  .c-primary {
-    color: #2196F3;
-  }
-
-  .cb-background {
-    background-color: #FFFFFF;
-  }
+  @include def('primary', $primary-light);
+  @include def('primary-variant', $primary-variant-light);
+  @include def('secondary', $secondary-light);
+  @include def('accent', $accent-light);
+  @include def('error', $error-light);
+  @include def('info', $info-light);
+  @include def('success', $success-light);
+  @include def('warning', $warning-light);
 }
 
 /* Dark Theme */
 #app[dark] {
-  color: #FFF;
-  background-color: #212121;
+  color: $secondary-dark;
+  background-color: $primary-dark;
 
-  .c-primary {
-    color: #2196F3;
-  }
-
-  .cb-background {
-    background-color: #212121;
-  }
+  @include def('primary', $primary-dark);
+  @include def('primary-variant', $primary-variant-dark);
+  @include def('secondary', $secondary-dark);
+  @include def('accent', $accent-dark);
+  @include def('error', $error-dark);
+  @include def('info', $info-dark);
+  @include def('success', $success-dark);
+  @include def('warning', $warning-dark);
 }

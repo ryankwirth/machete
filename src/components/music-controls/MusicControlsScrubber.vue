@@ -1,9 +1,11 @@
 <template>
   <div class="music-controls-scrubber">
-    <div class="scrubber-track cb-background">
-      <div class="scrubber-fill cb-primary"></div>
+    <div class="scrubber-track cb-primary-variant">
+      <div class="scrubber-track__fill cb-accent"></div>
     </div>
-    <div class="scrubber-handle"></div>
+    <div class="scrubber-handle">
+      <div class="scrubber-handle__inner"></div>
+    </div>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ export default {
   border-radius: 2px;
 }
 
-.scrubber-fill {
+.scrubber-track__fill {
   width: 75%;
   height: 100%;
 }
@@ -36,13 +38,20 @@ export default {
 .scrubber-handle {
   position: absolute;
   left: 75%;
-  margin: -12px 0px 0px -8px;
 
+  margin: -26px 0px 0px -24px;
+  padding: 16px;
+
+  cursor: pointer;
+}
+
+.scrubber-handle__inner {
   width: 16px;
   height: 16px;
-
+  
+  background-color: #FFFFFF;
   border-radius: 8px;
-  box-shadow: 2px 2px 2px #000;
+  box-shadow: 2px 2px 2px #545454;
 }
 
 </style>
