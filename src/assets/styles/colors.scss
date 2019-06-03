@@ -1,0 +1,27 @@
+/* Light Theme */
+#app:not([dark]) {
+  color: #363636;
+  background-color: #FFFFFF;
+
+  .c-primary {
+    color: #2196F3;
+  }
+
+  .cb-background {
+    background-color: #FFFFFF;
+  }
+}
+
+/* Dark Theme */
+#app[dark] {
+  color: #FFF;
+  background-color: #212121;
+
+  .c-primary {
+    color: #2196F3;
+  }
+
+  .cb-background {
+    background-color: #212121;
+  }
+}

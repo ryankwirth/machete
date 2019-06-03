@@ -1,12 +1,17 @@
 <template>
   <div class="music-controls-playback">
-    TODO
+    <Scrubber/>
   </div>
 </template>
 
 <script>
+import Scrubber from './MusicControlsScrubber.vue'
+
 export default {
-  name: 'MusicControlsPlayback'
+  name: 'MusicControlsPlayback',
+  components: {
+    Scrubber
+  }
 }
 </script>
 

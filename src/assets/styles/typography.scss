@@ -1,0 +1,13 @@
+@mixin font-face($type, $weight) {
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-#{$type}.ttf') format('truetype');
+    font-weight: $weight;
+    font-style: normal;
+  }
+}
+
+@include font-face('Black', 900);
+@include font-face('Bold', 700);
+@include font-face('Medium', 500);
+@include font-face('Regular', 400);

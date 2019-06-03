@@ -8,6 +8,9 @@
 import MusicControls from './components/music-controls'
 import CoreService from './services/core'
 
+import './assets/styles/colors.scss'
+import './assets/styles/typography.scss'
+
 export default {
   name: 'app',
   components: {
@@ -24,14 +27,17 @@ export default {
 </script>
 
 <style>
-@import './assets/styles/typography.css';
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
 
 #app {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

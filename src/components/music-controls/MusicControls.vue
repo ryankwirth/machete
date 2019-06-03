@@ -45,6 +45,7 @@ export default {
 <style scoped>
 .music-controls {
   display: flex;
-  padding: 2em;
+  align-items: center;
+  padding: 16px;
 }
 </style>
