@@ -51,7 +51,7 @@ export default {
   
   background-color: #FFFFFF;
   border-radius: 8px;
-  box-shadow: 2px 2px 2px #545454;
+  box-shadow: 0px 1px 4px #545454;
 }
 
 </style>

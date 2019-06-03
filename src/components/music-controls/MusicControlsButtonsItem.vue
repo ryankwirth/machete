@@ -1,11 +1,10 @@
 <template>
   <BaseButton
+    class="c-secondary c-accent-hover"
     :icon-name="iconName"
     width="48"
     height="48"
     padding="16"
-    icon-color-default="#4c5259"
-    icon-color-hover="#2e59fe"
     @click="$emit('click')"
   >
     <slot/>

@@ -1,35 +1,20 @@
-/** Color Definitions **/
-$primary-light: #FFFFFF;
-$primary-dark: #363636;
-
-$primary-variant-light: #E6E6E6;
-$primary-variant-dark: #545454;
-
-$secondary-light: #363636;
-$secondary-dark: #FFFFFF;
-
-$accent-light: #2196F3;
-$accent-dark: $accent-light;
-
-$error-light: #FF0000;
-$error-dark: $error-light;
-
-$info-light: #0000FF;
-$info-dark: $info-light;
-
-$success-light: #00FF66;
-$success-dark: $success-light;
-
-$warning-light: #FFFF00;
-$warning-dark: $warning-light;
+@import './variables.scss';
 
 /** Helpers **/
 @mixin def($type, $color) {
   .c-#{$type} {
     color: $color;
   }
+
+  .c-#{$type}-hover:hover {
+    color: $color;
+  }
   
   .cb-#{$type} {
+    background-color: $color;
+  }
+
+  .cb-#{$type}-hover:hover {
     background-color: $color;
   }
 }
