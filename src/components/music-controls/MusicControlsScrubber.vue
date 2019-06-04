@@ -1,9 +1,9 @@
 <template>
-  <div class="music-controls-scrubber">
+  <div class="music-controls-scrubber" ref="scrubber" @click="onClick">
     <div class="track cb-primary-variant">
-      <div class="fill cb-accent"></div>
+      <div class="fill cb-accent" :style="fillStyle"></div>
     </div>
-    <div class="handle">
+    <div class="handle" :style="handleStyle" @mousedown="onMouseDown">
       <div class="inner"></div>
     </div>
   </div>
@@ -11,7 +11,46 @@
 
 <script>
 export default {
-  name: 'MusicControlsScrubber'
+  name: 'MusicControlsScrubber',
+  data() {
+    return {
+      isDragging: false,
+      draggingPercentage: 0
+    }
+  },
+  computed: {
+    bounds() {
+      return this.$refs.scrubber.getBoundingClientRect()
+    },
+    fillStyle() {
+      return { width: `${this.draggingPercentage}%` }
+    },
+    handleStyle() {
+      return { left: `${this.draggingPercentage}%` }
+    }
+  },
+  methods: {
+    onClick(event) {
+      this.setPercentage(event.clientX)
+    },
+    onMouseDown() {
+      this.isDragging = true
+      document.addEventListener('mousemove', this.onMouseMove)
+      document.addEventListener('mouseup', this.onMouseUp)
+    },
+    onMouseUp() {
+      this.isDragging = false
+      document.removeEventListener('mousemove', this.onMouseMove)
+      document.removeEventListener('mouseup', this.onMouseUp)
+    },
+    onMouseMove(event) {
+      this.setPercentage(event.clientX)
+    },
+    setPercentage(clientX) {
+      const xPosition = clientX - this.bounds.left
+      this.draggingPercentage = (xPosition / this.bounds.width) * 100
+    }
+  }
 }
 </script>
 
@@ -19,6 +58,7 @@ export default {
 .music-controls-scrubber {
   position: relative;
   width: 100%;
+  padding: 16px 0px;
 
   .track {
     overflow: hidden;
@@ -27,14 +67,12 @@ export default {
     border-radius: 2px;
 
     .fill {
-      width: 75%;
       height: 100%;
     }
   }
 
   .handle {
     position: absolute;
-    left: 75%;
     margin: -26px 0px 0px -24px;
     padding: 16px;
     cursor: pointer;
