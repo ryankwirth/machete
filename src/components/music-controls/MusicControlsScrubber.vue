@@ -22,11 +22,15 @@ export default {
     bounds() {
       return this.$refs.scrubber.getBoundingClientRect()
     },
+    clampedPercentage() {
+      const percentage = this.draggingPercentage
+      return Math.min(Math.max(percentage, 0), 100)
+    },
     fillStyle() {
-      return { width: `${this.draggingPercentage}%` }
+      return { width: `${this.clampedPercentage}%` }
     },
     handleStyle() {
-      return { left: `${this.draggingPercentage}%` }
+      return { left: `${this.clampedPercentage}%` }
     }
   },
   methods: {
