@@ -60,6 +60,8 @@ export default {
 
 <style scoped>
 .music-controls-buttons {
+  display: flex;
+  align-items: center;
   flex: 0 1 auto;
 }
 </style>

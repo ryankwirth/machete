@@ -35,6 +35,7 @@ html, body, #app {
 }
 
 #app {
+  position: relative;
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

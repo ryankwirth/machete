@@ -8,8 +8,11 @@
       @previous="onPrevious"
     />
     <Playback
+      artist="Drake"
+      artwork="https://upload.wikimedia.org/wikipedia/en/a/ad/Drake_-_Scary_Hours.png"
       :duration="245"
       :timestamp="130"
+      title="God's Plan"
     />
     <Volume/>
   </div>
@@ -48,7 +51,13 @@ export default {
 <style scoped>
 .music-controls {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+
+  position: absolute;
+  bottom: 0;
+
+  width: calc(100% - 16px * 2);
   padding: 16px;
+  cursor: default;
 }
 </style>
