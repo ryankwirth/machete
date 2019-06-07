@@ -27,6 +27,7 @@
   @include def('primary', $primary-light);
   @include def('primary-variant', $primary-variant-light);
   @include def('secondary', $secondary-light);
+  @include def('secondary-variant', $secondary-variant-light);
   @include def('accent', $accent-light);
   @include def('error', $error-light);
   @include def('info', $info-light);
@@ -42,6 +43,7 @@
   @include def('primary', $primary-dark);
   @include def('primary-variant', $primary-variant-dark);
   @include def('secondary', $secondary-dark);
+  @include def('secondary-variant', $secondary-variant-dark);
   @include def('accent', $accent-dark);
   @include def('error', $error-dark);
   @include def('info', $info-dark);

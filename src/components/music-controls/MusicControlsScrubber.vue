@@ -12,47 +12,50 @@
 <script>
 export default {
   name: 'MusicControlsScrubber',
-  data() {
-    return {
-      isDragging: false,
-      draggingPercentage: 0
-    }
+  props: {
+    duration: Number,
+    timestamp: Number
   },
   computed: {
     bounds() {
       return this.$refs.scrubber.getBoundingClientRect()
     },
-    clampedPercentage() {
-      const percentage = this.draggingPercentage
-      return Math.min(Math.max(percentage, 0), 100)
+    percentage() {
+      return (this.timestamp / this.duration) * 100
     },
     fillStyle() {
-      return { width: `${this.clampedPercentage}%` }
+      return { width: `${this.percentage}%` }
     },
     handleStyle() {
-      return { left: `${this.clampedPercentage}%` }
+      return { left: `${this.percentage}%` }
     }
   },
   methods: {
+    computeTimestamp(event) {
+      const xPosition = event.clientX - this.bounds.left
+      const timestamp = Math.floor((xPosition / this.bounds.width) * this.duration)
+      return Math.min(Math.max(timestamp, 0), this.duration)
+    },
     onClick(event) {
-      this.setPercentage(event.clientX)
+      this.setTimestamp(event)
     },
     onMouseDown() {
-      this.isDragging = true
       document.addEventListener('mousemove', this.onMouseMove)
       document.addEventListener('mouseup', this.onMouseUp)
     },
-    onMouseUp() {
-      this.isDragging = false
+    onMouseUp(event) {
+      this.setTimestamp(event)
       document.removeEventListener('mousemove', this.onMouseMove)
       document.removeEventListener('mouseup', this.onMouseUp)
     },
     onMouseMove(event) {
-      this.setPercentage(event.clientX)
+      this.updateTimestamp(event)
     },
-    setPercentage(clientX) {
-      const xPosition = clientX - this.bounds.left
-      this.draggingPercentage = (xPosition / this.bounds.width) * 100
+    setTimestamp(event) {
+      this.$emit('setTimestamp', this.computeTimestamp(event))
+    },
+    updateTimestamp(event) {
+      this.$emit('updateTimestamp', this.computeTimestamp(event))
     }
   }
 }

@@ -7,7 +7,10 @@
       @pause="onPause"
       @previous="onPrevious"
     />
-    <Playback/>
+    <Playback
+      :duration="245"
+      :timestamp="130"
+    />
     <Volume/>
   </div>
 </template>
