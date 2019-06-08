@@ -87,10 +87,11 @@ export default {
 .music-controls-playback {
   display: flex;
   align-items: stretch;
-  flex: 2 1 auto;
+  flex: 1 1 auto;
+  padding: 0px 24px;
 
   img {
-    margin: 0px 24px;
+    margin-right: 24px;
   }
 
   .scrubber-stack {

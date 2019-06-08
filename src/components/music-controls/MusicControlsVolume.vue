@@ -1,32 +1,56 @@
 <template>
   <div class="music-controls-volume">
-    <Button icon-name="volume">
-      <IconVolumeUp/>
-    </Button>
+    <Buttons
+      :volume="activeVolume"
+      @setVolume="onUpdateVolume"
+    />
     <Scrubber
       :total="100"
-      :value="50"
+      :value="activeVolume"
+      @setValue="onUpdateVolume"
+      @updateValue="onUpdateVolume"
     />
   </div>
 </template>
 
 <script>
-import Button from './MusicControlsButton.vue'
-import IconVolumeUp from '@/components/icons/IconVolumeUp.vue'
+import Buttons from './MusicControlsVolumeButtons.vue'
 import Scrubber from './MusicControlsScrubber.vue'
 
 export default {
   name: 'MusicControlsVolume',
   components: {
-    Button,
-    IconVolumeUp,
+    Buttons,
     Scrubber
+  },
+  data() {
+    return {
+      modified: false,
+      modifiedVolume: 0
+    }
+  },
+  computed: {
+    activeVolume() {
+      return this.modified ? this.modifiedVolume : 50
+    }
+  },
+  methods: {
+    onSetVolume(volume) {
+      // TODO: Pass this new value to the core service
+    },
+    onUpdateVolume(volume) {
+      this.modified = true
+      this.modifiedVolume = volume
+    }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .music-controls-volume {
-  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  flex: 0 0 300px;
+  margin: 0px 16px;
 }
 </style>

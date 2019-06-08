@@ -56,8 +56,8 @@ export default {
   position: absolute;
   bottom: 0;
 
-  width: calc(100% - 16px * 2);
-  padding: 16px;
+  width: calc(100% - 24px * 2);
+  padding: 24px;
   cursor: default;
 }
 </style>

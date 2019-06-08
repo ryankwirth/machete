@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Button from './MusicControlsButton.vue'
+import Button from '@/components/BaseButton.vue'
 import IconNext from '@/components/icons/IconNext.vue'
 import IconPause from '@/components/icons/IconPause.vue'
 import IconPlay from '@/components/icons/IconPlay.vue'
@@ -62,6 +62,6 @@ export default {
 .music-controls-buttons {
   display: flex;
   align-items: center;
-  flex: 0 1 auto;
+  flex: 0 0 auto;
 }
 </style>

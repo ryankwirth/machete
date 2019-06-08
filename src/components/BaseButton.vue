@@ -1,6 +1,6 @@
 <template>
   <div
-    class="button"
+    class="button c-secondary-variant c-accent-hover"
     :style="{ padding: padding + 'px' }"
     @click="$emit('click')"
   >
@@ -23,9 +23,18 @@ export default {
   },
   props: {
     iconName: String,
-    width: [Number, String],
-    height: [Number, String],
-    padding: [Number, String]
+    width: {
+      type: [Number, String],
+      default: 48
+    },
+    height: {
+      type: [Number, String],
+      default: 48
+    },
+    padding: {
+      type: [Number, String],
+      default: 16
+    }
   }
 }
 </script>
