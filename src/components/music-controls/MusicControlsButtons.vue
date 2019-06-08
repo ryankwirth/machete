@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Button from './MusicControlsButtonsItem.vue'
+import Button from './MusicControlsButton.vue'
 import IconNext from '@/components/icons/IconNext.vue'
 import IconPause from '@/components/icons/IconPause.vue'
 import IconPlay from '@/components/icons/IconPlay.vue'

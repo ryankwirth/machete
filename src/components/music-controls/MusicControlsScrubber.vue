@@ -13,15 +13,15 @@
 export default {
   name: 'MusicControlsScrubber',
   props: {
-    duration: Number,
-    timestamp: Number
+    total: Number,
+    value: Number
   },
   computed: {
     bounds() {
       return this.$refs.scrubber.getBoundingClientRect()
     },
     percentage() {
-      return (this.timestamp / this.duration) * 100
+      return (this.value / this.total) * 100
     },
     fillStyle() {
       return { width: `${this.percentage}%` }
@@ -31,31 +31,31 @@ export default {
     }
   },
   methods: {
-    computeTimestamp(event) {
+    computeValue(event) {
       const xPosition = event.clientX - this.bounds.left
-      const timestamp = Math.floor((xPosition / this.bounds.width) * this.duration)
-      return Math.min(Math.max(timestamp, 0), this.duration)
+      const value = Math.floor((xPosition / this.bounds.width) * this.total)
+      return Math.min(Math.max(value, 0), this.total)
     },
     onClick(event) {
-      this.setTimestamp(event)
+      this.setValue(event)
     },
     onMouseDown() {
       document.addEventListener('mousemove', this.onMouseMove)
       document.addEventListener('mouseup', this.onMouseUp)
     },
     onMouseUp(event) {
-      this.setTimestamp(event)
+      this.setValue(event)
       document.removeEventListener('mousemove', this.onMouseMove)
       document.removeEventListener('mouseup', this.onMouseUp)
     },
     onMouseMove(event) {
-      this.updateTimestamp(event)
+      this.updateValue(event)
     },
-    setTimestamp(event) {
-      this.$emit('setTimestamp', this.computeTimestamp(event))
+    setValue(event) {
+      this.$emit('setValue', this.computeValue(event))
     },
-    updateTimestamp(event) {
-      this.$emit('updateTimestamp', this.computeTimestamp(event))
+    updateValue(event) {
+      this.$emit('updateValue', this.computeValue(event))
     }
   }
 }

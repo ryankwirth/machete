@@ -1,6 +1,6 @@
 <template>
   <BaseButton
-    class="c-secondary c-accent-hover"
+    class="c-secondary-variant c-accent-hover"
     :icon-name="iconName"
     width="48"
     height="48"
@@ -15,7 +15,7 @@
 import BaseButton from '@/components/BaseButton.vue'
 
 export default {
-  name: 'MusicControlsButtonsItem',
+  name: 'MusicControlsButton',
   components: {
     BaseButton
   },

@@ -17,10 +17,10 @@
         />
       </div>
       <Scrubber
-        :duration="duration"
-        :timestamp="activeTimestamp"
-        @setTimestamp="onSetTimestamp"
-        @updateTimestamp="onUpdateTimestamp"
+        :total="duration"
+        :value="activeTimestamp"
+        @setValue="onSetTimestamp"
+        @updateValue="onUpdateTimestamp"
       />
     </div>
   </div>
@@ -87,7 +87,7 @@ export default {
 .music-controls-playback {
   display: flex;
   align-items: stretch;
-  flex: 1 1 auto;
+  flex: 2 1 auto;
 
   img {
     margin: 0px 24px;
