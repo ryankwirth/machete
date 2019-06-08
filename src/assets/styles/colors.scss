@@ -1,0 +1,52 @@
+@import './variables.scss';
+
+/** Helpers **/
+@mixin def($type, $color) {
+  .c-#{$type} {
+    color: $color;
+  }
+
+  .c-#{$type}-hover:hover {
+    color: $color;
+  }
+  
+  .cb-#{$type} {
+    background-color: $color;
+  }
+
+  .cb-#{$type}-hover:hover {
+    background-color: $color;
+  }
+}
+
+/** Light Theme **/
+#app:not([dark]) {
+  color: $secondary-light;
+  background-color: $primary-light;
+
+  @include def('primary', $primary-light);
+  @include def('primary-variant', $primary-variant-light);
+  @include def('secondary', $secondary-light);
+  @include def('secondary-variant', $secondary-variant-light);
+  @include def('accent', $accent-light);
+  @include def('error', $error-light);
+  @include def('info', $info-light);
+  @include def('success', $success-light);
+  @include def('warning', $warning-light);
+}
+
+/* Dark Theme */
+#app[dark] {
+  color: $secondary-dark;
+  background-color: $primary-dark;
+
+  @include def('primary', $primary-dark);
+  @include def('primary-variant', $primary-variant-dark);
+  @include def('secondary', $secondary-dark);
+  @include def('secondary-variant', $secondary-variant-dark);
+  @include def('accent', $accent-dark);
+  @include def('error', $error-dark);
+  @include def('info', $info-dark);
+  @include def('success', $success-dark);
+  @include def('warning', $warning-dark);
+}
