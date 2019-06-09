@@ -52,7 +52,7 @@ export default {
       onReceiveStatus: this.onReceiveStatus
     })
     .then(() => {
-      CoreService.play('youtube://_BYIEXzdnlY')
+      CoreService.play('youtube://qGmSTlvnTGI')
     })
   },
   methods: {

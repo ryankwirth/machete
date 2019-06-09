@@ -1,9 +1,9 @@
 <template>
-  <div :class="classes" ref="container">
-    <div class="marquee-item" ref="item">
+  <div class="marquee" ref="container">
+    <div class="marquee-item" :style="firstStyles" ref="item">
       <slot/>
     </div>
-    <div class="marquee-item">
+    <div class="marquee-item" :style="secondStyles">
       <slot/>
     </div>
   </div>
@@ -14,25 +14,38 @@ export default {
   name: 'Marquee',
   data() {
     return {
-      isOverflowing: false
+      widthRatio: 1
     }
   },
   computed: {
-    classes() {
-      return {
-        marquee: true,
-        animated: this.isOverflowing
+    animationDuration() {
+      return this.widthRatio * 16
+    },
+    firstStyles() {
+      if (this.isOverflowing) {
+        return {
+          animationDelay: `-${this.animationDuration / 2}s`,
+          animationDuration: `${this.animationDuration}s`,
+          animationPlayState: 'running'
+        }
+      }
+    },
+    isOverflowing() {
+      return this.widthRatio > 1
+    },
+    secondStyles() {
+      if (this.isOverflowing) {
+        return {
+          animationDuration: `${this.animationDuration}s`,
+          animationPlayState: 'running'
+        }
       }
     }
   },
   updated() {
-    // Avoid using a computed property so we can re-check when the
-    // slot template changes
-    const containerBounds = this.$refs.container.getBoundingClientRect()
-    const itemBounds = this.$refs.item.getBoundingClientRect()
-    if (itemBounds.width > containerBounds.width) {
-      this.isOverflowing = true
-    }
+      const containerBounds = this.$refs.container.getBoundingClientRect()
+      const itemBounds = this.$refs.item.getBoundingClientRect()
+      this.widthRatio = itemBounds.width / containerBounds.width
   }
 }
 </script>
@@ -40,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 .marquee {
   flex: 1 1 auto;
-  height: 24px;
+  height: 28px;
 
   position: relative;
   overflow: hidden;
@@ -54,10 +67,6 @@ export default {
     background: linear-gradient(to right, rgba(0,0,0,0), #FFFFFF);
   }
 
-  &.animated .marquee-item {
-    animation: 16s slide-in infinite linear;
-  }
-
   .marquee-item {
     display: flex;
     align-items: center;
@@ -66,16 +75,9 @@ export default {
     top: 50%;
     min-width: 100%;
 
+    animation: slide-in 0s linear 0s infinite normal none paused;
     transform: translate(0%, -50%);
     will-change: transform;
-
-    &:nth-child(1) {
-      animation-delay: -8s;
-    }
-
-    &:nth-child(2) {
-      transform: translate(100%, -50%);
-    }
   }
 }
 
