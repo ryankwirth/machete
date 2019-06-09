@@ -1,4 +1,5 @@
 import config from './config'
+import utils from './utils'
 
 function injectAPI() {
   return new Promise((resolve) => {
@@ -31,9 +32,10 @@ function injectPlayer() {
 
 function onStateChange(e) {
   // Retrieve the latest video data
-  const { author: artist, title, video_id } = this.player.getVideoData()
+  const videoData = this.player.getVideoData()
   const duration = this.player.getDuration()
-  const artwork = `${config.urls.thumbnailUrl}${video_id}/0.jpg`
+  const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
+  const artwork = `${config.urls.thumbnailUrl}${videoData.video_id}/0.jpg`
 
   // If a metadata callback was provided, pass it back
   if (this.options.onReceiveMetadata) {
@@ -42,7 +44,9 @@ function onStateChange(e) {
 
   // If a status callback was provided, return `isPlaying` if the state === 1
   if (this.options.onReceiveStatus) {
-    this.options.onReceiveStatus(e.data === 1)
+    const isPlaying = e.data === 1
+    const volume = this.player.getVolume()
+    this.options.onReceiveStatus({ isPlaying, volume })
   }
 }
 

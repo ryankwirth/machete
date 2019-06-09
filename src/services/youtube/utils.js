@@ -10,6 +10,12 @@ const Utils = {
       title = standardFormatMatch[2]
     }
 
+    // Clean up any extra symbols
+    title = title.replace(/(^")|("$)/g, '')
+
+    // Format any "feat" or "ft" tags as "ft."
+    artist = artist.replace(/(feat|ft)\.?/i, 'ft.')
+
     return { title, artist }
   },
 

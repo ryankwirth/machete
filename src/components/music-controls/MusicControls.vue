@@ -13,7 +13,10 @@
       :title="title"
       @setTimestamp="onSetTimestamp"
     />
-    <Volume/>
+    <Volume
+      :volume="volume"
+      @setVolume="onSetVolume"
+    />
   </div>
 </template>
 
@@ -39,6 +42,7 @@ export default {
       isPlaying: false,
       timestamp: 0,
       title: '',
+      volume: 50
     }
   },
   mounted() {
@@ -48,7 +52,7 @@ export default {
       onReceiveStatus: this.onReceiveStatus
     })
     .then(() => {
-      CoreService.play('youtube://XVyEcQosijg')
+      CoreService.play('youtube://MqcOWCecf5s')
     })
   },
   methods: {
@@ -69,12 +73,17 @@ export default {
     onReceiveTimestamp(timestamp) {
       this.timestamp = timestamp
     },
-    onReceiveStatus(isPlaying) {
-      this.isPlaying = isPlaying
+    onReceiveStatus(status) {
+      this.isPlaying = status.isPlaying
+      this.volume = status.volume
     },
     onSetTimestamp(timestamp) {
       this.timestamp = timestamp
       CoreService.seekTo(timestamp)
+    },
+    onSetVolume(volume) {
+      this.volume = volume
+      CoreService.setVolume(volume)
     }
   }
 }
