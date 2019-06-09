@@ -2,23 +2,27 @@
   <div class="music-controls">
     <Buttons
       :is-playing="isPlaying"
-      @next="onNext"
-      @play="onPlay"
-      @pause="onPause"
-      @previous="onPrevious"
+      @pause="onPauseClicked"
+      @play="onPlayClicked"
     />
     <Playback
-      artist="Drake"
-      artwork="https://upload.wikimedia.org/wikipedia/en/a/ad/Drake_-_Scary_Hours.png"
-      :duration="245"
-      :timestamp="130"
-      title="God's Plan"
+      :artist="artist"
+      :artwork="artwork"
+      :duration="duration"
+      :timestamp="timestamp"
+      :title="title"
+      @setTimestamp="onSetTimestamp"
     />
-    <Volume/>
+    <Volume
+      :volume="volume"
+      @setVolume="onSetVolume"
+    />
   </div>
 </template>
 
 <script>
+import CoreService from '@/services/core'
+
 import Buttons from './MusicControlsButtons.vue'
 import Playback from './MusicControlsPlayback.vue'
 import Volume from './MusicControlsVolume'
@@ -32,18 +36,58 @@ export default {
   },
   data() {
     return {
-      isPlaying: false
+      artist: '',
+      artwork: '',
+      duration: 1,
+      isPlaying: false,
+      timestamp: 0,
+      title: '',
+      volume: 100
     }
   },
+  mounted() {
+    CoreService.init({
+      onReceiveMetadata: this.onReceiveMetadata,
+      onReceiveTimestamp: this.onReceiveTimestamp,
+      onReceiveStatus: this.onReceiveStatus
+    })
+    .then(() => {
+      CoreService.play('youtube://WVk6n-212Pw')
+    })
+  },
   methods: {
-    onNext() {},
-    onPlay() {
-      this.isPlaying = true
-    },
-    onPause() {
+    onPauseClicked() {
       this.isPlaying = false
+      CoreService.pause()
     },
-    onPrevious() {}
+    onPlayClicked() {
+      this.isPlaying = true
+      CoreService.play()
+    },
+    onReceiveMetadata(metadata) {
+      this.artist = metadata.artist
+      this.artwork = metadata.artwork
+      this.duration = metadata.duration
+      this.title = metadata.title
+
+      // Display track information in the document title
+      document.title = `${this.title} - ${this.artist}`
+    },
+    onReceiveTimestamp(timestamp) {
+      this.timestamp = timestamp
+    },
+    onReceiveStatus(status) {
+      this.isPlaying = status.isPlaying
+      this.volume = status.volume
+    },
+    onSetTimestamp(timestamp) {
+      this.timestamp = timestamp
+      CoreService.seekTo(timestamp)
+    },
+    onSetVolume(volume) {
+      this.volume = volume
+      CoreService.setVolume(volume)
+    }
   }
 }
 </script>

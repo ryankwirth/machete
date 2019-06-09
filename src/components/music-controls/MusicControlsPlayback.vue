@@ -1,9 +1,7 @@
 <template>
   <div class="music-controls-playback">
-    <img
-      :height="96"
-      :width="96"
-      :src="artwork"
+    <Artwork
+      :artwork="artwork"
     />
     <div class="scrubber-stack">
       <div class="details">
@@ -27,6 +25,7 @@
 </template>
 
 <script>
+import Artwork from './MusicControlsPlaybackArtwork.vue'
 import Details from './MusicControlsPlaybackDetails.vue'
 import Scrubber from './MusicControlsScrubber.vue'
 import Timestamp from './MusicControlsPlaybackTimestamp.vue'
@@ -34,6 +33,7 @@ import Timestamp from './MusicControlsPlaybackTimestamp.vue'
 export default {
   name: 'MusicControlsPlayback',
   components: {
+    Artwork,
     Details,
     Scrubber,
     Timestamp
@@ -73,7 +73,8 @@ export default {
   },
   methods: {
     onSetTimestamp(timestamp) {
-      // TODO: Propagate this new timestamp to the core service
+      this.modified = false
+      this.$emit('setTimestamp', timestamp)
     },
     onUpdateTimestamp(timestamp) {
       this.modified = true
@@ -89,10 +90,6 @@ export default {
   align-items: stretch;
   flex: 1 1 auto;
   padding: 0px 24px;
-
-  img {
-    margin-right: 24px;
-  }
 
   .scrubber-stack {
     display: flex;

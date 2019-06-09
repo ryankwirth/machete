@@ -1,42 +1,39 @@
-import config from './config';
-import utils from './utils';
-
-let pageLoader;
-
-function parseVideo($, el) {
-    // Get the label data and extract title/artist information
-    const label = $(el).find('.pl-video-title-link').text();
-    const owner = $(el).find('.pl-video-owner a').text();
-    const { title, artist } = utils.parseLabel(label.trim(), owner.trim());
-
-    // Extract the other pieces of data we need
-    const id = $(el).data('video-id');
-    const thumbnail = $(el).find('img').data('thumb');
-    const timestamp = $(el).find('.timestamp').text();
-    const length = utils.parseTimestamp(timestamp);
-
-    return {
-        id,
-        title,
-        artist,
-        thumbnail,
-        length
-    };
-}
-
-function scrapePlaylist(playlistId) {
-    return pageLoader.get(`${config.urls.baseUrl}/playlist?list=${playlistId}`)
-        .then(($) => $('tr').map((i, el) => parseVideo($, el)));
-}
+import config from './config'
+import parser from './parser'
+import player from './player'
 
 const YouTubeService = {
-    init: function(_pageLoader) {
-        pageLoader = _pageLoader;
-    },
+  init(options, pageLoader) {
+    return Promise.all([
+      parser.init(pageLoader),
+      player.init(options)
+    ])
+    .then(() => config.slug)
+  },
 
-    getMostPopular: function() {
-        return scrapePlaylist(config.playlistIds.mostPopular);
-    }
+  play(id) {
+    player.play(id)
+  },
+
+  pause() {
+    player.pause()
+  },
+
+  stop() {
+    player.stop()
+  },
+
+  seekTo(timestamp) {
+    player.seekTo(timestamp)
+  },
+
+  setVolume(volume) {
+    player.setVolume(volume)
+  },
+
+  getMostPopular() {
+    return parser.scrapePlaylist(config.playlistIds.mostPopular)
+  }
 }
 
 export default YouTubeService

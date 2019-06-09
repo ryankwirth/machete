@@ -1,14 +1,14 @@
 <template>
   <div class="music-controls-volume">
     <Buttons
-      :volume="activeVolume"
-      @setVolume="onUpdateVolume"
+      :volume="volume"
+      @setVolume="onSetVolume"
     />
     <Scrubber
       :total="100"
-      :value="activeVolume"
-      @setValue="onUpdateVolume"
-      @updateValue="onUpdateVolume"
+      :value="volume"
+      @setValue="onSetVolume"
+      @updateValue="onSetVolume"
     />
   </div>
 </template>
@@ -23,24 +23,15 @@ export default {
     Buttons,
     Scrubber
   },
-  data() {
-    return {
-      modified: false,
-      modifiedVolume: 0
-    }
-  },
-  computed: {
-    activeVolume() {
-      return this.modified ? this.modifiedVolume : 50
+  props: {
+    volume: {
+      type: Number,
+      required: true
     }
   },
   methods: {
     onSetVolume(volume) {
-      // TODO: Pass this new value to the core service
-    },
-    onUpdateVolume(volume) {
-      this.modified = true
-      this.modifiedVolume = volume
+      this.$emit('setVolume', volume)
     }
   }
 }
