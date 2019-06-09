@@ -27,10 +27,11 @@ function parseVideo($, el) {
 const YouTubeParser = {
   init(pageLoader) {
     this.pageLoader = pageLoader
+    return Promise.resolve()
   },
 
   scrapePlaylist(playlistId) {
-    return this.pageLoader.get(`${config.urls.baseUrl}/playlist?list=${playlistId}`)
+    return this.pageLoader.get(config.urls.playlistUrl + playlistId)
       .then(($) => $('tr').map((i, el) => parseVideo($, el)))
   }
 }

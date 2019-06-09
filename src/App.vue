@@ -18,9 +18,8 @@ export default {
   },
   mounted() {
     CoreService.init()
-      .then(CoreService.getMostPopular)
-      .then((mostPopular) => {
-        console.log(mostPopular)
+      .then(() => {
+        CoreService.play('youtube://XVyEcQosijg')
       })
   }
 }
