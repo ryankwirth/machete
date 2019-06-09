@@ -1,7 +1,9 @@
 <template>
   <div class="music-controls">
     <Buttons
-      :is-playing="true"
+      :is-playing="isPlaying"
+      @pause="onPauseClicked"
+      @play="onPlayClicked"
     />
     <Playback
       :artist="artist"
@@ -9,6 +11,7 @@
       :duration="duration"
       :timestamp="timestamp"
       :title="title"
+      @setTimestamp="onSetTimestamp"
     />
     <Volume/>
   </div>
@@ -33,6 +36,7 @@ export default {
       artist: '',
       artwork: '',
       duration: 0,
+      isPlaying: false,
       timestamp: 0,
       title: '',
     }
@@ -40,13 +44,22 @@ export default {
   mounted() {
     CoreService.init({
       onReceiveMetadata: this.onReceiveMetadata,
-      onReceiveTimestamp: this.onReceiveTimestamp
+      onReceiveTimestamp: this.onReceiveTimestamp,
+      onReceiveStatus: this.onReceiveStatus
     })
     .then(() => {
       CoreService.play('youtube://XVyEcQosijg')
     })
   },
   methods: {
+    onPauseClicked() {
+      this.isPlaying = false
+      CoreService.pause()
+    },
+    onPlayClicked() {
+      this.isPlaying = true
+      CoreService.play()
+    },
     onReceiveMetadata(metadata) {
       this.artist = metadata.artist
       this.artwork = metadata.artwork
@@ -55,6 +68,13 @@ export default {
     },
     onReceiveTimestamp(timestamp) {
       this.timestamp = timestamp
+    },
+    onReceiveStatus(isPlaying) {
+      this.isPlaying = isPlaying
+    },
+    onSetTimestamp(timestamp) {
+      this.timestamp = timestamp
+      CoreService.seekTo(timestamp)
     }
   }
 }

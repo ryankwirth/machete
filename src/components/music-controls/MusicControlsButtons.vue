@@ -4,8 +4,8 @@
       <IconPrevious/>
     </Button>
     <Button :icon-name="playPauseIconName" @click="onPlayPauseClicked">
-      <IconPlay v-if="isPlaying"/>
-      <IconPause v-else/>
+      <IconPause v-if="isPlaying"/>
+      <IconPlay v-else/>
     </Button>
     <Button icon-name="next" @click="onNextClicked">
       <IconNext/>
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     playPauseIconName() {
-      return this.isPlaying ? 'play' : 'pause'
+      return this.isPlaying ? 'pause' : 'play'
     }
   },
   methods: {

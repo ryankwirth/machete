@@ -73,7 +73,8 @@ export default {
   },
   methods: {
     onSetTimestamp(timestamp) {
-      // TODO: Propagate this new timestamp to the core service
+      this.modified = false
+      this.$emit('setTimestamp', timestamp)
     },
     onUpdateTimestamp(timestamp) {
       this.modified = true

@@ -23,14 +23,20 @@ const CoreService = {
   },
 
   play(uri) {
-    if (this.activeService) {
-      this.activeService.stop()
-    }
+    if (uri) {
+      // If a URI is provided, stop the current service
+      if (this.activeService) {
+        this.activeService.stop()
+      }
 
-    // Extract the service slug and track ID from the URI
-    const [slug, id] = uri.split('://')
-    this.activeService = this.services[slug]
-    this.activeService.play(id)
+      // Extract the service slug and track ID from the URI
+      const [slug, id] = uri.split('://')
+      this.activeService = this.services[slug]
+      this.activeService.play(id)
+    } else if (this.activeService) {
+      // If no URI is provided, we're continuing to play from the same service
+      this.activeService.play()
+    }
   },
 
   pause() {
