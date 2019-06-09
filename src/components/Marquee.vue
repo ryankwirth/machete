@@ -51,20 +51,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/variables.scss';
+
 .marquee {
   flex: 1 1 auto;
-  height: 28px;
+  height: 32px;
 
   position: relative;
   overflow: hidden;
 
   &:after {
+    content: '';
     position: absolute;
     right: 0;
 
     width: 48px;
-    height: 24px;
-    background: linear-gradient(to right, rgba(0,0,0,0), #FFFFFF);
+    height: 32px;
   }
 
   .marquee-item {
@@ -79,6 +81,14 @@ export default {
     transform: translate(0%, -50%);
     will-change: transform;
   }
+}
+
+#app:not([dark]) .marquee:after {
+  background: linear-gradient(to right, rgba(0,0,0,0), $primary-light);
+}
+
+#app[dark] .marquee:after {
+  background: linear-gradient(to right, rgba(0,0,0,0), $primary-dark);
 }
 
 @keyframes slide-in {
