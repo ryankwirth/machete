@@ -35,7 +35,7 @@ function onStateChange(e) {
   const videoData = this.player.getVideoData()
   const duration = this.player.getDuration()
   const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
-  const artwork = `${config.urls.thumbnailUrl}${videoData.video_id}/0.jpg`
+  const artwork = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
 
   // If a metadata callback was provided, pass it back
   if (this.options.onReceiveMetadata) {

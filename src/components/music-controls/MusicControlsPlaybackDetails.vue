@@ -1,13 +1,18 @@
 <template>
-  <div class="music-controls-playback-details">
+  <Marquee>
     <span class="title c-secondary">{{ title }}</span>
     <span class="artist c-secondary-variant">{{ artist }}</span>
-  </div>
+  </Marquee>
 </template>
 
 <script>
+import Marquee from '@/components/Marquee.vue'
+
 export default {
   name: 'MusicControlsPlaybackDetails',
+  components: {
+    Marquee
+  },
   props: {
     artist: String,
     title: String
@@ -16,16 +21,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.music-controls-playback-details {
-  display: flex;
-  align-items: center;
+span {
+  white-space: nowrap;
 
-  .title {
+  &.title {
     font-size: 24px;
     font-weight: 700;
   }
 
-  .artist {
+  &.artist {
     font-size: 16px;
     font-weight: 500;
 

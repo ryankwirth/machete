@@ -34,6 +34,7 @@ export default {
 
 <style lang="scss" scoped>
 .music-controls-playback-timestamp {
+  flex: 0 0 auto;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }

@@ -38,11 +38,11 @@ export default {
     return {
       artist: '',
       artwork: '',
-      duration: 0,
+      duration: 1,
       isPlaying: false,
       timestamp: 0,
       title: '',
-      volume: 50
+      volume: 100
     }
   },
   mounted() {
@@ -52,7 +52,7 @@ export default {
       onReceiveStatus: this.onReceiveStatus
     })
     .then(() => {
-      CoreService.play('youtube://MqcOWCecf5s')
+      CoreService.play('youtube://_BYIEXzdnlY')
     })
   },
   methods: {
@@ -69,6 +69,9 @@ export default {
       this.artwork = metadata.artwork
       this.duration = metadata.duration
       this.title = metadata.title
+
+      // Display track information in the document title
+      document.title = `${this.title} - ${this.artist}`
     },
     onReceiveTimestamp(timestamp) {
       this.timestamp = timestamp

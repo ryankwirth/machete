@@ -12,6 +12,7 @@ const Utils = {
 
     // Clean up any extra symbols
     title = title.replace(/(^")|("$)/g, '')
+    artist = artist.replace(/ - Topic$/, '')
 
     // Format any "feat" or "ft" tags as "ft."
     artist = artist.replace(/(feat|ft)\.?/i, 'ft.')
