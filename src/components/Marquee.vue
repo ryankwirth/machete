@@ -42,10 +42,21 @@ export default {
       }
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.recomputeWidthRatio)
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.recomputeWidthRatio)
+  },
   updated() {
+    this.recomputeWidthRatio()
+  },
+  methods: {
+    recomputeWidthRatio() {
       const containerBounds = this.$refs.container.getBoundingClientRect()
       const itemBounds = this.$refs.item.getBoundingClientRect()
       this.widthRatio = itemBounds.width / containerBounds.width
+    }
   }
 }
 </script>
