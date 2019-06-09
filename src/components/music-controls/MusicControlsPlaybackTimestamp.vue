@@ -22,11 +22,12 @@ export default {
   },
   methods: {
     formatTime(time) {
-      const minutes = Math.floor(time / 60)
-      const seconds = Math.floor(time - (minutes * 60))
+      const hours = Math.floor(time / 3600)
+      const minutes = Math.floor(time / 60 - hours * 60)
+      const seconds = Math.floor(time - (minutes * 60) - (hours * 3600))
       const minutesLeadingZero = minutes < 10 ? '0' : ''
       const secondsLeadingZero = seconds < 10 ? '0' : ''
-      return `${minutesLeadingZero}${minutes}:${secondsLeadingZero}${seconds}`
+      return `${hours > 0 ? hours + ':' : ''}${minutesLeadingZero}${minutes}:${secondsLeadingZero}${seconds}`
     }
   }
 }
