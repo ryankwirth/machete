@@ -6,7 +6,6 @@
 
 <script>
 import MusicControls from './components/music-controls'
-import CoreService from './services/core'
 
 import './assets/styles/colors.scss'
 import './assets/styles/typography.scss'
@@ -15,12 +14,6 @@ export default {
   name: 'app',
   components: {
     MusicControls
-  },
-  mounted() {
-    CoreService.init()
-      .then(() => {
-        CoreService.play('youtube://XVyEcQosijg')
-      })
   }
 }
 </script>

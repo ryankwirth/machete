@@ -3,10 +3,10 @@ import parser from './parser'
 import player from './player'
 
 const YouTubeService = {
-  init(pageLoader) {
+  init(options, pageLoader) {
     return Promise.all([
       parser.init(pageLoader),
-      player.init()
+      player.init(options)
     ])
     .then(() => config.slug)
   },

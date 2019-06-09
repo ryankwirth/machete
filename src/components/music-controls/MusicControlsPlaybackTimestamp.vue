@@ -23,7 +23,7 @@ export default {
   methods: {
     formatTime(time) {
       const minutes = Math.floor(time / 60)
-      const seconds = time - (minutes * 60)
+      const seconds = Math.floor(time - (minutes * 60))
       const minutesLeadingZero = minutes < 10 ? '0' : ''
       const secondsLeadingZero = seconds < 10 ? '0' : ''
       return `${minutesLeadingZero}${minutes}:${secondsLeadingZero}${seconds}`

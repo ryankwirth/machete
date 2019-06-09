@@ -10,29 +10,40 @@ function injectAPI() {
   })
 }
 
-function injectPlayer() {
+function injectPlayer(options) {
   return new Promise((resolve) => {
     const tag = document.createElement('div')
     tag.id = 'player'
     tag.style = 'position: absolute'
     document.body.appendChild(tag)
 
+    // eslint-disable-next-line no-undef
     const player = new YT.Player('player', {
       height: '0',
       width: '0',
       events: {
-        onReady: () => resolve(player)
+        onReady: () => resolve(player),
+        onStateChange: () => {
+          // Retrieve the latest video data
+          const { author: artist, title, video_id } = player.getVideoData()
+          const duration = player.getDuration()
+          const artwork = `https://img.youtube.com/vi/${video_id}/0.jpg`
+
+          // If a callback was provided, pass back the metadata
+          if (options.onReceiveMetadata) {
+            options.onReceiveMetadata({ artist, artwork, duration, title })
+          }
+        }
       }
     })
   })
 }
 
 const YouTubePlayer = {
-  init() {
+  init(options) {
     return injectAPI()
-      .then(injectPlayer)
+      .then(() => injectPlayer(options))
       .then((player) => {
-        // Keep a reference to the YT `player` object
         this.player = player
       })
   },

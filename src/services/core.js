@@ -7,9 +7,9 @@ const SERVICES = [
 ]
 
 const CoreService = {
-  init() {
+  init(options) {
     // Initialize all specified services.
-    const promises = SERVICES.map((service) => service.init(PageLoader))
+    const promises = SERVICES.map((service) => service.init(options, PageLoader))
     return Promise.all(promises)
       .then((slugs) => {
         // Map each service's slug to its object
