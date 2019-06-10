@@ -52,7 +52,12 @@ export default {
       onReceiveStatus: this.onReceiveStatus
     })
     .then(() => {
-      CoreService.play('youtube://WVk6n-212Pw')
+      // CoreService.play('youtube://WVk6n-212Pw')
+    })
+    .then(() => CoreService.getMostPopular())
+    .then((results) => {
+      console.log('results')
+      console.log(results)
     })
   },
   methods: {

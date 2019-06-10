@@ -1,32 +1,20 @@
 # Machete
 
-## Project setup
-```
-yarn install
-```
+Machete is a music player built with Electron and Vue.js. It's inspired by
+Tomahawk, and implements an extensible service module for scraping and
+playing music from several data sources.
 
-### Compiles and hot-reloads for development
-NOTE: When running Machete outside of Electron, be sure to change
-your user agent to ensure YouTube sends static HTML pages for scraping.
+## Packages
 
-```
-yarn run serve
-```
+1. `machete-app`
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+   This is the front-end of the application, built with Electron/Vue.js.
 
-### Run your tests
-```
-yarn run test
-```
+2. `machete-proxy`
 
-### Lints and fixes files
-```
-yarn run lint
-```
+   To get around CORS restrictions, this is a simple Node.js server that's
+   deployed to Heroku for proxying requests when scraping data.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Project Setup
+
+To get started, please read `packages/machete-app/README.md`.

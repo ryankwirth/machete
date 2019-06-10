@@ -2,6 +2,8 @@ import needle from 'needle'
 import cheerio from 'cheerio'
 import YouTubeService from './youtube'
 
+const PROXY = 'https://machete-proxy.herokuapp.com/'
+
 const SERVICES = [
   YouTubeService
 ]
@@ -70,7 +72,7 @@ const CoreService = {
 
 const PageLoader = {
   get(url, options) {
-    return needle('get', url, options)
+    return needle('get', PROXY + url, options)
       .then((response) => response.body)
       .then((body) => cheerio.load(body))
   }
