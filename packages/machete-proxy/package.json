@@ -1,0 +1,17 @@
+{
+  "name": "machete-proxy",
+  "version": "0.1.0",
+  "description": "A simple proxy server for bypassing CORS.",
+  "author": {
+    "name": "Ryan Wirth",
+    "email": "ryan@ryanwirth.ca",
+    "url": "https://ryanwirth.ca"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors-anywhere": "^0.4.1"
+  }
+}
