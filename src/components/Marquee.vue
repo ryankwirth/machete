@@ -22,30 +22,36 @@ export default {
       return this.widthRatio * 16
     },
     firstStyles() {
-      if (this.isOverflowing) {
-        return {
-          animationDelay: `-${this.animationDuration / 2}s`,
-          animationDuration: `${this.animationDuration}s`,
-          animationPlayState: 'running'
-        }
+      return {
+        animationDelay: `-${this.animationDuration / 2}s`,
+        ...this.secondStyles
       }
     },
     isOverflowing() {
       return this.widthRatio > 1
     },
     secondStyles() {
-      if (this.isOverflowing) {
-        return {
-          animationDuration: `${this.animationDuration}s`,
-          animationPlayState: 'running'
-        }
+      return {
+        animationDuration: `${this.animationDuration}s`,
+        animationPlayState: this.isOverflowing ? 'running' : 'paused'
       }
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.recomputeWidthRatio)
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.recomputeWidthRatio)
+  },
   updated() {
+    this.recomputeWidthRatio()
+  },
+  methods: {
+    recomputeWidthRatio() {
       const containerBounds = this.$refs.container.getBoundingClientRect()
       const itemBounds = this.$refs.item.getBoundingClientRect()
       this.widthRatio = itemBounds.width / containerBounds.width
+    }
   }
 }
 </script>

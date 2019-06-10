@@ -18,6 +18,8 @@ export default {
           backgroundImage: `url(${this.artwork})`,
           backgroundSize: 'cover'
         }
+      } else {
+        return {}
       }
     }
   }
