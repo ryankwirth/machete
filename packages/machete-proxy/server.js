@@ -5,9 +5,9 @@ var port = process.env.PORT || 9000;
 
 var cors_proxy = require('cors-anywhere');
 cors_proxy.createServer({
-    originWhitelist: [], // Allow all origins
-    requireHeader: ['origin', 'x-requested-with'],
-    removeHeaders: ['cookie', 'cookie2']
+    originWhitelist: [ 'http://localhost:8080' ],
+    requireHeader: [ 'origin', 'x-requested-with' ],
+    setHeaders: { 'user-agent': 'Machete/0.1' }
 }).listen(port, host, function() {
     console.log('Running CORS Anywhere on ' + host + ':' + port);
 });
