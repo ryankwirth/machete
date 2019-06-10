@@ -88,12 +88,11 @@ const YouTubePlayer = {
 
   pause() {
     this.player.pauseVideo()
+    stopTimestampPolling.call(this)
   },
 
   stop() {
     this.player.stopVideo()
-
-    // No need to poll anymore
     stopTimestampPolling.call(this)
   },
 

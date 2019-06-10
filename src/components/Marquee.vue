@@ -22,23 +22,18 @@ export default {
       return this.widthRatio * 16
     },
     firstStyles() {
-      if (this.isOverflowing) {
-        return {
-          animationDelay: `-${this.animationDuration / 2}s`,
-          animationDuration: `${this.animationDuration}s`,
-          animationPlayState: 'running'
-        }
+      return {
+        animationDelay: `-${this.animationDuration / 2}s`,
+        ...this.secondStyles
       }
     },
     isOverflowing() {
       return this.widthRatio > 1
     },
     secondStyles() {
-      if (this.isOverflowing) {
-        return {
-          animationDuration: `${this.animationDuration}s`,
-          animationPlayState: 'running'
-        }
+      return {
+        animationDuration: `${this.animationDuration}s`,
+        animationPlayState: this.isOverflowing ? 'running' : 'paused'
       }
     }
   },
