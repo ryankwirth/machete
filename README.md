@@ -1,16 +1,19 @@
 # Machete
 
 Machete is a music player built with Electron and Vue.js. It's inspired by
-Tomahawk, and similarly, implements an extensible service module for
-scraping and playing music from several data sources.
+Tomahawk, and implements an extensible service module for scraping and
+playing music from several data sources.
 
 ## Packages
 
 1. `machete-app`
-  This is the front-end of the application, built with Electron/Vue.js.
+
+   This is the front-end of the application, built with Electron/Vue.js.
+
 2. `machete-proxy`
-  To get around CORS restrictions, this is a simple Node.js server that's
-  deployed to Heroku for proxying requests when scraping data.
+
+   To get around CORS restrictions, this is a simple Node.js server that's
+   deployed to Heroku for proxying requests when scraping data.
 
 ## Project Setup
 
