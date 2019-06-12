@@ -56,7 +56,7 @@ function startTimestampPolling() {
       if (this.options.onReceiveTimestamp) {
         this.options.onReceiveTimestamp(this.player.getCurrentTime())
       }
-    }, 500)
+    }, 1000)
   }
 }
 

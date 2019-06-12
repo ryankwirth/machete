@@ -10,18 +10,21 @@ const SERVICES = [
 
 const CoreService = {
   init(options) {
-    // Initialize all specified services.
-    const promises = SERVICES.map((service) => service.init(options, PageLoader))
-    return Promise.all(promises)
-      .then((slugs) => {
-        // Map each service's slug to its object
-        // (eg. { "youtube": YouTubeService })
-        this.services = slugs.reduce((obj, slug, i) => {
-          obj[slug] = SERVICES[i]
-          return obj
-        }, {})
+    if (!this.initializePromise) {
+      // Initialize all specified services.
+      const promises = SERVICES.map((service) => service.init(options, PageLoader))
+      this.initializePromise = Promise.all(promises)
+        .then((slugs) => {
+          // Map each service's slug to its object
+          // (eg. { "youtube": YouTubeService })
+          this.services = slugs.reduce((obj, slug, i) => {
+            obj[slug] = SERVICES[i]
+            return obj
+          }, {})
+        })
+    }
 
-      })
+    return this.initializePromise
   },
 
   play(uri) {

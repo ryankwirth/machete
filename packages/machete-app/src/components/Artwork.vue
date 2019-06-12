@@ -1,15 +1,26 @@
 <template>
-  <div
-    class="music-controls-playback-artwork"
-    :style="styles"
-  />
+  <div class="artwork" :style="styles">
+    <Play v-if="showPlay"/>
+  </div>
 </template>
 
 <script>
+import Play from './ArtworkPlay.vue'
+
 export default {
-  name: 'MusicControlsPlaybackArtwork',
+  name: 'Artwork',
+  components: {
+    Play
+  },
   props: {
-    artwork: String
+    artwork: {
+      type: String,
+      required: true
+    },
+    showPlay: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     styles() {
@@ -27,14 +38,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.music-controls-playback-artwork {
+.artwork {
   flex: 0 0 auto;
 
   width: 96px;
   height: 96px;
-  margin-right: 24px;
 
-  background-image: url('../../assets/images/spinner.gif');
+  background-image: url('../assets/images/spinner.gif');
   background-position: center;
   background-repeat: no-repeat;
 }

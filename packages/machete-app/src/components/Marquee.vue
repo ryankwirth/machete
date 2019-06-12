@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import debounce from '@/utils/debounce'
+
 export default {
   name: 'Marquee',
   data() {
@@ -38,10 +40,11 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('resize', this.recomputeWidthRatio)
+    this.debouncedRecomputeWidthRatio = debounce(this.recomputeWidthRatio, 1000)
+    window.addEventListener('resize', this.debouncedRecomputeWidthRatio)
   },
   destroyed() {
-    window.removeEventListener('resize', this.recomputeWidthRatio)
+    window.removeEventListener('resize', this.debouncedRecomputeWidthRatio)
   },
   updated() {
     this.recomputeWidthRatio()

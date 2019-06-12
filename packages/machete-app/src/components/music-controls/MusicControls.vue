@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import CoreService from '@/services/core'
+// import CoreService from '@/services/core'
+import CoreService from 'machete-core'
 
 import Buttons from './MusicControlsButtons.vue'
 import Playback from './MusicControlsPlayback.vue'
@@ -52,7 +53,7 @@ export default {
       onReceiveStatus: this.onReceiveStatus
     })
     .then(() => {
-      // CoreService.play('youtube://WVk6n-212Pw')
+      CoreService.play('youtube://xk9EuEwMKcM')
     })
     .then(() => CoreService.getMostPopular())
     .then((results) => {
