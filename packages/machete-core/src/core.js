@@ -1,30 +1,26 @@
-import needle from 'needle'
-import cheerio from 'cheerio'
+import EventBus from './event-bus'
+import Injectable from './injectable'
 import YouTubeService from './youtube'
 
-const PROXY = 'https://machete-proxy.herokuapp.com/'
-
-const SERVICES = [
-  YouTubeService
-]
+// An array of services to initialize/use
+const SERVICES = [ YouTubeService ]
 
 const CoreService = {
   init(options) {
-    if (!this.initializePromise) {
-      // Initialize all specified services.
-      const promises = SERVICES.map((service) => service.init(options, PageLoader))
-      this.initializePromise = Promise.all(promises)
-        .then((slugs) => {
-          // Map each service's slug to its object
-          // (eg. { "youtube": YouTubeService })
-          this.services = slugs.reduce((obj, slug, i) => {
-            obj[slug] = SERVICES[i]
-            return obj
-          }, {})
-        })
-    }
+    EventBus.init()
+    Injectable.init()
 
-    return this.initializePromise
+    // Initialize all of the specified services.
+    const promises = SERVICES.map((service) => service.init(Injectable))
+    return Promise.all(promises)
+      .then((slugs) => {
+        // Map each service's slug to its instance
+        // (eg. { "youtube": YouTubeService})
+        this.services = slugs.reduce((obj, slug, i) => {
+          obj[slug] = SERVICES[i]
+          return obj
+        }, {})
+      })
   },
 
   play(uri) {
@@ -70,14 +66,14 @@ const CoreService = {
 
   getMostPopular() {
     return YouTubeService.getMostPopular()
-  }
-}
+  },
 
-const PageLoader = {
-  get(url, options) {
-    return needle('get', PROXY + url, options)
-      .then((response) => response.body)
-      .then((body) => cheerio.load(body))
+  on(type, callback) {
+    EventBus.on(type, callback)
+  },
+
+  off(type, callback) {
+    EventBus.off(type, callback)
   }
 }
 

@@ -31,31 +31,23 @@ function injectPlayer() {
 }
 
 function onStateChange(e) {
-  // Retrieve the latest video data
+  // Dispatch the latest video data
   const videoData = this.player.getVideoData()
   const duration = this.player.getDuration()
   const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
   const artwork = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
+  this.injectable.dispatch('metadata', { artist, artwork, duration, title })
 
-  // If a metadata callback was provided, pass it back
-  if (this.options.onReceiveMetadata) {
-    this.options.onReceiveMetadata({ artist, artwork, duration, title })
-  }
-
-  // If a status callback was provided, return `isPlaying` if the state === 1
-  if (this.options.onReceiveStatus) {
-    const isPlaying = e.data === 1
-    const volume = this.player.getVolume()
-    this.options.onReceiveStatus({ isPlaying, volume })
-  }
+  // Dispatch the current video status
+  const isPlaying = e.data === 1
+  const volume = this.player.getVolume()
+  this.injectable.dispatch('status', { isPlaying, volume })
 }
 
 function startTimestampPolling() {
   if (!this.intervalId) {
     this.intervalId = setInterval(() => {
-      if (this.options.onReceiveTimestamp) {
-        this.options.onReceiveTimestamp(this.player.getCurrentTime())
-      }
+      this.injectable.dispatch('timestamp', this.player.getCurrentTime())
     }, 1000)
   }
 }
@@ -68,8 +60,8 @@ function stopTimestampPolling() {
 }
 
 const YouTubePlayer = {
-  init(options) {
-    this.options = options
+  init(injectable) {
+    this.injectable = injectable
 
     return injectAPI()
       .then(() => injectPlayer.call(this))
