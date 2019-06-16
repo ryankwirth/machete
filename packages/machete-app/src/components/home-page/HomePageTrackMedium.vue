@@ -55,8 +55,8 @@ export default {
     onMouseLeave() {
       this.isHovering = false
     },
-    onReceiveMetadata(metadata) {
-      this.isPlaying = this.metadata.id === id
+    onReceiveMetadata({ id }) {
+      this.isPlaying = this.id === id
     }
   }
 }
