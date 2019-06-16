@@ -35,7 +35,7 @@ export default {
     secondStyles() {
       return {
         animationDuration: `${this.animationDuration}s`,
-        animationPlayState: this.isOverflowing ? 'running' : 'paused'
+        ...(!this.isOverflowing && { animation: 'none' }),
       }
     }
   },
@@ -86,7 +86,7 @@ export default {
     top: 50%;
     min-width: 100%;
 
-    animation: slide-in 0s linear 0s infinite normal none paused;
+    animation: slide-in 0s linear 0s infinite normal none running;
     transform: translate(0%, -50%);
     will-change: transform;
   }
