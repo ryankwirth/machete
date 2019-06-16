@@ -1,5 +1,5 @@
 <template>
-  <div class="music-controls">
+  <div class="music-controls cbackground-primary cborder-primary-variant">
     <Buttons
       :is-playing="isPlaying"
       @pause="onPauseClicked"
@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import CoreService from '@/services/core'
-
 import Buttons from './MusicControlsButtons.vue'
 import Playback from './MusicControlsPlayback.vue'
 import Volume from './MusicControlsVolume'
@@ -46,28 +44,24 @@ export default {
     }
   },
   mounted() {
-    CoreService.init({
-      onReceiveMetadata: this.onReceiveMetadata,
-      onReceiveTimestamp: this.onReceiveTimestamp,
-      onReceiveStatus: this.onReceiveStatus
-    })
-    .then(() => {
-      // CoreService.play('youtube://WVk6n-212Pw')
-    })
-    .then(() => CoreService.getMostPopular())
-    .then((results) => {
-      console.log('results')
-      console.log(results)
-    })
+    this.$coreService.play('youtube://TATXudfgu3E')
+    this.$coreService.on('metadata', this.onReceiveMetadata)
+    this.$coreService.on('timestamp', this.onReceiveTimestamp)
+    this.$coreService.on('status', this.onReceiveStatus)
+  },
+  beforeDestroy() {
+    this.$coreService.off('metadata', this.onReceiveMetadata)
+    this.$coreService.off('timestamp', this.onReceiveTimestamp)
+    this.$coreService.off('status', this.onReceiveStatus)
   },
   methods: {
     onPauseClicked() {
       this.isPlaying = false
-      CoreService.pause()
+      this.$coreService.pause()
     },
     onPlayClicked() {
       this.isPlaying = true
-      CoreService.play()
+      this.$coreService.play()
     },
     onReceiveMetadata(metadata) {
       this.artist = metadata.artist
@@ -87,11 +81,11 @@ export default {
     },
     onSetTimestamp(timestamp) {
       this.timestamp = timestamp
-      CoreService.seekTo(timestamp)
+      this.$coreService.seekTo(timestamp)
     },
     onSetVolume(volume) {
       this.volume = volume
-      CoreService.setVolume(volume)
+      this.$coreService.setVolume(volume)
     }
   }
 }
@@ -102,11 +96,12 @@ export default {
   display: flex;
   align-items: stretch;
 
-  position: absolute;
+  position: fixed;
   bottom: 0;
 
   width: calc(100% - 24px * 2);
   padding: 24px;
+  border-top: 1px solid;
   cursor: default;
 }
 </style>

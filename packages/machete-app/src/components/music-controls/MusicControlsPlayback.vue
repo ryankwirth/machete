@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Artwork from './MusicControlsPlaybackArtwork.vue'
+import Artwork from '@/components/Artwork.vue'
 import Details from './MusicControlsPlaybackDetails.vue'
 import Scrubber from './MusicControlsScrubber.vue'
 import Timestamp from './MusicControlsPlaybackTimestamp.vue'
@@ -96,6 +96,8 @@ export default {
     justify-content: center;
     flex-direction: column;
     flex: 1 1 auto;
+
+    margin-left: 24px;
 
     .details {
       display: flex;

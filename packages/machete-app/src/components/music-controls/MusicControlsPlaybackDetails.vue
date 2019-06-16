@@ -1,7 +1,8 @@
 <template>
   <Marquee>
-    <span class="title c-secondary">{{ title }}</span>
-    <span class="artist c-secondary-variant">{{ artist }}</span>
+    <span class="title c-secondary">{{ titleFormatted }}</span>
+    <span class="bullet c-secondary-variant">{{ bulletFormatted }}</span>
+    <span class="artist c-secondary-variant">{{ artistFormatted }}</span>
   </Marquee>
 </template>
 
@@ -16,6 +17,20 @@ export default {
   props: {
     artist: String,
     title: String
+  },
+  computed: {
+    artistFormatted() {
+      return this.isLoading ? '' : this.artist
+    },
+    bulletFormatted() {
+      return this.isLoading ? '' : '•'
+    },
+    titleFormatted() {
+      return this.isLoading ? 'Loading...' : this.title
+    },
+    isLoading() {
+      return this.artist === ''
+    }
   }
 }
 </script>
@@ -29,14 +44,15 @@ span {
     font-weight: 700;
   }
 
+  &.bullet {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0px 8px;
+  }
+
   &.artist {
     font-size: 16px;
     font-weight: 500;
-
-    &:before {
-      content: '•';
-      margin: 0px 8px;
-    }
   }
 }
 </style>

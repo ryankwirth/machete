@@ -3,8 +3,9 @@
     :width="width"
     :height="height"
     viewBox="0 0 24 24"
-    :aria-labelledby="iconName" 
     role="presentation"
+    :aria-labelledby="iconName"
+    preserveAspectRatio="xMaxYMax meet"
   >
     <title :id="iconName" lang="en">{{iconName}} icon</title>
     <g>

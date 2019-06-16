@@ -1,7 +1,7 @@
 <template>
   <div class="music-controls-scrubber" ref="scrubber" @click="onClick">
-    <div class="track cb-primary-variant">
-      <div class="fill cb-accent" :style="fillStyle"></div>
+    <div class="track cbackground-primary-variant">
+      <div class="fill cbackground-accent" :style="fillStyle"></div>
     </div>
     <div class="handle" :style="handleStyle" @mousedown="onMouseDown">
       <div class="inner"></div>

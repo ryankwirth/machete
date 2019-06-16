@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import debounce from '@/utils/debounce'
+
 export default {
   name: 'Marquee',
   data() {
@@ -33,15 +35,16 @@ export default {
     secondStyles() {
       return {
         animationDuration: `${this.animationDuration}s`,
-        animationPlayState: this.isOverflowing ? 'running' : 'paused'
+        ...(!this.isOverflowing && { animation: 'none' }),
       }
     }
   },
   mounted() {
-    window.addEventListener('resize', this.recomputeWidthRatio)
+    this.debouncedRecomputeWidthRatio = debounce(this.recomputeWidthRatio, 1000)
+    window.addEventListener('resize', this.debouncedRecomputeWidthRatio)
   },
   destroyed() {
-    window.removeEventListener('resize', this.recomputeWidthRatio)
+    window.removeEventListener('resize', this.debouncedRecomputeWidthRatio)
   },
   updated() {
     this.recomputeWidthRatio()
@@ -83,7 +86,7 @@ export default {
     top: 50%;
     min-width: 100%;
 
-    animation: slide-in 0s linear 0s infinite normal none paused;
+    animation: slide-in 0s linear 0s infinite normal none running;
     transform: translate(0%, -50%);
     will-change: transform;
   }
