@@ -1,5 +1,5 @@
 <template>
-  <div class="music-controls">
+  <div class="music-controls cbackground-primary cborder-primary-variant">
     <Buttons
       :is-playing="isPlaying"
       @pause="onPauseClicked"
@@ -96,11 +96,12 @@ export default {
   display: flex;
   align-items: stretch;
 
-  position: absolute;
+  position: fixed;
   bottom: 0;
 
   width: calc(100% - 24px * 2);
   padding: 24px;
+  border-top: 1px solid;
   cursor: default;
 }
 </style>

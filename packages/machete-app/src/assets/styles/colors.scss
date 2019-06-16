@@ -10,12 +10,16 @@
     color: $color;
   }
   
-  .cb-#{$type} {
+  .cbackground-#{$type} {
     background-color: $color;
   }
 
-  .cb-#{$type}-hover:hover {
+  .cbackground-#{$type}-hover:hover {
     background-color: $color;
+  }
+
+  .cborder-#{$type} {
+    border-color: $color;
   }
 }
 
