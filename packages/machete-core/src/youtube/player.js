@@ -75,6 +75,7 @@ const YouTubePlayer = {
   play(id) {
     if (id) {
       this.player.loadVideoById(id)
+      this.injectable.dispatch('play', `${config.slug}://${id}`)
     } else {
       this.player.playVideo()
     }
