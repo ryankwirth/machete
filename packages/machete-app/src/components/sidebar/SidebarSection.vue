@@ -6,13 +6,8 @@
 </template>
 
 <script>
-import Button from './SidebarSectionButton.vue'
-
 export default {
   name: 'SidebarSection',
-  components: {
-    Button
-  },
   props: {
     name: {
       type: String,
@@ -24,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar-section {
-  padding: 8px 0px;
+  padding: 16px 0px;
 
   .name {
     font-weight: 700;

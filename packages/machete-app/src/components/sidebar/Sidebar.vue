@@ -1,16 +1,19 @@
 <template>
   <div class="sidebar">
     <Library/>
+    <Playlists/>
   </div>
 </template>
 
 <script>
 import Library from './SidebarSectionLibrary.vue'
+import Playlists from './SidebarSectionPlaylists.vue'
 
 export default {
   name: 'Sidebar',
   components: {
-    Library
+    Library,
+    Playlists
   }
 }
 </script>
