@@ -17,17 +17,28 @@ export default {
       type: String,
       required: true
     },
+    radius: {
+      type: Number,
+      default: 0
+    },
     showPlay: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: Number,
+      default: 96
     }
   },
   computed: {
     styles() {
       if (this.artwork) {
         return {
+          width: `${this.size}px`,
+          height: `${this.size}px`,
           backgroundImage: `url(${this.artwork})`,
-          backgroundSize: 'cover'
+          backgroundSize: 'cover',
+          borderRadius: `${this.radius}px`
         }
       } else {
         return {}
@@ -40,9 +51,6 @@ export default {
 <style lang="scss" scoped>
 .artwork {
   flex: 0 0 auto;
-
-  width: 96px;
-  height: 96px;
 
   background-image: url('../assets/images/spinner.gif');
   background-position: center;

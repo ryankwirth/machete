@@ -2,10 +2,12 @@
   <div class="home-page-track-medium" @click="onClick">
     <Artwork
       :artwork="artwork"
+      :radius="2"
+      :size="72"
     />
     <div class="details">
-      <div class="title">{{ title }}</div>
-      <div class="artist">{{ artist }}</div>
+      <span class="title c-secondary-variant">{{ title }}</span>
+      <span class="artist c-secondary-variant">{{ artist }}</span>
     </div>
   </div>
 </template>
@@ -35,16 +37,29 @@ export default {
 <style lang="scss" scoped>
 .home-page-track-medium {
   display: flex;
+  padding: 16px 0px;
+  max-width: 100%;
 
   .details {
     display: flex;
-    flex: 1 1 auto;
     flex-direction: column;
     justify-content: center;
+
+    padding: 0px 12px;
     text-align: left;
+    min-width: 0px;
 
     .title {
+      display: inline;
       font-weight: 700;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .artist {
+      font-weight: 500;
     }
   }
 }

@@ -1,13 +1,18 @@
 <template>
   <div class="home-page">
-    <Track
-      v-for="result in results"
-      :key="result.id"
-      :artist="result.artist"
-      :artwork="result.thumbnail"
-      :id="result.id"
-      :title="result.title"
-    />
+    <div class="container">
+      <div class="title c-secondary">Most Popular</div>
+      <div class="tracks">
+        <Track
+          v-for="result in results"
+          :key="result.id"
+          :artist="result.artist"
+          :artwork="result.thumbnail"
+          :id="result.id"
+          :title="result.title"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,7 +39,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home-page {
+.container {
+  padding: 24px;
 
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  }
 }
 </style>
