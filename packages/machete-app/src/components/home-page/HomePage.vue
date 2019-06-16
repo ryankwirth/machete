@@ -5,13 +5,13 @@
       :key="result.id"
       :artist="result.artist"
       :artwork="result.thumbnail"
+      :id="result.id"
       :title="result.title"
     />
   </div>
 </template>
 
 <script>
-// import CoreService from '@/services/core'
 import Track from './HomePageTrackMedium.vue'
 
 export default {
@@ -25,9 +25,10 @@ export default {
     }
   },
   mounted() {
-    /*CoreService.init()
-      .then(CoreService.getMostPopular)
-      .then((results) => this.results = results) */
+    this.$coreService.getMostPopular()
+      .then((results) => {
+        this.results = results
+      })
   }
 }
 </script>

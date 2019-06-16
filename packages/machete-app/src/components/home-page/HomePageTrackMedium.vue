@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page-track-medium">
+  <div class="home-page-track-medium" @click="onClick">
     <Artwork
       :artwork="artwork"
     />
@@ -21,7 +21,13 @@ export default {
   props: {
     artist: String,
     artwork: String,
+    id: String,
     title: String
+  },
+  methods: {
+    onClick() {
+      this.$coreService.play(this.id)
+    }
   }
 }
 </script>

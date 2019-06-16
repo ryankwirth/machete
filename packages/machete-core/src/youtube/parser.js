@@ -10,9 +10,10 @@ function parseVideo($, el) {
   const { title, artist } = utils.parseLabel(label.trim(), owner.trim())
 
   // Extract the other pieces of data we need
-  const id = $(el).data('video-id')
+  const videoId = $(el).data('video-id')
   const thumbnail = $(el).find('img').data('thumb')
   const timestamp = $(el).find('.timestamp').text()
+  const id = `${config.slug}://${videoId}`
   const length = utils.parseTimestamp(timestamp)
 
   return {
@@ -25,14 +26,14 @@ function parseVideo($, el) {
 }
 
 const YouTubeParser = {
-  init(pageLoader) {
-    this.pageLoader = pageLoader
+  init(injectable) {
+    this.injectable = injectable
     return Promise.resolve()
   },
 
   scrapePlaylist(playlistId) {
-    return this.pageLoader.get(config.urls.playlistUrl + playlistId)
-      .then(($) => $('tr').map((i, el) => parseVideo($, el)))
+    return this.injectable.get(config.urls.playlistUrl + playlistId)
+      .then(($) => $('tr').map((i, el) => parseVideo($, el)).get())
   }
 }
 

@@ -31,6 +31,11 @@ function injectPlayer() {
 }
 
 function onStateChange(e) {
+  // Ensure the video isn't muted; the user can change the volume later
+  if (this.player.isMuted()) {
+    this.player.unMute()
+  }
+
   // Dispatch the latest video data
   const videoData = this.player.getVideoData()
   const duration = this.player.getDuration()

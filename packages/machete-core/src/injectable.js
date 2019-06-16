@@ -3,13 +3,12 @@ import needle from 'needle'
 import EventBus from './event-bus'
 
 const Injectable = {
-  init(options) {
-    this.options = options || {}
+  init({ proxy }) {
+    this.proxy = proxy || ''
   },
 
   get(url, options) {
-    const proxy = this.options.proxy || ''
-    return needle('get', proxy + url, options)
+    return needle('get', this.proxy + url, options)
       .then((response) => response.body)
       .then((body) => cheerio.load(body))
   },

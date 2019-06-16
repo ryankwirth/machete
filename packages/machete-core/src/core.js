@@ -8,7 +8,7 @@ const SERVICES = [ YouTubeService ]
 const CoreService = {
   init(options) {
     EventBus.init()
-    Injectable.init()
+    Injectable.init(options)
 
     // Initialize all of the specified services.
     const promises = SERVICES.map((service) => service.init(Injectable))
