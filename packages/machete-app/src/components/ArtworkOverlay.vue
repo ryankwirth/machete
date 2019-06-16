@@ -1,5 +1,5 @@
 <template>
-  <div class="artwork-overlay c-primary">
+  <div class="artwork-overlay c-primary" :style="styles">
     <BaseIcon width="48" height="48">
       <slot/>
     </BaseIcon>
@@ -13,6 +13,17 @@ export default {
   name: 'ArtworkPlay',
   components: {
     BaseIcon
+  },
+  props: {
+    radius: {
+      type: Number,
+      default: 0
+    }
+  },
+  computed: {
+    styles() {
+      return { borderRadius: `${this.radius}px` }
+    }
   }
 }
 </script>

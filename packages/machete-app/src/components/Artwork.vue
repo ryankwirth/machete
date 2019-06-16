@@ -1,9 +1,15 @@
 <template>
   <div class="artwork" :style="styles">
-    <Overlay v-if="showPlaying">
+    <Overlay
+      v-if="showPlaying"
+      :radius="radius"
+    >
       <IconPlaying/>
     </Overlay>
-    <Overlay v-else-if="showHovering">
+    <Overlay
+      v-else-if="showHovering"
+      :radius="radius"
+    >
       <IconPlay/>
     </Overlay>
   </div>

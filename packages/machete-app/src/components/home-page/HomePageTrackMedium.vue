@@ -7,7 +7,7 @@
   >
     <Artwork
       :artwork="artwork"
-      :radius="2"
+      :radius="3"
       :showHovering="isHovering"
       :showPlaying="isPlaying"
       :size="72"
@@ -40,10 +40,10 @@ export default {
     }
   },
   mounted() {
-    this.$coreService.on('play', this.onReceivePlay)
+    this.$coreService.on('metadata', this.onReceiveMetadata)
   },
   beforeDestroy() {
-    this.$coreService.off('play', this.onReceivePlay)
+    this.$coreService.off('metadata', this.onReceiveMetadata)
   },
   methods: {
     onClick() {
@@ -55,8 +55,8 @@ export default {
     onMouseLeave() {
       this.isHovering = false
     },
-    onReceivePlay(id) {
-      this.isPlaying = this.id === id
+    onReceiveMetadata(metadata) {
+      this.isPlaying = this.metadata.id === id
     }
   }
 }
