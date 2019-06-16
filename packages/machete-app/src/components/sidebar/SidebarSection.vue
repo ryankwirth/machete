@@ -1,12 +1,7 @@
 <template>
   <div class="sidebar-section">
-    <div class="name c-secondary-variant">{{ name }}</div>
-    <Button label="Recently Played"/>
-    <Button label="Songs"/>
-    <Button label="Albums"/>
-    <Button label="Artists"/>
-    <Button label="Liked"/>
-    <Button label="Local Files"/>
+    <div class="name c-primary-variant">{{ name }}</div>
+    <slot/>
   </div>
 </template>
 
@@ -29,9 +24,12 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar-section {
+  padding: 8px 0px;
+
   .name {
     font-weight: 700;
     text-transform: uppercase;
+    padding-bottom: 8px;
   }
 }
 </style>

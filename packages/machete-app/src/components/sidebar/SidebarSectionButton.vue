@@ -1,12 +1,20 @@
 <template>
-  <div class="sidebar-section-button">
-    {{ label }}
+  <div class="sidebar-section-button c-secondary-variant c-primary-hover cbackground-accent-hover">
+    <BaseIcon width="18" height="18">
+      <slot/>
+    </BaseIcon>
+    <span class="label">{{ label }}</span>
   </div>
 </template>
 
 <script>
+import BaseIcon from '@/components/BaseIcon.vue'
+
 export default {
   name: 'SidebarSectionButton',
+  components: {
+    BaseIcon
+  },
   props: {
     label: {
       type: String,
@@ -17,7 +25,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sidebar {
-  flex-basis: 288px;
+.sidebar-section-button {
+  display: flex;
+  align-items: center;
+
+  padding: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+
+  .label {
+    font-weight: 700;
+    font-size: 14px;
+
+    padding-left: 16px;
+  }
 }
 </style>

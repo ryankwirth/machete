@@ -1,18 +1,16 @@
 <template>
   <div class="sidebar">
-    <Section
-      name="Your Library"
-    />
+    <Library/>
   </div>
 </template>
 
 <script>
-import Section from './SidebarSection.vue'
+import Library from './SidebarSectionLibrary.vue'
 
 export default {
   name: 'Sidebar',
   components: {
-    Section
+    Library
   }
 }
 </script>
