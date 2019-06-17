@@ -13,10 +13,10 @@
 </template>
 
 <script>
+import IconPlaylist from '@/components/icons/IconPlaylist.vue'
+
 import Button from './SidebarSectionButton.vue'
 import Section from './SidebarSection.vue'
-
-import IconPlaylist from '@/components/icons/IconPlaylist.vue'
 
 export default {
   name: 'SidebarSectionPlaylists',

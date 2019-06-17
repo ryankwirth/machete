@@ -7,10 +7,10 @@
 </template>
 
 <script>
+import IconYouTube from '@/components/icons/IconYouTube.vue'
+
 import Button from './SidebarSectionButton.vue'
 import Section from './SidebarSection.vue'
-
-import IconYouTube from '@/components/icons/IconYouTube.vue'
 
 export default {
   name: 'SidebarSectionSources',

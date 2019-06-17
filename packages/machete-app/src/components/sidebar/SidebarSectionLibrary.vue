@@ -22,26 +22,26 @@
 </template>
 
 <script>
-import Button from './SidebarSectionButton.vue'
-import Section from './SidebarSection.vue'
-
 import IconClock from '@/components/icons/IconClock.vue'
-import IconMusic from '@/components/icons/IconMusic.vue'
-import IconLibrary from '@/components/icons/IconLibrary.vue'
-import IconPerson from '@/components/icons/IconPerson.vue'
 import IconFavourite from '@/components/icons/IconFavourite.vue'
 import IconFolder from '@/components/icons/IconFolder.vue'
+import IconLibrary from '@/components/icons/IconLibrary.vue'
+import IconMusic from '@/components/icons/IconMusic.vue'
+import IconPerson from '@/components/icons/IconPerson.vue'
+
+import Button from './SidebarSectionButton.vue'
+import Section from './SidebarSection.vue'
 
 export default {
   name: 'SidebarSectionLibrary',
   components: {
     Button,
     IconClock,
-    IconMusic,
-    IconLibrary,
-    IconPerson,
     IconFavourite,
     IconFolder,
+    IconLibrary,
+    IconMusic,
+    IconPerson,
     Section
   }
 }

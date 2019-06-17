@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-section-button c-secondary-variant c-primary-hover cbackground-accent-hover">
-    <BaseIcon width="18" height="18">
+    <BaseIcon width="20" height="20">
       <slot/>
     </BaseIcon>
     <span class="label">{{ label }}</span>
