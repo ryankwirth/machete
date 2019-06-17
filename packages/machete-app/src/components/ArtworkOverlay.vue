@@ -1,5 +1,5 @@
 <template>
-  <div class="artwork-overlay c-primary" :style="styles">
+  <div class="artwork-overlay" :style="styles">
     <BaseIcon width="48" height="48">
       <slot/>
     </BaseIcon>
@@ -34,6 +34,7 @@ export default {
   justify-content: center;
   align-items: center;
 
+  color: #FFFFFF;
   width: 100%;
   height: 100%;
   overflow: hidden;
