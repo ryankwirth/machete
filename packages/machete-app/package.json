@@ -18,8 +18,9 @@
   },
   "main": "background.js",
   "dependencies": {
-    "machete-core": "file:../machete-core",
     "core-js": "^2.6.5",
+    "machete-core": "file:../machete-core",
+    "machete-core-youtube": "file:../machete-core-youtube",
     "vue": "^2.6.10"
   },
   "devDependencies": {

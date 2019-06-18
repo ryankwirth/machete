@@ -1,23 +1,19 @@
 import EventBus from './event-bus'
 import Injectable from './injectable'
-import YouTubeService from './youtube'
-
-// An array of services to initialize/use
-const SERVICES = [ YouTubeService ]
 
 const CoreService = {
-  init(options) {
+  init(services, options) {
     EventBus.init()
     Injectable.init(options)
 
     // Initialize all of the specified services.
-    const promises = SERVICES.map((service) => service.init(Injectable))
+    const promises = services.map((service) => service.init(Injectable))
     return Promise.all(promises)
       .then((slugs) => {
         // Map each service's slug to its instance
         // (eg. { "youtube": YouTubeService})
         this.services = slugs.reduce((obj, slug, i) => {
-          obj[slug] = SERVICES[i]
+          obj[slug] = services[i]
           return obj
         }, {})
       })
@@ -65,7 +61,10 @@ const CoreService = {
   },
 
   getMostPopular() {
-    return YouTubeService.getMostPopular()
+    // Get the most popular tracks from every service
+    const promises = Object.values(this.services).map((service) => service.getMostPopular())
+    return Promise.all(promises)
+      .then((results) => results.flat())
   },
 
   on(type, callback) {
