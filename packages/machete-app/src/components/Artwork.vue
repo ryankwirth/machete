@@ -1,16 +1,31 @@
 <template>
   <div class="artwork" :style="styles">
-    <Play v-if="showPlay"/>
+    <Overlay
+      v-if="showPlaying"
+      :radius="radius"
+    >
+      <IconPlaying/>
+    </Overlay>
+    <Overlay
+      v-else-if="showHovering"
+      :radius="radius"
+    >
+      <IconPlay/>
+    </Overlay>
   </div>
 </template>
 
 <script>
-import Play from './ArtworkPlay.vue'
+import IconPlay from '@/components/icons/IconPlay.vue'
+import IconPlaying from '@/components/icons/IconPlaying.vue'
+import Overlay from './ArtworkOverlay.vue'
 
 export default {
   name: 'Artwork',
   components: {
-    Play
+    IconPlay,
+    IconPlaying,
+    Overlay
   },
   props: {
     artwork: {
@@ -21,7 +36,11 @@ export default {
       type: Number,
       default: 0
     },
-    showPlay: {
+    showHovering: {
+      type: Boolean,
+      default: false
+    },
+    showPlaying: {
       type: Boolean,
       default: false
     },
@@ -41,7 +60,10 @@ export default {
           borderRadius: `${this.radius}px`
         }
       } else {
-        return {}
+        return {
+          width: `${this.size}px`,
+          height: `${this.size}px`
+        }
       }
     }
   }

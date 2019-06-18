@@ -5,7 +5,6 @@
     @click="$emit('click')"
   >
     <BaseIcon
-      :icon-name="iconName"
       :width="width"
       :height="height"
     >
@@ -22,7 +21,6 @@ export default {
     BaseIcon
   },
   props: {
-    iconName: String,
     width: {
       type: [Number, String],
       default: 48

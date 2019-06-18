@@ -1,7 +1,6 @@
 <template>
   <div class="music-controls-volume-buttons">
     <Button
-      icon-name="repeat"
       width="36"
       height="36"
       padding="8"
@@ -10,7 +9,6 @@
       <IconRepeat/>
     </Button>
     <Button
-      icon-name="volume"
       width="36"
       height="36"
       padding="8"

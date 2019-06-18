@@ -39,17 +39,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding: 24px;
+.home-page {
+  flex: 1 0 auto;
 
-  .title {
-    font-size: 24px;
-    font-weight: 700;
-  }
+  .container {
+    padding: 24px;
 
-  .tracks {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .tracks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    }
   }
 }
 </style>

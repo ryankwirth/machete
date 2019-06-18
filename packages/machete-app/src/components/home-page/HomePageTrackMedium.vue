@@ -1,8 +1,15 @@
 <template>
-  <div class="home-page-track-medium" @click="onClick">
+  <div
+    class="home-page-track-medium"
+    @click="onClick"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
+  >
     <Artwork
       :artwork="artwork"
-      :radius="2"
+      :radius="3"
+      :showHovering="isHovering"
+      :showPlaying="isPlaying"
       :size="72"
     />
     <div class="details">
@@ -26,9 +33,30 @@ export default {
     id: String,
     title: String
   },
+  data() {
+    return {
+      isHovering: false,
+      isPlaying: false
+    }
+  },
+  mounted() {
+    this.$coreService.on('metadata', this.onReceiveMetadata)
+  },
+  beforeDestroy() {
+    this.$coreService.off('metadata', this.onReceiveMetadata)
+  },
   methods: {
     onClick() {
       this.$coreService.play(this.id)
+    },
+    onMouseEnter() {
+      this.isHovering = true
+    },
+    onMouseLeave() {
+      this.isHovering = false
+    },
+    onReceiveMetadata({ id }) {
+      this.isPlaying = this.id === id
     }
   }
 }
@@ -39,6 +67,7 @@ export default {
   display: flex;
   padding: 16px 0px;
   max-width: 100%;
+  cursor: pointer;
 
   .details {
     display: flex;
@@ -49,17 +78,18 @@ export default {
     text-align: left;
     min-width: 0px;
 
-    .title {
-      display: inline;
-      font-weight: 700;
-
+    > span {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
 
-    .artist {
-      font-weight: 500;
+      &.title {
+        font-weight: 700;
+      }
+
+      &.artist {
+        font-weight: 500;
+      }
     }
   }
 }

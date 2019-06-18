@@ -1,13 +1,13 @@
 <template>
   <div class="music-controls-buttons">
-    <Button icon-name="previous" @click="onPreviousClicked">
+    <Button @click="onPreviousClicked">
       <IconPrevious/>
     </Button>
-    <Button :icon-name="playPauseIconName" @click="onPlayPauseClicked">
+    <Button @click="onPlayPauseClicked">
       <IconPause v-if="isPlaying"/>
       <IconPlay v-else/>
     </Button>
-    <Button icon-name="next" @click="onNextClicked">
+    <Button @click="onNextClicked">
       <IconNext/>
     </Button>
   </div>
@@ -33,11 +33,6 @@ export default {
     isPlaying: {
       type: Boolean,
       default: false
-    }
-  },
-  computed: {
-    playPauseIconName() {
-      return this.isPlaying ? 'pause' : 'play'
     }
   },
   methods: {

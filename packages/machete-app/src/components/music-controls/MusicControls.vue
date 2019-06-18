@@ -4,6 +4,7 @@
       :is-playing="isPlaying"
       @pause="onPauseClicked"
       @play="onPlayClicked"
+      @previous="onPreviousClicked"
     />
     <Playback
       :artist="artist"
@@ -62,6 +63,12 @@ export default {
     onPlayClicked() {
       this.isPlaying = true
       this.$coreService.play()
+    },
+    onPreviousClicked() {
+      // If we're more than 5 seconds into the song, go back to the beginning
+      if (this.timestamp > 5) {
+        this.onSetTimestamp(0)
+      }
     },
     onReceiveMetadata(metadata) {
       this.artist = metadata.artist

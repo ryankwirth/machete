@@ -4,10 +4,8 @@
     :height="height"
     viewBox="0 0 24 24"
     role="presentation"
-    :aria-labelledby="iconName"
     preserveAspectRatio="xMaxYMax meet"
   >
-    <title :id="iconName" lang="en">{{iconName}} icon</title>
     <g>
       <slot/>
     </g>
@@ -17,10 +15,6 @@
 <script>
 export default {
   props: {
-    iconName: {
-      type: String,
-      default: 'box'
-    },
     width: {
       type: [Number, String],
       default: 24
@@ -37,7 +31,6 @@ export default {
 svg {
   display: inline-block;
   vertical-align: baseline;
-  margin-bottom: -4px;
   fill: currentColor;
 }
 </style>
