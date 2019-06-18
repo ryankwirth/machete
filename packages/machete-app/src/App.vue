@@ -1,5 +1,5 @@
 <template>
-  <div id="app" dark>
+  <div id="app">
     <main>
       <Sidebar/>
       <HomePage/>

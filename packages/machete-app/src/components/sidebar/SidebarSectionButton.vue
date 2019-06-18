@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-section-button c-secondary-variant c-primary-hover cbackground-accent-hover">
+  <div :class="classes">
     <BaseIcon width="20" height="20">
       <slot/>
     </BaseIcon>
@@ -16,9 +16,25 @@ export default {
     BaseIcon
   },
   props: {
+    active: {
+      type: Boolean,
+      default: false
+    },
     label: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    classes() {
+      return {
+        'sidebar-section-button': true,
+        'c-secondary-variant': !this.active,
+        'c-primary': this.active,
+        'c-primary-hover': true,
+        'cbackground-accent': this.active,
+        'cbackground-accent-hover': true
+      }
     }
   }
 }

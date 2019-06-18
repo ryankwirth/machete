@@ -1,6 +1,7 @@
 <template>
   <div class="sidebar">
-    <Button label="Dashboard">
+    <div class="title">Machete</div>
+    <Button label="Dashboard" :active="true">
       <IconGlobe/>
     </Button>
     <Library/>
@@ -33,5 +34,11 @@ export default {
 .sidebar {
   flex-basis: 288px;
   padding: 24px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
 }
 </style>

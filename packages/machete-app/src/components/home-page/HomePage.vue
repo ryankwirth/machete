@@ -46,7 +46,7 @@ export default {
     padding: 24px;
 
     .title {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
     }
 
