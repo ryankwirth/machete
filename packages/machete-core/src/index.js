@@ -8,8 +8,8 @@ const init = new Promise((_resolve) => {
 
 // Define a "promisified" interface for the service
 const CoreServiceInterface = {
-  init(options) {
-    return CoreService.init(options).then(resolve)
+  init(services, options) {
+    return CoreService.init(services, options).then(resolve)
   },
 
   play(uri) {

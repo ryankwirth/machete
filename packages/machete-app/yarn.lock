@@ -5863,6 +5863,9 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+"machete-core-youtube@file:../machete-core-youtube":
+  version "0.1.0"
+
 "machete-core@file:../machete-core":
   version "0.1.0"
   dependencies:
