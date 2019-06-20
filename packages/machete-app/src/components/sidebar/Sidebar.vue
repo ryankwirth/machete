@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
-  flex-basis: 288px;
+  flex-basis: 292px;
   padding: 24px;
   border-right: 1px solid;
 }

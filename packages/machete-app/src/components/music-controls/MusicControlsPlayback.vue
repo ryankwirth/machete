@@ -89,7 +89,7 @@ export default {
   display: flex;
   align-items: stretch;
   flex: 1 1 auto;
-  padding: 0px 24px;
+  padding: 0px 48px;
 
   .scrubber-stack {
     display: flex;

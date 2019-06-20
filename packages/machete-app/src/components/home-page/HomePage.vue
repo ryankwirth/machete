@@ -43,7 +43,7 @@ export default {
   flex: 1 0 auto;
 
   .container {
-    padding: 24px;
+    padding: 32px 48px;
 
     .title {
       font-size: 24px;
