@@ -1,5 +1,5 @@
 <template>
-  <div id="app" dark>
+  <div id="app">
     <main>
       <Sidebar/>
       <Page/>
@@ -13,9 +13,7 @@ import MusicControls from './components/music-controls'
 import Page from './components/Page.vue'
 import Sidebar from './components/sidebar'
 
-import './assets/styles/base.scss'
-import './assets/styles/colors.scss'
-import './assets/styles/typography.scss'
+import './assets/styles/index.scss'
 
 export default {
   name: 'app',

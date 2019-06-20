@@ -28,7 +28,7 @@
 }
 
 /** Light Theme **/
-#app:not([dark]) {
+body:not([dark]) {
   color: $text-light;
   background-color: $background-light;
 
@@ -42,7 +42,7 @@
 }
 
 /* Dark Theme */
-#app[dark] {
+body[dark] {
   color: $text-dark;
   background-color: $background-dark;
 

@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+body[dark] {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-dark;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: $accent-dark;
+  }
+}

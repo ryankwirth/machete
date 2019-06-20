@@ -92,11 +92,11 @@ export default {
   }
 }
 
-#app:not([dark]) .marquee:after {
+body:not([dark]) .marquee:after {
   background: linear-gradient(to right, rgba(0,0,0,0), $background-light);
 }
 
-#app[dark] .marquee:after {
+body[dark] .marquee:after {
   background: linear-gradient(to right, rgba(0,0,0,0), $background-dark);
 }
 
