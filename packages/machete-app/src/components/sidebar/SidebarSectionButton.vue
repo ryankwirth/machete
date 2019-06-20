@@ -45,7 +45,8 @@ export default {
   display: flex;
   align-items: center;
 
-  padding: 16px;
+  margin-bottom: 2px;
+  padding: 12px 16px;
   border-radius: 3px;
   cursor: pointer;
 
