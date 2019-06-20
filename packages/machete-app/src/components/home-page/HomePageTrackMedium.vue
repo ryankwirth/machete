@@ -13,8 +13,8 @@
       :size="72"
     />
     <div class="details">
-      <span class="title c-secondary-variant">{{ title }}</span>
-      <span class="artist c-secondary-variant">{{ artist }}</span>
+      <span class="title color-text">{{ title }}</span>
+      <span class="artist color-navigation">{{ artist }}</span>
     </div>
   </div>
 </template>
@@ -84,11 +84,13 @@ export default {
       text-overflow: ellipsis;
 
       &.title {
-        font-weight: 700;
+        font-weight: 600;
+        margin-bottom: 2px;
       }
 
       &.artist {
-        font-weight: 500;
+        font-weight: 700;
+        font-size: 12px;
       }
     }
   }

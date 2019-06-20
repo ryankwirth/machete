@@ -1,7 +1,7 @@
 <template>
   <div class="music-controls-playback-timestamp">
-    <span class="c-secondary-variant">{{ formattedTimestamp }} / </span>
-    <span class="c-primary-variant">{{ formattedDuration }}</span>
+    <span class="color-header">{{ formattedTimestamp }} / </span>
+    <span class="color-navigation">{{ formattedDuration }}</span>
   </div>
 </template>
 

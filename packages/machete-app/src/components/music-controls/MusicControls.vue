@@ -1,5 +1,5 @@
 <template>
-  <div class="music-controls cbackground-primary cborder-primary-variant">
+  <footer class="music-controls color-background-bg color-gutter-border">
     <Buttons
       :is-playing="isPlaying"
       @pause="onPauseClicked"
@@ -18,7 +18,7 @@
       :volume="volume"
       @setVolume="onSetVolume"
     />
-  </div>
+  </footer>
 </template>
 
 <script>
@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted() {
-    this.$coreService.play('youtube://TATXudfgu3E')
+    this.$coreService.play('youtube://QY3Y6lUH6A4')
     this.$coreService.on('metadata', this.onReceiveMetadata)
     this.$coreService.on('timestamp', this.onReceiveTimestamp)
     this.$coreService.on('status', this.onReceiveStatus)

@@ -1,8 +1,8 @@
 <template>
   <Marquee>
-    <span class="title c-secondary">{{ titleFormatted }}</span>
-    <span class="bullet c-secondary-variant">{{ bulletFormatted }}</span>
-    <span class="artist c-secondary-variant">{{ artistFormatted }}</span>
+    <span class="title color-header">{{ titleFormatted }}</span>
+    <span class="bullet color-navigation">{{ bulletFormatted }}</span>
+    <span class="artist color-navigation">{{ artistFormatted }}</span>
   </Marquee>
 </template>
 
@@ -38,21 +38,19 @@ export default {
 <style lang="scss" scoped>
 span {
   white-space: nowrap;
+  font-weight: 500;
 
   &.title {
     font-size: 24px;
-    font-weight: 700;
   }
 
   &.bullet {
     font-size: 16px;
-    font-weight: 500;
     margin: 0px 8px;
   }
 
   &.artist {
     font-size: 16px;
-    font-weight: 500;
   }
 }
 </style>

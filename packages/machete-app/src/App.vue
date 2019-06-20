@@ -2,15 +2,15 @@
   <div id="app">
     <main>
       <Sidebar/>
-      <HomePage/>
+      <Page/>
     </main>
     <MusicControls/>
   </div>
 </template>
 
 <script>
-import HomePage from './components/home-page'
 import MusicControls from './components/music-controls'
+import Page from './components/Page.vue'
 import Sidebar from './components/sidebar'
 
 import './assets/styles/base.scss'
@@ -20,8 +20,8 @@ import './assets/styles/typography.scss'
 export default {
   name: 'app',
   components: {
-    HomePage,
     MusicControls,
+    Page,
     Sidebar
   }
 }

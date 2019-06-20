@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
     <div class="container">
-      <div class="title c-secondary">Most Popular</div>
+      <div class="title color-header">Most Popular</div>
       <div class="tracks">
         <Track
           v-for="result in results"
@@ -46,8 +46,9 @@ export default {
     padding: 24px;
 
     .title {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
+      margin-bottom: 8px;
     }
 
     .tracks {

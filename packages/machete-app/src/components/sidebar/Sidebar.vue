@@ -1,13 +1,12 @@
 <template>
-  <div class="sidebar">
-    <div class="title">Machete</div>
-    <Button label="Dashboard" :active="true">
+  <section class="sidebar color-background-variant-bg color-gutter-border">
+    <Button label="Recommendations" :active="true">
       <IconGlobe/>
     </Button>
     <Library/>
     <Playlists/>
     <Sources/>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -34,11 +33,6 @@ export default {
 .sidebar {
   flex-basis: 288px;
   padding: 24px;
-
-  .title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
+  border-right: 1px solid;
 }
 </style>
