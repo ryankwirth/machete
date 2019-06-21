@@ -1,6 +1,8 @@
 <template>
   <div class="search color-background-variant-bg color-gutter-border">
-    <Input/>
+    <Input
+      @search="onSearch"
+    />
   </div>
 </template>
 
@@ -11,6 +13,12 @@ export default {
   name: 'Search',
   components: {
     Input
+  },
+  methods: {
+    onSearch(query) {
+      this.$coreService.search(query)
+        .then((results) => console.log(results))
+    }
   }
 }
 </script>

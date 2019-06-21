@@ -5,6 +5,7 @@ export default Object.freeze({
   urls: {
     iframeApiUrl: `${baseUrl}/iframe_api`,
     playlistUrl: `${baseUrl}/playlist?list=`,
+    searchUrl: `${baseUrl}/results?search_query=`,
     thumbnailUrl: 'https://img.youtube.com/vi/'
   },
   playlistIds: {

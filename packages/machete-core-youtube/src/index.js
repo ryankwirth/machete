@@ -31,6 +31,11 @@ const YouTubeService = {
     player.setVolume(volume)
   },
 
+  search(query) {
+    // Append "official" to the query parameter to filter out most fan content
+    return parser.search(query + ', official')
+  },
+
   getMostPopular() {
     return parser.scrapePlaylist(config.playlistIds.mostPopular)
   }
