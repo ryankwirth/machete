@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted() {
-    this.$coreService.play('youtube://QY3Y6lUH6A4')
+    this.$coreService.play('youtube://b3lH6CULHD0')
     this.$coreService.on('metadata', this.onReceiveMetadata)
     this.$coreService.on('timestamp', this.onReceiveTimestamp)
     this.$coreService.on('status', this.onReceiveStatus)
