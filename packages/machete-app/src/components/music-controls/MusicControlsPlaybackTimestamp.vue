@@ -9,8 +9,10 @@
 export default {
   name: 'MusicControlsPlaybackTimestamp',
   props: {
-    timestamp: Number,
-    default: 0
+    timestamp: {
+      type: Number,
+      default: 0
+    }
   },
   computed: {
     duration() {
