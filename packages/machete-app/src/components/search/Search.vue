@@ -16,8 +16,7 @@ export default {
   },
   methods: {
     onSearch(query) {
-      this.$coreService.search(query)
-        .then((results) => this.$coreService.play(results[0].id))
+      this.$router.push({ path: `/search?q=${query}` })
     }
   }
 }
