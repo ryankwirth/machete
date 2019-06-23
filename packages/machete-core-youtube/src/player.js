@@ -46,8 +46,7 @@ function onStateChange(e) {
 
   // Dispatch the current video status
   const isPlaying = e.data === 1
-  const volume = this.player.getVolume()
-  this.injectable.dispatch('status', { isPlaying, volume })
+  this.injectable.dispatch('status', { isPlaying })
 }
 
 function startTimestampPolling() {

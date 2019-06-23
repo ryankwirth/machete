@@ -1,36 +1,24 @@
 <template>
-  <div class="search-results">
-    <Track
-      v-for="result in results"
-      :key="result.id"
-      :artist="result.artist"
-      :artwork="result.artwork"
-      :id="result.id"
-      :title="result.title"
-    />
-  </div>
+  <Grid
+    v-slot="{ item }"
+    :items="results"
+  >
+    <Track :data="item"/>
+  </Grid>
 </template>
 
 <script>
+import Grid from '@/components/Grid.vue'
 import Track from '@/components/tracks/TrackMedium.vue'
 
 export default {
-  name: 'Search',
+  name: 'SearchResults',
   components: {
+    Grid,
     Track
   },
   props: {
-    results: {
-      type: Array,
-      required: true
-    }
+    results: Array
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.search-results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-}
-</style>

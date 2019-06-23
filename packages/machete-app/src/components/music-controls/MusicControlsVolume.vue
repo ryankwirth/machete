@@ -23,15 +23,15 @@ export default {
     Buttons,
     Scrubber
   },
-  props: {
-    volume: {
-      type: Number,
-      required: true
+  data() {
+    return {
+      volume: 100
     }
   },
   methods: {
     onSetVolume(volume) {
-      this.$emit('setVolume', volume)
+      this.volume = volume
+      this.$coreService.setVolume(volume)
     }
   }
 }

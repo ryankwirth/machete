@@ -74,7 +74,7 @@ export default {
 .artwork {
   flex: 0 0 auto;
 
-  background-image: url('../assets/images/spinner.gif');
+  background-image: url('../../assets/images/spinner.gif');
   background-position: center;
   background-repeat: no-repeat;
 }

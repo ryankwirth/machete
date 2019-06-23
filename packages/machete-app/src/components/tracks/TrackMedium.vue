@@ -1,97 +1,69 @@
 <template>
-  <div
-    class="track-medium"
-    @click="onClick"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
+  <TrackWrapper
+    v-bind="data"
+    :height="72"
   >
-    <Artwork
-      :artwork="artwork"
-      :radius="3"
-      :showHovering="isHovering"
-      :showPlaying="isPlaying"
-      :size="72"
-    />
-    <div class="details">
-      <span class="title color-text">{{ title }}</span>
-      <span class="artist color-navigation">{{ artist }}</span>
-    </div>
-  </div>
+    <template v-slot:default="props">
+      <Artwork
+        :artwork="props.artwork"
+        :radius="3"
+        :showHovering="props.isHovering"
+        :showPlaying="props.isPlaying"
+        :size="72"
+      />
+      <div class="details">
+        <span class="title color-text">{{ props.title }}</span>
+        <span class="artist color-navigation">{{ props.artist }}</span>
+      </div>
+    </template>
+
+    <template v-slot:skeleton>
+      <rect x="82" y="16" rx="3" ry="3" width="256" height="19" /> 
+      <rect x="82" y="40" rx="3" ry="3" width="96" height="15" /> 
+      <rect x="0" y="0" rx="3" ry="3" width="72" height="72" />
+    </template>
+  </TrackWrapper>
 </template>
 
 <script>
-import Artwork from '@/components/Artwork.vue'
+import Artwork from '@/components/artwork'
+import TrackWrapper from './TrackWrapper.vue'
 
 export default {
   name: 'TrackMedium',
   components: {
-    Artwork
+    Artwork,
+    TrackWrapper
   },
   props: {
-    artist: String,
-    artwork: String,
-    id: String,
-    title: String
-  },
-  data() {
-    return {
-      isHovering: false,
-      isPlaying: false
-    }
-  },
-  mounted() {
-    this.$coreService.on('metadata', this.onReceiveMetadata)
-  },
-  beforeDestroy() {
-    this.$coreService.off('metadata', this.onReceiveMetadata)
-  },
-  methods: {
-    onClick() {
-      this.$coreService.play(this.id)
-    },
-    onMouseEnter() {
-      this.isHovering = true
-    },
-    onMouseLeave() {
-      this.isHovering = false
-    },
-    onReceiveMetadata({ id }) {
-      this.isPlaying = this.id === id
-    }
+    data: Object
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.track-medium {
+.details {
   display: flex;
-  padding: 16px 0px;
-  max-width: 100%;
-  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
 
-  .details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  padding: 0px 12px;
+  text-align: left;
+  min-width: 0px;
 
-    padding: 0px 12px;
-    text-align: left;
-    min-width: 0px;
+  > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-    > span {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    &.title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
 
-      &.title {
-        font-weight: 600;
-        margin-bottom: 2px;
-      }
-
-      &.artist {
-        font-weight: 700;
-        font-size: 12px;
-      }
+    &.artist {
+      font-weight: 700;
+      font-size: 12px;
     }
   }
 }

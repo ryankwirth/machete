@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      results: []
+      results: null
     }
   },
   computed: {
@@ -39,6 +39,10 @@ export default {
   },
   methods: {
     fetchResults() {
+      // Reset the results state
+      this.results = null
+
+      // Query all services for search results
       this.$coreService.search(this.query)
         .then((results) => this.results = results)
     }
