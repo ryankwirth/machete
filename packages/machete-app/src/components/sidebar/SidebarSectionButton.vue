@@ -29,11 +29,11 @@ export default {
     classes() {
       return {
         'sidebar-section-button': true,
-        'c-secondary-variant': !this.active,
-        'c-primary': this.active,
-        'c-primary-hover': true,
-        'cbackground-accent': this.active,
-        'cbackground-accent-hover': true
+        'color-text': !this.active,
+        'color-background': this.active,
+        'color-background-hover': true,
+        'color-accent-bg': this.active,
+        'color-accent-bg-hover': true
       }
     }
   }
@@ -45,12 +45,13 @@ export default {
   display: flex;
   align-items: center;
 
-  padding: 16px;
+  margin-bottom: 2px;
+  padding: 12px 16px;
   border-radius: 3px;
   cursor: pointer;
 
   .label {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 14px;
 
     padding-left: 16px;

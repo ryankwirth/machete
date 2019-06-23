@@ -60,11 +60,21 @@ const CoreService = {
     }
   },
 
+  search(query) {
+    // Search within every service
+    return this.forEveryService((service) => service.search(query))
+      .then((results) => results.flat())
+  },
+
   getMostPopular() {
     // Get the most popular tracks from every service
-    const promises = Object.values(this.services).map((service) => service.getMostPopular())
-    return Promise.all(promises)
+    return this.forEveryService((service) => service.getMostPopular())
       .then((results) => results.flat())
+  },
+
+  forEveryService(handler) {
+    const promises = Object.values(this.services).map(handler)
+    return Promise.all(promises)
   },
 
   on(type, callback) {

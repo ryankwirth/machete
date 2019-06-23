@@ -2,55 +2,55 @@
 
 /** Helpers **/
 @mixin def($type, $color) {
-  .c-#{$type} {
+  .color-#{$type} {
     color: $color;
   }
 
-  .c-#{$type}-hover:hover {
+  .color-#{$type}-hover:hover {
     color: $color;
   }
   
-  .cbackground-#{$type} {
+  .color-#{$type}-bg {
     background-color: $color;
   }
 
-  .cbackground-#{$type}-hover:hover {
+  .color-#{$type}-bg-hover:hover {
     background-color: $color;
   }
 
-  .cborder-#{$type} {
+  .color-#{$type}-border {
+    border-color: $color;
+  }
+
+  .color-#{$type}-border-focus:focus {
     border-color: $color;
   }
 }
 
 /** Light Theme **/
-#app:not([dark]) {
-  color: $secondary-light;
-  background-color: $primary-light;
+body:not([dark]) {
+  color: $text-light;
+  background-color: $background-light;
 
-  @include def('primary', $primary-light);
-  @include def('primary-variant', $primary-variant-light);
-  @include def('secondary', $secondary-light);
-  @include def('secondary-variant', $secondary-variant-light);
+  @include def('background', $background-light);
+  @include def('background-variant', $background-variant-light);
+  @include def('gutter', $gutter-light);
+  @include def('navigation', $navigation-light);
+  @include def('text', $text-light);
+  @include def('header', $header-light);
   @include def('accent', $accent-light);
-  @include def('error', $error-light);
-  @include def('info', $info-light);
-  @include def('success', $success-light);
-  @include def('warning', $warning-light);
 }
 
 /* Dark Theme */
-#app[dark] {
-  color: $secondary-dark;
-  background-color: $primary-dark;
+body[dark] {
+  color: $text-dark;
+  background-color: $background-dark;
 
-  @include def('primary', $primary-dark);
-  @include def('primary-variant', $primary-variant-dark);
-  @include def('secondary', $secondary-dark);
-  @include def('secondary-variant', $secondary-variant-dark);
+  @include def('background', $background-dark);
+  @include def('background-variant', $background-variant-dark);
+  @include def('gutter', $gutter-dark);
+  @include def('navigation', $navigation-dark);
+  @include def('text', $text-dark);
+  @include def('header', $header-dark);
   @include def('accent', $accent-dark);
-  @include def('error', $error-dark);
-  @include def('info', $info-dark);
-  @include def('success', $success-dark);
-  @include def('warning', $warning-dark);
 }

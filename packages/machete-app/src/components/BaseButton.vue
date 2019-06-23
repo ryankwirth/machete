@@ -1,6 +1,6 @@
 <template>
   <div
-    class="button c-secondary-variant c-accent-hover"
+    class="button color-text color-accent-hover"
     :style="{ padding: padding + 'px' }"
     @click="$emit('click')"
   >

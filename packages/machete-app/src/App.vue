@@ -2,26 +2,26 @@
   <div id="app">
     <main>
       <Sidebar/>
-      <HomePage/>
+      <Page>
+        <router-view></router-view>
+      </Page>
     </main>
     <MusicControls/>
   </div>
 </template>
 
 <script>
-import HomePage from './components/home-page'
 import MusicControls from './components/music-controls'
+import Page from './components/Page.vue'
 import Sidebar from './components/sidebar'
 
-import './assets/styles/base.scss'
-import './assets/styles/colors.scss'
-import './assets/styles/typography.scss'
+import './assets/styles/index.scss'
 
 export default {
   name: 'app',
   components: {
-    HomePage,
     MusicControls,
+    Page,
     Sidebar
   }
 }
@@ -33,6 +33,7 @@ export default {
 
   main {
     display: flex;
+    min-height: 100vh;
   }
 }
 </style>

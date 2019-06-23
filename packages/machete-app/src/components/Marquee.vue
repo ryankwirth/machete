@@ -92,12 +92,12 @@ export default {
   }
 }
 
-#app:not([dark]) .marquee:after {
-  background: linear-gradient(to right, rgba(0,0,0,0), $primary-light);
+body:not([dark]) .marquee:after {
+  background: linear-gradient(to right, rgba(0,0,0,0), $background-light);
 }
 
-#app[dark] .marquee:after {
-  background: linear-gradient(to right, rgba(0,0,0,0), $primary-dark);
+body[dark] .marquee:after {
+  background: linear-gradient(to right, rgba(0,0,0,0), $background-dark);
 }
 
 @keyframes slide-in {

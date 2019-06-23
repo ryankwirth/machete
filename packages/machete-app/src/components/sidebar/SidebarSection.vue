@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-section">
-    <div class="name c-primary-variant">{{ name }}</div>
+    <div class="name color-navigation">{{ name }}</div>
     <slot/>
   </div>
 </template>
@@ -19,12 +19,12 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar-section {
-  padding: 16px 0px;
+  padding-top: 32px;
 
   .name {
     font-weight: 700;
     text-transform: uppercase;
-    padding-bottom: 8px;
+    margin-bottom: 8px;
   }
 }
 </style>

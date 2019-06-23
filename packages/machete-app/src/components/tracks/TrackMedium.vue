@@ -1,6 +1,6 @@
 <template>
   <div
-    class="home-page-track-medium"
+    class="track-medium"
     @click="onClick"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -13,8 +13,8 @@
       :size="72"
     />
     <div class="details">
-      <span class="title c-secondary-variant">{{ title }}</span>
-      <span class="artist c-secondary-variant">{{ artist }}</span>
+      <span class="title color-text">{{ title }}</span>
+      <span class="artist color-navigation">{{ artist }}</span>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@
 import Artwork from '@/components/Artwork.vue'
 
 export default {
-  name: 'HomePageTrackMedium',
+  name: 'TrackMedium',
   components: {
     Artwork
   },
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home-page-track-medium {
+.track-medium {
   display: flex;
   padding: 16px 0px;
   max-width: 100%;
@@ -84,11 +84,13 @@ export default {
       text-overflow: ellipsis;
 
       &.title {
-        font-weight: 700;
+        font-weight: 600;
+        margin-bottom: 2px;
       }
 
       &.artist {
-        font-weight: 500;
+        font-weight: 700;
+        font-size: 12px;
       }
     }
   }

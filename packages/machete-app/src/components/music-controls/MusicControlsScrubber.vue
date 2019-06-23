@@ -1,7 +1,7 @@
 <template>
   <div class="music-controls-scrubber" ref="scrubber" @click="onClick">
-    <div class="track cbackground-primary-variant">
-      <div class="fill cbackground-accent" :style="fillStyle"></div>
+    <div class="track color-gutter-bg">
+      <div class="fill color-accent-bg" :style="fillStyle"></div>
     </div>
     <div class="handle" :style="handleStyle" @mousedown="onMouseDown">
       <div class="inner"></div>
