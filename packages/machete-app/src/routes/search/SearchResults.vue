@@ -3,10 +3,7 @@
     <Track
       v-for="result in results"
       :key="result.id"
-      :artist="result.artist"
-      :artwork="result.artwork"
-      :id="result.id"
-      :title="result.title"
+      :data="result"
     />
   </div>
 </template>

@@ -6,21 +6,21 @@
     @mouseleave="onMouseLeave"
   >
     <Artwork
-      :artwork="artwork"
+      :artwork="data.artwork"
       :radius="3"
       :showHovering="isHovering"
       :showPlaying="isPlaying"
       :size="72"
     />
     <div class="details">
-      <span class="title color-text">{{ title }}</span>
-      <span class="artist color-navigation">{{ artist }}</span>
+      <span class="title color-text">{{ data.title }}</span>
+      <span class="artist color-navigation">{{ data.artist }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import Artwork from '@/components/Artwork.vue'
+import Artwork from '@/components/artwork'
 
 export default {
   name: 'TrackMedium',
@@ -28,10 +28,7 @@ export default {
     Artwork
   },
   props: {
-    artist: String,
-    artwork: String,
-    id: String,
-    title: String
+    data: Object
   },
   data() {
     return {
@@ -47,7 +44,7 @@ export default {
   },
   methods: {
     onClick() {
-      this.$coreService.play(this.id)
+      this.$coreService.play(this.data.id)
     },
     onMouseEnter() {
       this.isHovering = true
@@ -56,7 +53,7 @@ export default {
       this.isHovering = false
     },
     onReceiveMetadata({ id }) {
-      this.isPlaying = this.id === id
+      this.isPlaying = this.data.id === id
     }
   }
 }

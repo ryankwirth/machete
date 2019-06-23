@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import BaseIcon from './BaseIcon.vue'
+import BaseIcon from '@/components/BaseIcon.vue'
 
 export default {
   name: 'ArtworkPlay',

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Artwork from '@/components/Artwork.vue'
+import Artwork from '@/components/artwork'
 import Details from './MusicControlsPlaybackDetails.vue'
 import Scrubber from './MusicControlsScrubber.vue'
 import Timestamp from './MusicControlsPlaybackTimestamp.vue'
