@@ -1,23 +1,21 @@
 <template>
   <div class="music-controls-playback-timestamp">
-    <span class="color-header">{{ formattedTimestamp }} / </span>
-    <span class="color-navigation">{{ formattedDuration }}</span>
+    <span class="color-header">{{ timestamp }} / </span>
+    <span class="color-navigation">{{ duration }}</span>
   </div>
 </template>
 
 <script>
 export default {
   name: 'MusicControlsPlaybackTimestamp',
-  props: {
-    duration: Number,
-    timestamp: Number
-  },
   computed: {
-    formattedDuration() {
-      return this.formatTime(this.duration)
+    duration() {
+      const duration = this.$coreData.metadata.duration || 0
+      return this.formatTime(duration)
     },
-    formattedTimestamp() {
-      return this.formatTime(this.timestamp)
+    timestamp() {
+      const timestamp = this.$coreData.timestamp || 0
+      return this.formatTime(timestamp)
     }
   },
   methods: {

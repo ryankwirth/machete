@@ -1,8 +1,8 @@
 <template>
   <Marquee>
-    <span class="title color-header">{{ titleFormatted }}</span>
-    <span class="bullet color-navigation">{{ bulletFormatted }}</span>
-    <span class="artist color-navigation">{{ artistFormatted }}</span>
+    <span class="title color-header">{{ title }}</span>
+    <span class="bullet color-navigation">{{ bullet }}</span>
+    <span class="artist color-navigation">{{ artist }}</span>
   </Marquee>
 </template>
 
@@ -14,22 +14,15 @@ export default {
   components: {
     Marquee
   },
-  props: {
-    artist: String,
-    title: String
-  },
   computed: {
-    artistFormatted() {
-      return this.isLoading ? '' : this.artist
+    artist() {
+      return this.$coreData.metadata.artist || ''
     },
-    bulletFormatted() {
-      return this.isLoading ? '' : '•'
+    bullet() {
+      return this.$coreData.metadata.title ? '•' : ''
     },
-    titleFormatted() {
-      return this.isLoading ? 'Loading...' : this.title
-    },
-    isLoading() {
-      return this.artist === ''
+    title() {
+      return this.$coreData.metadata.title || 'Loading...'
     }
   }
 }

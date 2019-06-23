@@ -1,22 +1,14 @@
 <template>
   <div class="music-controls-playback">
-    <Artwork
-      :artwork="artwork"
-    />
+    <Artwork :artwork="artwork"/>
     <div class="scrubber-stack">
       <div class="details">
-        <Details
-          :artist="artist"
-          :title="title"
-        />
-        <Timestamp
-          :duration="duration"
-          :timestamp="activeTimestamp"
-        />
+        <Details/>
+        <Timestamp/>
       </div>
       <Scrubber
         :total="duration"
-        :value="activeTimestamp"
+        :value="timestamp"
         @setValue="onSetTimestamp"
         @updateValue="onUpdateTimestamp"
       />
@@ -38,28 +30,6 @@ export default {
     Scrubber,
     Timestamp
   },
-  props: {
-    artist: {
-      type: String,
-      required: true
-    },
-    artwork: {
-      type: String,
-      required: true
-    },
-    duration: {
-      type: Number,
-      required: true
-    },
-    timestamp: {
-      type: Number,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
       modified: false,
@@ -67,14 +37,20 @@ export default {
     }
   },
   computed: {
-    activeTimestamp() {
-      return this.modified ? this.modifiedTimestamp : this.timestamp
+    artwork() {
+      return this.$coreData.metadata.artwork || ''
+    },
+    duration() {
+      return this.$coreData.metadata.duration || 1
+    },
+    timestamp() {
+      return this.modified ? this.modifiedTimestamp : this.$coreData.timestamp
     }
   },
   methods: {
     onSetTimestamp(timestamp) {
       this.modified = false
-      this.$emit('setTimestamp', timestamp)
+      this.$coreService.seekTo(timestamp)
     },
     onUpdateTimestamp(timestamp) {
       this.modified = true

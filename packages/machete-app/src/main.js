@@ -2,12 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import App from './App.vue'
-import {CoreServicePlugin} from './plugins'
+import {CoreDataPlugin, CoreServicePlugin} from './plugins'
 import routes from './routes'
 
 Vue.config.productionTip = false
 
 // Install plugins
+Vue.use(CoreDataPlugin)
 Vue.use(CoreServicePlugin)
 
 // Set up router

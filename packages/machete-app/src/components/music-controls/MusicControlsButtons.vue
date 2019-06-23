@@ -29,25 +29,27 @@ export default {
     IconPlay,
     IconPrevious
   },
-  props: {
-    isPlaying: {
-      type: Boolean,
-      default: false
+  computed: {
+    isPlaying() {
+      return this.$coreData.status.isPlaying || false
     }
   },
   methods: {
     onNextClicked() {
-      this.$emit('next')
+      // Handle next...
     },
     onPlayPauseClicked() {
       if (this.isPlaying) {
-        this.$emit('pause')
+        this.$coreService.pause()
       } else {
-        this.$emit('play')
+        this.$coreService.play()
       }
     },
     onPreviousClicked() {
-      this.$emit('previous')
+      // If we're more than 5 seconds into the song, go back to the beginning
+      if (this.$coreData.timestamp > 5) {
+        this.$coreService.seekTo(0)
+      }
     }
   }
 }
