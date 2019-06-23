@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Track from './HomePageTrackMedium.vue'
+import Track from './HomeTrackMedium.vue'
 
 export default {
   name: 'HomePage',
