@@ -1,6 +1,6 @@
 <template>
   <div
-    class="home-page-track-medium"
+    class="track-medium"
     @click="onClick"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -23,7 +23,7 @@
 import Artwork from '@/components/Artwork.vue'
 
 export default {
-  name: 'HomePageTrackMedium',
+  name: 'TrackMedium',
   components: {
     Artwork
   },
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home-page-track-medium {
+.track-medium {
   display: flex;
   padding: 16px 0px;
   max-width: 100%;

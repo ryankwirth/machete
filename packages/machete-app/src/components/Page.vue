@@ -1,7 +1,9 @@
 <template>
   <section class="page">
     <Search/>
-    <slot/>
+    <div class="content">
+      <slot/>
+    </div>
   </section>
 </template>
 
@@ -19,5 +21,13 @@ export default {
 <style lang="scss" scoped>
 .page {
   width: 100%;
+
+  .content {
+    flex: 1 0 auto;
+
+    > div {
+      padding: 32px 48px;
+    }
+  }
 }
 </style>

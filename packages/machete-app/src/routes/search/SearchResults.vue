@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Track from '../home/HomeTrackMedium.vue'
+import Track from '@/components/tracks/TrackMedium.vue'
 
 export default {
   name: 'Search',

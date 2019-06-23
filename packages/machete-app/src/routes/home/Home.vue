@@ -1,26 +1,24 @@
 <template>
-  <div class="home-page">
-    <div class="container">
-      <div class="title color-header">Most Popular</div>
-      <div class="tracks">
-        <Track
-          v-for="result in results"
-          :key="result.id"
-          :artist="result.artist"
-          :artwork="result.thumbnail"
-          :id="result.id"
-          :title="result.title"
-        />
-      </div>
+  <div class="home">
+    <div class="title color-header">Most Popular</div>
+    <div class="tracks">
+      <Track
+        v-for="result in results"
+        :key="result.id"
+        :artist="result.artist"
+        :artwork="result.thumbnail"
+        :id="result.id"
+        :title="result.title"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Track from './HomeTrackMedium.vue'
+import Track from '@/components/tracks/TrackMedium.vue'
 
 export default {
-  name: 'HomePage',
+  name: 'Home',
   components: {
     Track
   },
@@ -39,22 +37,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home-page {
-  flex: 1 0 auto;
+.home {
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
 
-  .container {
-    padding: 32px 48px;
-
-    .title {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .tracks {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    }
+  .tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   }
 }
 </style>
