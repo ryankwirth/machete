@@ -2,14 +2,21 @@
   <div class="search">
     <div class="container">
       <div class="title color-header">Search</div>
-      <span>{{ query }}</span>
+      <Results
+        :results="results"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import Results from './SearchResults.vue'
+
 export default {
   name: 'Search',
+  components: {
+    Results
+  },
   data() {
     return {
       results: []
@@ -33,9 +40,7 @@ export default {
   methods: {
     fetchResults() {
       this.$coreService.search(this.query)
-        .then((results) => {
-          console.log(results)
-        })
+        .then((results) => this.results = results)
     }
   }
 }
