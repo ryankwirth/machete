@@ -34,7 +34,7 @@
 import { ContentLoader } from 'vue-content-loader'
 
 export default {
-  name: 'Track',
+  name: 'TrackWrapper',
   components: {
     ContentLoader
   },
@@ -46,7 +46,15 @@ export default {
     length: String,
     height: Number
   },
+  data() {
+    return {
+      isHovering: false
+    }
+  },
   computed: {
+    isPlaying() {
+      return this.id === this.$coreData.metadata.id
+    },
     hasLoaded() {
       return !!this.id
     },
@@ -58,18 +66,6 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      isHovering: false,
-      isPlaying: false
-    }
-  },
-  mounted() {
-    this.$coreService.on('metadata', this.onReceiveMetadata)
-  },
-  beforeDestroy() {
-    this.$coreService.off('metadata', this.onReceiveMetadata)
-  },
   methods: {
     onClick() {
       this.$coreService.play(this.id)
@@ -79,9 +75,6 @@ export default {
     },
     onMouseLeave() {
       this.isHovering = false
-    },
-    onReceiveMetadata({ id }) {
-      this.isPlaying = this.id === id
     }
   }
 }
