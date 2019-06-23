@@ -4,7 +4,7 @@
     <div class="scrubber-stack">
       <div class="details">
         <Details/>
-        <Timestamp/>
+        <Timestamp :timestamp="timestamp"/>
       </div>
       <Scrubber
         :total="duration"
