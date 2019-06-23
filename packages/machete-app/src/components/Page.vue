@@ -1,18 +1,16 @@
 <template>
   <section class="page">
     <Search/>
-    <HomePage/>
+    <slot/>
   </section>
 </template>
 
 <script>
-import HomePage from './home-page'
 import Search from './search'
 
 export default {
   name: 'Page',
   components: {
-    HomePage,
     Search
   }
 }

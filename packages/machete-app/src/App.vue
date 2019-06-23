@@ -2,7 +2,9 @@
   <div id="app">
     <main>
       <Sidebar/>
-      <Page/>
+      <Page>
+        <router-view></router-view>
+      </Page>
     </main>
     <MusicControls/>
   </div>
