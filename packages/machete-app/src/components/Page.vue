@@ -1,6 +1,6 @@
 <template>
   <section class="page">
-    <Search/>
+    <TopBar/>
     <div class="content">
       <slot/>
     </div>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import Search from './search'
+import TopBar from './top-bar'
 
 export default {
   name: 'Page',
   components: {
-    Search
+    TopBar
   }
 }
 </script>
