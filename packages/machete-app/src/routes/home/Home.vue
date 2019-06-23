@@ -6,7 +6,7 @@
         v-for="result in results"
         :key="result.id"
         :artist="result.artist"
-        :artwork="result.thumbnail"
+        :artwork="result.artwork"
         :id="result.id"
         :title="result.title"
       />
