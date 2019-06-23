@@ -18,9 +18,9 @@
     </template>
 
     <template v-slot:skeleton>
-		  <rect x="82" y="16" rx="3" ry="3" width="256" height="19" /> 
-		  <rect x="82" y="40" rx="3" ry="3" width="96" height="15" /> 
-		  <rect x="0" y="0" rx="3" ry="3" width="72" height="72" />
+      <rect x="82" y="16" rx="3" ry="3" width="256" height="19" /> 
+      <rect x="82" y="40" rx="3" ry="3" width="96" height="15" /> 
+      <rect x="0" y="0" rx="3" ry="3" width="72" height="72" />
     </template>
   </TrackWrapper>
 </template>
