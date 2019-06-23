@@ -31,6 +31,7 @@ export default {
 
   main {
     display: flex;
+    min-height: 100vh;
   }
 }
 </style>
