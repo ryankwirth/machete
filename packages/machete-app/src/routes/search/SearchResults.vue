@@ -27,3 +27,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+}
+</style>
