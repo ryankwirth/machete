@@ -17,7 +17,7 @@ export default {
   methods: {
     onSearch(query) {
       this.$coreService.search(query)
-        .then((results) => console.log(results))
+        .then((results) => this.$coreService.play(results[0].id))
     }
   }
 }
