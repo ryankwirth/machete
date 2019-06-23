@@ -1,5 +1,8 @@
 <template>
-  <TrackWrapper v-bind="data">
+  <TrackWrapper
+    v-bind="data"
+    :height="72"
+  >
     <template v-slot:default="props">
       <Artwork
         :artwork="props.artwork"
@@ -15,12 +18,9 @@
     </template>
 
     <template v-slot:skeleton>
-      <rect x="0" y="0" rx="3" ry="3" width="250" height="10" />
-      <rect x="20" y="20" rx="3" ry="3" width="220" height="10" />
-      <rect x="20" y="40" rx="3" ry="3" width="170" height="10" />
-      <rect x="0" y="60" rx="3" ry="3" width="250" height="10" />
-      <rect x="20" y="80" rx="3" ry="3" width="200" height="10" />
-      <rect x="20" y="100" rx="3" ry="3" width="80" height="10" />
+		  <rect x="82" y="16" rx="3" ry="3" width="256" height="19" /> 
+		  <rect x="82" y="40" rx="3" ry="3" width="96" height="15" /> 
+		  <rect x="0" y="0" rx="3" ry="3" width="72" height="72" />
     </template>
   </TrackWrapper>
 </template>

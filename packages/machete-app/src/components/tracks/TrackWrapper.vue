@@ -1,6 +1,7 @@
 <template>
   <div
-    :class="classes"
+    class="track"
+    :style="styles"
     @click="onClick"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -15,7 +16,15 @@
       :isHovering="isHovering"
       :isPlaying="isPlaying"
     />
-    <ContentLoader v-else>
+    <ContentLoader
+      v-else
+      class="color-gutter"
+      primaryColor="currentColor"
+      secondaryColor="currentColor"
+      preserveAspectRatio="xMinYMin"
+      :animate="false"
+      :height="height"
+    >
       <slot name="skeleton"/>
     </ContentLoader>
   </div>
@@ -34,16 +43,19 @@ export default {
     title: String,
     artist: String,
     artwork: String,
-    length: String
+    length: String,
+    height: Number
   },
   computed: {
-    classes() {
-      return {
-        track: this.hasLoaded
-      }
-    },
     hasLoaded() {
       return !!this.id
+    },
+    styles() {
+      return {
+        display: this.hasLoaded ? 'flex' : 'block',
+        cursor: this.hasLoaded ? 'pointer' : 'default',
+        height: `${this.height}px` || '',
+      }
     }
   },
   data() {
@@ -77,9 +89,11 @@ export default {
 
 <style lang="scss" scoped>
 .track {
-  display: flex;
   padding: 16px 0px;
   max-width: 100%;
-  cursor: pointer;
+
+  > svg {
+    height: 100%;
+  }
 }
 </style>
