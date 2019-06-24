@@ -1,5 +1,5 @@
 <template>
-  <div class="search-input color-background-bg color-gutter-border color-accent-border-focus">
+  <div class="top-bar-search color-background-bg color-gutter-border color-accent-border-focus">
     <input
       v-model="query"
       class="color-text"
@@ -24,7 +24,7 @@ import Button from '@/components/BaseButton.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 
 export default {
-  name: 'SearchInput',
+  name: 'Search',
   components: {
     Button,
     IconSearch
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$emit('search', this.query)
+      this.$router.push({ path: `/search?q=${this.query}` })
     }
   }
 }
@@ -45,8 +45,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/styles/variables.scss';
 
-.search-input {
+.top-bar-search {
   display: flex;
+  flex: 1 0 auto;
   border: 1px solid;
   border-radius: 3px;
 

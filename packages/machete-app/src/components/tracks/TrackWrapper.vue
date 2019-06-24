@@ -68,7 +68,9 @@ export default {
   },
   methods: {
     onClick() {
-      this.$coreService.play(this.id)
+      if (this.hasLoaded) {
+        this.$coreService.play(this.id)
+      }
     },
     onMouseEnter() {
       this.isHovering = true

@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div :class="classes" @click="onClick">
     <BaseIcon width="20" height="20">
       <slot/>
     </BaseIcon>
@@ -16,16 +16,19 @@ export default {
     BaseIcon
   },
   props: {
-    active: {
-      type: Boolean,
-      default: false
-    },
     label: {
       type: String,
       required: true
+    },
+    path: {
+      type: String,
+      default: '/'
     }
   },
   computed: {
+    active() {
+      return this.$route.path === this.path
+    },
     classes() {
       return {
         'sidebar-section-button': true,
@@ -35,6 +38,11 @@ export default {
         'color-accent-bg': this.active,
         'color-accent-bg-hover': true
       }
+    }
+  },
+  methods: {
+    onClick() {
+      this.$router.push(this.path)
     }
   }
 }

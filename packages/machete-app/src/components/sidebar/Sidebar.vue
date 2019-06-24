@@ -1,6 +1,6 @@
 <template>
   <section class="sidebar color-background-variant-bg color-gutter-border">
-    <Button label="Recommendations" :active="true">
+    <Button label="Recommendations" path="/">
       <IconGlobe/>
     </Button>
     <Library/>

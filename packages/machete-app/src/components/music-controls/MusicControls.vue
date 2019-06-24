@@ -17,9 +17,6 @@ export default {
     Buttons,
     Playback,
     Volume
-  },
-  mounted() {
-    this.$coreService.play('youtube://b3lH6CULHD0')
   }
 }
 </script>
