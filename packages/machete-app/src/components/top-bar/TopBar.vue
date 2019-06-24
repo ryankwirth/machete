@@ -23,7 +23,7 @@ export default {
   display: flex;
   position: relative;
 
-  padding: 24px;
+  padding: 24px 32px;
   border-bottom: 1px solid;
 }
 </style>

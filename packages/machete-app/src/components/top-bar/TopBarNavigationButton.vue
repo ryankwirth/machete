@@ -1,5 +1,8 @@
 <template>
-  <div class="top-bar-navigation-button color-background-bg color-gutter-border">
+  <div
+    class="top-bar-navigation-button color-background-bg color-gutter-border"
+    @click="onClick"
+  >
     <BaseIcon>
       <slot/>
     </BaseIcon>
@@ -13,6 +16,17 @@ export default {
   name: 'TopBarNavigationButton',
   components: {
     BaseIcon
+  },
+  props: {
+    enable: {
+      type: Boolean,
+      default: true
+    }
+  },
+  methods: {
+    onClick() {
+      this.$emit('click')
+    }
   }
 }
 </script>

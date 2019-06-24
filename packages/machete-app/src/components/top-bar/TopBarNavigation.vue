@@ -1,9 +1,9 @@
 <template>
   <div class="top-bar-navigation">
-    <Button>
+    <Button @click="onClickBackward">
       <IconArrowBackward/>
     </Button>
-    <Button>
+    <Button @click="onClickForward">
       <IconArrowForward/>
     </Button>
   </div>
@@ -20,6 +20,14 @@ export default {
     Button,
     IconArrowBackward,
     IconArrowForward
+  },
+  methods: {
+    onClickBackward() {
+      this.$router.go(-1)
+    },
+    onClickForward() {
+      this.$router.go(1)
+    }
   }
 }
 </script>

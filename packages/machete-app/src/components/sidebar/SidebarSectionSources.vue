@@ -1,6 +1,6 @@
 <template>
   <Section name="Sources">
-    <Button label="YouTube">
+    <Button label="YouTube" path="/sources/youtube">
       <IconYouTube/>
     </Button>
   </Section>
