@@ -13,6 +13,10 @@ const Injectable = {
       .then((body) => cheerio.load(body))
   },
 
+  post(url, data, options) {
+    return needle('post', this.proxy + url, data, options)
+  },
+
   dispatch(type, payload) {
     EventBus.dispatch(type, payload)
   }

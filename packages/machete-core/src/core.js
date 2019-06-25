@@ -66,6 +66,11 @@ const CoreService = {
       .then((results) => results.flat())
   },
 
+  getShowcase() {
+    return this.forEveryService((service) => service.getShowcase())
+      .then((results) => results.flat())
+  },
+
   getMostPopular() {
     // Get the most popular tracks from every service
     return this.forEveryService((service) => service.getMostPopular())

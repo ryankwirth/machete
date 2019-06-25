@@ -9,6 +9,7 @@
   },
   "main": "server.js",
   "scripts": {
+    "deploy": "cd ../../ && git subtree push --prefix packages/machete-proxy heroku master",
     "start": "node server.js"
   },
   "dependencies": {

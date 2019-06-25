@@ -1,6 +1,8 @@
 import config from './config'
 import utils from './utils'
 
+import * as data from './assets/payload.json'
+
 function parseSearchVideo($, el) {
   return parseVideo($(el), {
     label: '.yt-lockup-title a',
@@ -54,6 +56,11 @@ const YouTubeParser = {
   search(query) {
     return this.injectable.get(config.urls.searchUrl + query)
       .then(($) => $('.yt-lockup-video').map((i, el) => parseSearchVideo($, el)).get())
+  },
+
+  scrapeShowcase() {
+    return this.injectable.post(config.urls.musicUrl, data, { json: true })
+      .then((response) => console.log(response))
   },
 
   scrapePlaylist(playlistId) {

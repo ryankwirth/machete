@@ -36,6 +36,10 @@ const YouTubeService = {
     return parser.search(query + ', official')
   },
 
+  getShowcase() {
+    return parser.scrapeShowcase()
+  },
+
   getMostPopular() {
     return parser.scrapePlaylist(config.playlistIds.mostPopular)
   }
