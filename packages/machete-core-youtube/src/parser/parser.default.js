@@ -47,7 +47,7 @@ export default {
   },
 
   search(query) {
-    return this.injectable.get(config.urls.searcUrl + query)
+    return this.injectable.get(config.urls.searchUrl + query)
     .then(($) => $('.yt-lockup-video').map((i, el) => parseSearchVideo($, el)).get())
   },
 

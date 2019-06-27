@@ -39,10 +39,10 @@ function onStateChange(e) {
   // Dispatch the latest video data
   const videoData = this.player.getVideoData()
   const duration = this.player.getDuration()
-  const id = `${config.slug}://${videoData.video_id}`
+  const id = utils.encodeId('video', videoData.video_id)
   const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
   const thumbnail = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
-  this.injectable.dispatch('metadata', { id, artist, thumbnail, duration, title })
+  this.injectable.dispatch('metadata', { id, title, artist, thumbnail, duration })
 
   // Dispatch the current video status
   const isPlaying = e.data === 1
