@@ -10,9 +10,8 @@
       v-if="hasLoaded"
       :id="id"
       :title="title"
-      :artist="artist"
-      :artwork="artwork"
-      :length="length"
+      :subtitle="subtitle"
+      :thumbnail="thumbnail"
       :isHovering="isHovering"
       :isPlaying="isPlaying"
     />
@@ -41,9 +40,8 @@ export default {
   props: {
     id: String,
     title: String,
-    artist: String,
-    artwork: String,
-    length: String,
+    subtitle: String,
+    thumbnail: String,
     height: Number
   },
   data() {

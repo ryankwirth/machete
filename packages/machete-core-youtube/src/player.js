@@ -41,8 +41,8 @@ function onStateChange(e) {
   const duration = this.player.getDuration()
   const id = `${config.slug}://${videoData.video_id}`
   const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
-  const artwork = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
-  this.injectable.dispatch('metadata', { id, artist, artwork, duration, title })
+  const thumbnail = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
+  this.injectable.dispatch('metadata', { id, artist, thumbnail, duration, title })
 
   // Dispatch the current video status
   const isPlaying = e.data === 1
@@ -74,7 +74,12 @@ const YouTubePlayer = {
 
   play(id) {
     if (id) {
-      this.player.loadVideoById(id)
+      const { type, assetId } = utils.decodeId(id)
+      if (type === 'video') {
+        this.player.loadVideoById(assetId)
+      } else {
+        this.player.loadPlaylistById(assetId)
+      }
     } else {
       this.player.playVideo()
     }

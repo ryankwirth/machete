@@ -28,10 +28,6 @@ export default {
     Overlay
   },
   props: {
-    artwork: {
-      type: String,
-      required: true
-    },
     radius: {
       type: Number,
       default: 0
@@ -47,15 +43,19 @@ export default {
     size: {
       type: Number,
       default: 96
+    },
+    url: {
+      type: String,
+      required: true
     }
   },
   computed: {
     styles() {
-      if (this.artwork) {
+      if (this.url) {
         return {
           width: `${this.size}px`,
           height: `${this.size}px`,
-          backgroundImage: `url(${this.artwork})`,
+          backgroundImage: `url(${this.url})`,
           backgroundSize: 'cover',
           borderRadius: `${this.radius}px`
         }

@@ -1,4 +1,5 @@
 import config from '../config'
+import utils from '../utils'
 import * as payload from '../assets/payload.json'
 
 function parseShowcase(data) {
@@ -30,9 +31,16 @@ function parseShowcaseMusicTwoRowItemRenderer(renderer) {
   const playlistId = playButtonRenderer.playNavigationEndpoint.watchPlaylistEndpoint.playlistId
 
   const thumbnails = renderer.thumbnailRenderer.musicThumbnailRenderer.thumbnail.thumbnails
-  const artwork = thumbnails[0].url
+  const thumbnail = thumbnails[0].url
 
-  return { title, playlistId, artwork }
+  const id = utils.encodeId('playlist', playlistId)
+
+  return {
+    id,
+    title,
+    subtitle: 'YouTube Playlist',
+    thumbnail
+  }
 }
 
 export default {

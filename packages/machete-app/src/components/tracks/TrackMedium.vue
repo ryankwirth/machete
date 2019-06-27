@@ -5,7 +5,7 @@
   >
     <template v-slot:default="props">
       <Artwork
-        :artwork="props.artwork"
+        :url="props.thumbnail"
         :radius="3"
         :showHovering="props.isHovering"
         :showPlaying="props.isPlaying"
@@ -13,7 +13,7 @@
       />
       <div class="details">
         <span class="title color-text">{{ props.title }}</span>
-        <span class="artist color-navigation">{{ props.artist }}</span>
+        <span class="artist color-navigation">{{ props.subtitle }}</span>
       </div>
     </template>
 
