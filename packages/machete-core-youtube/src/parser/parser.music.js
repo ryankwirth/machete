@@ -17,10 +17,10 @@ function parseShowcaseCarouselRenderer(renderer) {
   const headerRenderer = renderer.header.musicCarouselShelfBasicHeaderRenderer
   const title = headerRenderer.title.runs[0].text
 
-  const contents = renderer.contents
+  const items = renderer.contents
     .map((content) => parseShowcaseMusicTwoRowItemRenderer(content.musicTwoRowItemRenderer))
 
-  return { title, contents }
+  return { title, items }
 }
 
 function parseShowcaseMusicTwoRowItemRenderer(renderer) {

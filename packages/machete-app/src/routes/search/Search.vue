@@ -1,21 +1,14 @@
 <template>
-  <div class="search">
-    <div class="title color-header">
-      Search: "{{ query }}"
-    </div>
-    <Results
-      :results="results"
-    />
-  </div>
+  <Renderer :title="title" type="Grid" :items="results"/>
 </template>
 
 <script>
-import Results from './SearchResults.vue'
+import Renderer from '@/components/renderer'
 
 export default {
   name: 'Search',
   components: {
-    Results
+    Renderer
   },
   data() {
     return {
@@ -23,6 +16,9 @@ export default {
     }
   },
   computed: {
+    title() {
+      return `Search: "${this.query}"`
+    },
     query() {
       return this.$route.query.q
     }
@@ -33,8 +29,6 @@ export default {
     $route: 'fetchResults'
   },
   created() {
-    // When the user initially navigates to the /search route, fetch their
-    // search results.
     this.fetchResults()
   },
   methods: {
@@ -49,11 +43,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.search .title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-</style>

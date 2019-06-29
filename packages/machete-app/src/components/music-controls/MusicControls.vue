@@ -17,11 +17,6 @@ export default {
     Buttons,
     Playback,
     Volume
-  },
-  mounted() {
-    window.core = this.$coreService
-    this.$coreService.getShowcase()
-      .then(console.log)
   }
 }
 </script>

@@ -1,12 +1,17 @@
 <template>
-  <div class="grid">
-    <slot v-for="item in renderedItems" :item="item" />
+  <div class="renderer-showcase">
+    <TrackLarge v-for="(item, i) in renderedItems" :key="i" :data="item"/>
   </div>
 </template>
 
 <script>
+import TrackLarge from '@/components/tracks/TrackLarge.vue'
+
 export default {
-  name: 'Grid',
+  name: 'RendererShowcase',
+  components: {
+      TrackLarge
+  },
   props: {
     items: Array,
     skeletonItems: {
@@ -23,8 +28,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+.renderer-showcase {
+  display: flex;
+
+  width: 100%;
+  overflow: hidden;
 }
 </style>
