@@ -26,7 +26,7 @@ export default {
     },
     items: {
       type: Array,
-      default: () => Array()
+      default: null
     }
   }
 }

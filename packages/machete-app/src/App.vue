@@ -2,9 +2,10 @@
   <div id="app">
     <main>
       <Sidebar/>
-      <Page>
-        <router-view></router-view>
-      </Page>
+      <section>
+        <TopBar/>
+        <router-view/>
+      </section>
     </main>
     <MusicControls/>
   </div>
@@ -12,8 +13,8 @@
 
 <script>
 import MusicControls from './components/music-controls'
-import Page from './components/Page.vue'
 import Sidebar from './components/sidebar'
+import TopBar from './components/top-bar'
 
 import './assets/styles/index.scss'
 
@@ -21,8 +22,8 @@ export default {
   name: 'app',
   components: {
     MusicControls,
-    Page,
-    Sidebar
+    Sidebar,
+    TopBar
   }
 }
 </script>
@@ -33,7 +34,17 @@ export default {
 
   main {
     display: flex;
+    max-width: 100%;
     min-height: 100vh;
+
+    section {
+      flex: 1;
+      overflow: hidden;
+
+      > div {
+        padding: 32px 48px;
+      }
+    }
   }
 }
 </style>

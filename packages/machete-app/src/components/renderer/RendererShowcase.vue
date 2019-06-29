@@ -16,7 +16,7 @@ export default {
     items: Array,
     skeletonItems: {
       type: Number,
-      default: 20
+      default: 3
     }
   },
   computed: {

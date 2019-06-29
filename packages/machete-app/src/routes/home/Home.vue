@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <Renderer v-bind="showcase"/>
-    <Renderer v-bind="mostPopular"/>
+    <Renderer type="Showcase" v-bind="showcase"/>
+    <Renderer type="Grid" title="Most Popular" v-bind="mostPopular"/>
   </div>
 </template>
 
@@ -22,12 +22,12 @@ export default {
   mounted() {
     this.$coreService.getMostPopular()
       .then((items) => {
-        this.mostPopular = { title: 'Most Popular', type: 'Grid', items }
+        this.mostPopular = { items }
       })
     
     this.$coreService.getShowcase()
       .then((showcase) => {
-        this.showcase = { type: 'Showcase', ...showcase[0] }
+        this.showcase = showcase[0]
       })
   }
 }
