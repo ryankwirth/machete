@@ -1,7 +1,7 @@
 <template>
-  <div class="top-bar color-background-variant-bg color-gutter-border">
+  <aside class="top-bar color-background-variant-bg color-gutter-border">
     <Search/>
-  </div>
+  </aside>
 </template>
 
 <script>

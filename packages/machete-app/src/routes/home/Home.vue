@@ -1,40 +1,34 @@
 <template>
   <div class="home">
-    <div class="title color-header">Most Popular</div>
-    <Grid v-slot="{ item }" :items="results">
-      <Track :data="item"/>
-    </Grid>
+    <Renderer type="Showcase" v-bind="showcase"/>
+    <Renderer type="Grid" title="Most Popular" v-bind="mostPopular"/>
   </div>
 </template>
 
 <script>
-import Grid from '@/components/Grid.vue'
-import Track from '@/components/tracks/TrackMedium.vue'
+import Renderer from '@/components/renderer'
 
 export default {
   name: 'Home',
   components: {
-    Grid,
-    Track
+    Renderer
   },
   data() {
     return {
-      results: null
+      mostPopular: null,
+      showcase: null
     }
   },
   mounted() {
     this.$coreService.getMostPopular()
-      .then((results) => {
-        this.results = results
+      .then((items) => {
+        this.mostPopular = { items }
+      })
+    
+    this.$coreService.getShowcase()
+      .then((showcase) => {
+        this.showcase = showcase[0]
       })
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.home .title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-</style>

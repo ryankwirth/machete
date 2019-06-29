@@ -1,6 +1,6 @@
 <template>
   <TrackWrapper
-    class="track-medium"
+    class="track-large"
     v-bind="data"
   >
     <template v-slot:default="props">
@@ -9,7 +9,7 @@
         :radius="3"
         :showHovering="props.isHovering"
         :showPlaying="props.isPlaying"
-        :size="72"
+        :size="225"
       />
       <div class="details">
         <span class="title color-text">{{ props.title }}</span>
@@ -30,7 +30,7 @@ import Artwork from '@/components/artwork'
 import TrackWrapper from './TrackWrapper.vue'
 
 export default {
-  name: 'TrackMedium',
+  name: 'TrackLarge',
   components: {
     Artwork,
     TrackWrapper
@@ -42,20 +42,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.track-medium {
+.track-large {
   display: flex;
+  flex-direction: column;
 
-  padding-bottom: 32px;
-  height: 72px;
+  height: 280px;
+  padding-right: 48px;
 
   .details {
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    padding: 0px 12px;
-    text-align: left;
-    min-width: 0px;
+    padding-top: 16px;
 
     > span {
       white-space: nowrap;
@@ -64,7 +63,7 @@ export default {
 
       &.title {
         font-weight: 600;
-        margin-bottom: 2px;
+        margin-bottom: 4px;
       }
 
       &.artist {

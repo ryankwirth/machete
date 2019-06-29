@@ -1,5 +1,5 @@
+import axios from 'axios'
 import cheerio from 'cheerio'
-import needle from 'needle'
 import EventBus from './event-bus'
 
 const Injectable = {
@@ -8,9 +8,13 @@ const Injectable = {
   },
 
   get(url, options) {
-    return needle('get', this.proxy + url, options)
-      .then((response) => response.body)
-      .then((body) => cheerio.load(body))
+    return axios.get(this.proxy + url, options)
+      .then((response) => response.data)
+      .then((data) => cheerio.load(data))
+  },
+
+  post(url, data, options) {
+    return axios.post(this.proxy + url, data, options)
   },
 
   dispatch(type, payload) {

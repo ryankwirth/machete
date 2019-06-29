@@ -1,12 +1,11 @@
-import config from './config'
-import utils from './utils'
+import config from '../config'
+import utils from '../utils'
 
 function parseSearchVideo($, el) {
   return parseVideo($(el), {
     label: '.yt-lockup-title a',
     owner: '.yt-lockup-byline',
-    videoId: 'context-item-id',
-    timestamp: '.video-time'
+    videoId: 'context-item-id'
   })
 }
 
@@ -16,8 +15,7 @@ function parsePlaylistVideo($, el) {
   return parseVideo($(el), {
     label: '.pl-video-title-link',
     owner: '.pl-video-owner a',
-    videoId: 'video-id',
-    timestamp: '.timestamp'
+    videoId: 'video-id'
   })
 }
 
@@ -28,24 +26,21 @@ function parseVideo($el, opts) {
   const label = $el.find(opts.label).text()
   const owner = $el.find(opts.owner).text()
   const videoId = $el.data(opts.videoId)
-  const timestamp = $el.find(opts.timestamp).text()
   
   // Generate the result object properties
-  const id = `${config.slug}://${videoId}`
-  const artwork = `${config.urls.thumbnailUrl}${videoId}/mqdefault.jpg`
-  const length = utils.parseTimestamp(timestamp)
-  const { title, artist } = utils.parseLabel(label.trim(), owner.trim())
+  const id = utils.encodeId('video', videoId)
+  const thumbnail = `${config.urls.thumbnailUrl}${videoId}/mqdefault.jpg`
+  const { title, artist: subtitle } = utils.parseLabel(label.trim(), owner.trim())
 
   return {
     id,
     title,
-    artist,
-    artwork,
-    length
+    subtitle,
+    thumbnail
   }
 }
 
-const YouTubeParser = {
+export default {
   init(injectable) {
     this.injectable = injectable
     return Promise.resolve()
@@ -53,7 +48,7 @@ const YouTubeParser = {
 
   search(query) {
     return this.injectable.get(config.urls.searchUrl + query)
-      .then(($) => $('.yt-lockup-video').map((i, el) => parseSearchVideo($, el)).get())
+    .then(($) => $('.yt-lockup-video').map((i, el) => parseSearchVideo($, el)).get())
   },
 
   scrapePlaylist(playlistId) {
@@ -61,5 +56,3 @@ const YouTubeParser = {
       .then(($) => $('tr').map((i, el) => parsePlaylistVideo($, el)).get())
   }
 }
-
-export default YouTubeParser

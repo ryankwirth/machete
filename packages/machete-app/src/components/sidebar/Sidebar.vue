@@ -1,12 +1,12 @@
 <template>
-  <section class="sidebar color-background-variant-bg color-gutter-border">
+  <nav class="sidebar color-background-variant-bg color-gutter-border">
     <Button label="Recommendations" path="/">
       <IconGlobe/>
     </Button>
     <Library/>
     <Playlists/>
     <Sources/>
-  </section>
+  </nav>
 </template>
 
 <script>

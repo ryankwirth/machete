@@ -1,6 +1,6 @@
 <template>
   <div class="music-controls-playback">
-    <Artwork :artwork="artwork"/>
+    <Artwork :url="url"/>
     <div class="scrubber-stack">
       <div class="details">
         <Details/>
@@ -37,8 +37,8 @@ export default {
     }
   },
   computed: {
-    artwork() {
-      return this.$coreData.metadata.artwork || ''
+    url() {
+      return this.$coreData.metadata.thumbnail || ''
     },
     duration() {
       return this.$coreData.metadata.duration || 1

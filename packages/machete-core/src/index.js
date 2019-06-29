@@ -42,6 +42,11 @@ const CoreServiceInterface = {
       .then(() => CoreService.search(query))
   },
 
+  getShowcase() {
+    return init
+      .then(() => CoreService.getShowcase())
+  },
+
   getMostPopular() {
     return init
       .then(() => CoreService.getMostPopular())

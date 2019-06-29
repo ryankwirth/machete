@@ -1,7 +1,6 @@
 <template>
   <div
-    class="track"
-    :style="styles"
+    class="track-wrapper"
     @click="onClick"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -10,9 +9,8 @@
       v-if="hasLoaded"
       :id="id"
       :title="title"
-      :artist="artist"
-      :artwork="artwork"
-      :length="length"
+      :subtitle="subtitle"
+      :thumbnail="thumbnail"
       :isHovering="isHovering"
       :isPlaying="isPlaying"
     />
@@ -41,9 +39,8 @@ export default {
   props: {
     id: String,
     title: String,
-    artist: String,
-    artwork: String,
-    length: String,
+    subtitle: String,
+    thumbnail: String,
     height: Number
   },
   data() {
@@ -57,13 +54,6 @@ export default {
     },
     hasLoaded() {
       return !!this.id
-    },
-    styles() {
-      return {
-        display: this.hasLoaded ? 'flex' : 'block',
-        cursor: this.hasLoaded ? 'pointer' : 'default',
-        height: `${this.height}px` || '',
-      }
     }
   },
   methods: {
@@ -83,8 +73,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.track {
-  padding: 16px 0px;
+.track-wrapper {
+  cursor: pointer;
   max-width: 100%;
 
   > svg {

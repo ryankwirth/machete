@@ -1,12 +1,17 @@
 <template>
-  <div class="grid">
-    <slot v-for="item in renderedItems" :item="item" />
+  <div class="renderer-grid">
+    <TrackMedium v-for="(item, i) in renderedItems" :key="i" :data="item"/>
   </div>
 </template>
 
 <script>
+import TrackMedium from '@/components/tracks/TrackMedium.vue'
+
 export default {
-  name: 'Grid',
+  name: 'RendererGrid',
+  components: {
+      TrackMedium
+  },
   props: {
     items: Array,
     skeletonItems: {
@@ -23,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.grid {
+.renderer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
 }
