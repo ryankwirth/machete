@@ -1,7 +1,6 @@
 <template>
   <div
-    class="track"
-    :style="styles"
+    class="track-wrapper"
     @click="onClick"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -55,13 +54,6 @@ export default {
     },
     hasLoaded() {
       return !!this.id
-    },
-    styles() {
-      return {
-        display: this.hasLoaded ? 'flex' : 'block',
-        cursor: this.hasLoaded ? 'pointer' : 'default',
-        height: `${this.height}px` || '',
-      }
     }
   },
   methods: {
@@ -81,8 +73,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.track {
-  padding: 16px 0px;
+.track-wrapper {
+  cursor: pointer;
   max-width: 100%;
 
   > svg {

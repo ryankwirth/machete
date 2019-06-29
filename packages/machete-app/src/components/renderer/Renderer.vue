@@ -33,9 +33,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.renderer .title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
+.renderer {
+  margin-bottom: 48px;
+
+  .title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
 }
 </style>

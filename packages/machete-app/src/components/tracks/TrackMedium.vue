@@ -1,7 +1,7 @@
 <template>
   <TrackWrapper
+    class="track-medium"
     v-bind="data"
-    :height="72"
   >
     <template v-slot:default="props">
       <Artwork
@@ -42,28 +42,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.details {
+.track-medium {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 
-  padding: 0px 12px;
-  text-align: left;
-  min-width: 0px;
+  padding-bottom: 32px;
+  height: 72px;
 
-  > span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    &.title {
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
+    padding: 0px 12px;
+    text-align: left;
+    min-width: 0px;
 
-    &.artist {
-      font-weight: 700;
-      font-size: 12px;
+    > span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &.title {
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      &.artist {
+        font-weight: 700;
+        font-size: 12px;
+      }
     }
   }
 }
