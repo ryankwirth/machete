@@ -78,7 +78,7 @@ const YouTubePlayer = {
       if (type === 'video') {
         this.player.loadVideoById(assetId)
       } else {
-        this.player.loadPlaylistById(assetId)
+        this.player.loadPlaylist({ list: assetId })
       }
     } else {
       this.player.playVideo()
