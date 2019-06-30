@@ -23,7 +23,7 @@ export default {
     },
     skeletonItems: {
       type: Number,
-      default: 20
+      default: 12
     }
   },
   computed: {
