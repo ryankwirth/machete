@@ -24,6 +24,7 @@ export default {
   padding-top: 32px;
 
   .name {
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 8px;

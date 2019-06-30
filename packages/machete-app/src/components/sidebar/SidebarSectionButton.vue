@@ -4,8 +4,8 @@
     @click="onClick"
   >
     <BaseIcon
-      width="20"
-      height="20"
+      width="16"
+      height="16"
     >
       <slot />
     </BaseIcon>
@@ -65,10 +65,10 @@ export default {
   cursor: pointer;
 
   .label {
-    font-weight: 500;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 600;
 
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 </style>

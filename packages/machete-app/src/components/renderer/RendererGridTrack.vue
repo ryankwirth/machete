@@ -9,7 +9,7 @@
         :radius="3"
         :show-hovering="props.isHovering"
         :show-playing="props.isPlaying"
-        :size="72"
+        :size="60"
       />
       <div class="details">
         <span class="title color-text">{{ props.title }}</span>
@@ -23,15 +23,15 @@
         y="0"
         rx="3"
         ry="3"
-        width="72"
-        height="72"
+        width="60"
+        height="60"
       />
       <rect
         x="82"
         y="16"
         rx="3"
         ry="3"
-        width="256"
+        width="228"
         height="19"
       />
       <rect
@@ -70,7 +70,7 @@ export default {
   display: flex;
 
   padding-bottom: 32px;
-  height: 72px;
+  height: 60px;
 
   .details {
     display: flex;

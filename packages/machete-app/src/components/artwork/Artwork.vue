@@ -45,7 +45,7 @@ export default {
     },
     size: {
       type: Number,
-      default: 96
+      default: 80
     },
     url: {
       type: String,

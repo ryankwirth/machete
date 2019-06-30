@@ -57,11 +57,11 @@ export default {
     },
     height: {
       type: Number,
-      default: 72
+      default: 60
     },
     width: {
       type: Number,
-      default: 360
+      default: 256
     }
   },
   data() {

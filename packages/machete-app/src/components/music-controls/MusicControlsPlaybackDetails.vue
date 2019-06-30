@@ -34,7 +34,7 @@ span {
   font-weight: 500;
 
   &.title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   &.bullet {
