@@ -45,6 +45,7 @@ export default {
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 24px;
+    cursor: default;
   }
 }
 </style>

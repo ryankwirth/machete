@@ -5,6 +5,7 @@
       class="color-text"
       type="text"
       placeholder="Type to search..."
+      @focus="$event.target.select()"
       @keyup.enter="onSubmit"
     >
     <Button
