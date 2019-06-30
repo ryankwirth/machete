@@ -50,8 +50,13 @@ export default {
   },
   methods: {
     onSetTimestamp(timestamp) {
-      this.modified = false
       CoreService.seekTo(timestamp)
+
+      // Mark the timestamp as unmodified, but change the value in $coreData
+      // until we get a new `timestamp` event from the service. This will
+      // prevent the scrubber from "jumping" back to its previous position.
+      this.modified = false
+      this.$coreData.timestamp = timestamp
     },
     onUpdateTimestamp(timestamp) {
       this.modified = true
