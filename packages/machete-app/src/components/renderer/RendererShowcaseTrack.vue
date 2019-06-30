@@ -34,11 +34,11 @@
         rx="3"
         ry="3"
         width="192"
-        height="19"
+        height="18"
       />
       <rect
         x="0"
-        y="240"
+        y="238"
         rx="3"
         ry="3"
         width="128"

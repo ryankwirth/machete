@@ -27,16 +27,16 @@
         height="60"
       />
       <rect
-        x="82"
-        y="16"
+        x="70"
+        y="12"
         rx="3"
         ry="3"
-        width="228"
-        height="19"
+        width="168"
+        height="18"
       />
       <rect
-        x="82"
-        y="40"
+        x="70"
+        y="34"
         rx="3"
         ry="3"
         width="96"
@@ -68,8 +68,6 @@ export default {
 <style lang="scss" scoped>
 .renderer-grid-track {
   display: flex;
-
-  padding-bottom: 32px;
   height: 60px;
 
   .details {

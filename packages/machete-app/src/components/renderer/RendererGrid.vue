@@ -23,7 +23,7 @@ export default {
     },
     skeletonItems: {
       type: Number,
-      default: 12
+      default: 30
     }
   },
   computed: {
@@ -38,5 +38,6 @@ export default {
 .renderer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+  grid-row-gap: 32px;
 }
 </style>
