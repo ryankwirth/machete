@@ -1,3 +1,5 @@
+import { QueryType } from 'machete-core'
+
 import config from './config'
 import parser from './parser'
 import player from './player'
@@ -31,17 +33,15 @@ const YouTubeService = {
     player.setVolume(volume)
   },
 
-  search(query) {
-    // Append "official" to the query parameter to filter out most fan content
-    return parser.search(query + ', official')
-  },
-
-  getShowcase() {
-    return parser.scrapeShowcase()
-  },
-
-  getMostPopular() {
-    return parser.scrapePlaylist(config.playlistIds.mostPopular)
+  get(type, options) {
+    switch(type) {
+      case QueryType.SEARCH:
+        return parser.search(options)
+      case QueryType.SHOWCASE:
+        return parser.scrapeShowcase()
+      case QueryType.MOST_POPULAR:
+        return parser.scrapePlaylist(config.playlistIds.mostPopular)
+    }
   }
 }
 

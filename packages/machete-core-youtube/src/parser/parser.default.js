@@ -47,7 +47,7 @@ export default {
     return Promise.resolve()
   },
 
-  search(query) {
+  search({ query }) {
     return this.injectable.get(config.urls.searchUrl + query)
     .then((root) => root.querySelectorAll('.yt-lockup-video'))
     .then((els) => els.map((el) => parseSearchVideo(el)))

@@ -1,11 +1,3 @@
-/**
- * Export machete-core
- */
+export { default as CoreService } from './src/index'
 
-exports = module.exports = require('./lib/core');
-
-/**
- * Export the version
- */
-
-exports.version = require('./package.json').version;
+export { EventType, QueryType } from './src/constants'

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { CoreService, QueryType } from 'machete-core'
 import Renderer from '@/components/renderer'
 
 export default {
@@ -20,12 +21,12 @@ export default {
     }
   },
   mounted() {
-    this.$coreService.getMostPopular()
+    CoreService.get(QueryType.MOST_POPULAR)
       .then((items) => {
         this.mostPopular = { items }
       })
     
-    this.$coreService.getShowcase()
+    CoreService.get(QueryType.SHOWCASE)
       .then((showcase) => {
         this.showcase = showcase[0]
       })

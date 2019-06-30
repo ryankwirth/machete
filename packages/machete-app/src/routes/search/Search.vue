@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { CoreService, QueryType } from 'machete-core'
 import Renderer from '@/components/renderer'
 
 export default {
@@ -37,8 +38,8 @@ export default {
       this.results = null
 
       // Query all services for search results
-      this.$coreService.search(this.query)
-        .then((results) => this.results = results)
+      CoreService.get(QueryType.SEARCH, { query: this.query })
+        .then((results) => this.reults = results)
     }
   }
 }

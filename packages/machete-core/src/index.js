@@ -37,19 +37,9 @@ const CoreServiceInterface = {
       .then(() => CoreService.setVolume(volume))
   },
 
-  search(query) {
+  get(type, options) {
     return init
-      .then(() => CoreService.search(query))
-  },
-
-  getShowcase() {
-    return init
-      .then(() => CoreService.getShowcase())
-  },
-
-  getMostPopular() {
-    return init
-      .then(() => CoreService.getMostPopular())
+      .then(() => CoreService.get(type, options))
   },
 
   on(type, callback) {

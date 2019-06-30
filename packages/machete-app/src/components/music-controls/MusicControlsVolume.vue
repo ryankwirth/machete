@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { CoreService } from 'machete-core'
 import Buttons from './MusicControlsVolumeButtons.vue'
 import Scrubber from './MusicControlsScrubber.vue'
 
@@ -31,7 +32,7 @@ export default {
   methods: {
     onSetVolume(volume) {
       this.volume = volume
-      this.$coreService.setVolume(volume)
+      CoreService.setVolume(volume)
     }
   }
 }

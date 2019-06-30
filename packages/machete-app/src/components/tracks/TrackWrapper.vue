@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { CoreService } from 'machete-core'
 import { ContentLoader } from 'vue-content-loader'
 
 export default {
@@ -59,7 +60,7 @@ export default {
   methods: {
     onClick() {
       if (this.hasLoaded) {
-        this.$coreService.play(this.id)
+        CoreService.play(this.id)
       }
     },
     onMouseEnter() {
