@@ -1,7 +1,13 @@
 <template>
   <div class="home">
-    <Renderer type="Showcase" v-bind="showcase"/>
-    <Renderer type="Grid" title="Most Popular" v-bind="mostPopular"/>
+    <Renderer
+      type="Showcase"
+      v-bind="showcase"
+    />
+    <Renderer
+      type="Grid"
+      v-bind="mostPopular"
+    />
   </div>
 </template>
 
@@ -22,14 +28,10 @@ export default {
   },
   mounted() {
     CoreService.get(QueryType.MOST_POPULAR)
-      .then((items) => {
-        this.mostPopular = { items }
-      })
+      .then((results) => this.mostPopular = results[0])
     
     CoreService.get(QueryType.SHOWCASE)
-      .then((showcase) => {
-        this.showcase = showcase[0]
-      })
+      .then((results) => this.showcase = results[0])
   }
 }
 </script>

@@ -1,6 +1,10 @@
 <template>
   <div class="renderer-grid">
-    <Track v-for="(item, i) in renderedItems" :key="i" :data="item"/>
+    <Track
+      v-for="(item, i) in renderedItems"
+      :key="i"
+      :data="item"
+    />
   </div>
 </template>
 
@@ -13,7 +17,10 @@ export default {
       Track
   },
   props: {
-    items: Array,
+    items: {
+      type: Array,
+      default: null
+    },
     skeletonItems: {
       type: Number,
       default: 20

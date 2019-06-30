@@ -7,8 +7,8 @@
       <Artwork
         :url="props.thumbnail"
         :radius="3"
-        :showHovering="props.isHovering"
-        :showPlaying="props.isPlaying"
+        :show-hovering="props.isHovering"
+        :show-playing="props.isPlaying"
         :size="72"
       />
       <div class="details">
@@ -18,9 +18,30 @@
     </template>
 
     <template v-slot:skeleton>
-      <rect x="82" y="16" rx="3" ry="3" width="256" height="19" /> 
-      <rect x="82" y="40" rx="3" ry="3" width="96" height="15" /> 
-      <rect x="0" y="0" rx="3" ry="3" width="72" height="72" />
+      <rect
+        x="0"
+        y="0"
+        rx="3"
+        ry="3"
+        width="72"
+        height="72"
+      />
+      <rect
+        x="82"
+        y="16"
+        rx="3"
+        ry="3"
+        width="256"
+        height="19"
+      />
+      <rect
+        x="82"
+        y="40"
+        rx="3"
+        ry="3"
+        width="96"
+        height="15"
+      />
     </template>
   </TrackWrapper>
 </template>
@@ -36,7 +57,10 @@ export default {
     TrackWrapper
   },
   props: {
-    data: Object
+    data: {
+      type: Object,
+      default: null
+    }
   }
 }
 </script>

@@ -6,7 +6,7 @@
       type="text"
       placeholder="Type to search..."
       @keyup.enter="onSubmit"
-    />
+    >
     <Button
       class="button"
       width="32"
@@ -14,7 +14,7 @@
       padding="8"
       @click="onSubmit"
     >
-      <IconSearch/>
+      <IconSearch />
     </Button>
   </div>
 </template>

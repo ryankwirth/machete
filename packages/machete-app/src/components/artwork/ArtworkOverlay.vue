@@ -1,7 +1,13 @@
 <template>
-  <div class="artwork-overlay" :style="styles">
-    <BaseIcon width="48" height="48">
-      <slot/>
+  <div
+    class="artwork-overlay"
+    :style="styles"
+  >
+    <BaseIcon
+      width="48"
+      height="48"
+    >
+      <slot />
     </BaseIcon>
   </div>
 </template>

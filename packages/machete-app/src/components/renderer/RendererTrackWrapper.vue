@@ -17,13 +17,14 @@
     <ContentLoader
       v-else
       class="color-gutter"
-      primaryColor="currentColor"
-      secondaryColor="currentColor"
-      preserveAspectRatio="xMinYMin"
+      primary-color="currentColor"
+      secondary-color="currentColor"
+      preserve-aspect-ratio="xMinYMin"
       :animate="false"
       :height="height"
+      :width="width"
     >
-      <slot name="skeleton"/>
+      <slot name="skeleton" />
     </ContentLoader>
   </div>
 </template>
@@ -38,11 +39,30 @@ export default {
     ContentLoader
   },
   props: {
-    id: String,
-    title: String,
-    subtitle: String,
-    thumbnail: String,
-    height: Number
+    id: {
+      type: String,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    },
+    subtitle: {
+      type: String,
+      default: null
+    },
+    thumbnail: {
+      type: String,
+      default: null
+    },
+    height: {
+      type: Number,
+      default: 72
+    },
+    width: {
+      type: Number,
+      default: 360
+    }
   },
   data() {
     return {

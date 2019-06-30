@@ -1,10 +1,21 @@
 <template>
-  <div class="music-controls-scrubber" ref="scrubber" @click="onClick">
+  <div
+    ref="scrubber"
+    class="music-controls-scrubber"
+    @click="onClick"
+  >
     <div class="track color-gutter-bg">
-      <div class="fill color-accent-bg" :style="fillStyle"></div>
+      <div
+        class="fill color-accent-bg"
+        :style="fillStyle"
+      />
     </div>
-    <div class="handle" :style="handleStyle" @mousedown="onMouseDown">
-      <div class="inner"></div>
+    <div
+      class="handle"
+      :style="handleStyle"
+      @mousedown="onMouseDown"
+    >
+      <div class="inner" />
     </div>
   </div>
 </template>
@@ -13,8 +24,14 @@
 export default {
   name: 'MusicControlsScrubber',
   props: {
-    total: Number,
-    value: Number
+    total: {
+      type: Number,
+      default: 1
+    },
+    value: {
+      type: Number,
+      default: 0
+    }
   },
   computed: {
     bounds() {

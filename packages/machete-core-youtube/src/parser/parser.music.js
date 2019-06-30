@@ -10,12 +10,13 @@ function parseShowcase(data) {
     .map((content) => content.musicImmersiveCarouselShelfRenderer || content.musicCarouselShelfRenderer)
     .filter((renderer) => !!renderer)
 
-  return renderers.map(parseShowcaseCarouselRenderer)
+  return parseShowcaseCarouselRenderer(renderers[0])
 }
 
 function parseShowcaseCarouselRenderer(renderer) {
   const headerRenderer = renderer.header.musicCarouselShelfBasicHeaderRenderer
   const title = headerRenderer.title.runs[0].text
+    .replace(/ \w/g, (t) => t.toUpperCase())
 
   const items = renderer.contents
     .map((content) => parseShowcaseMusicTwoRowItemRenderer(content.musicTwoRowItemRenderer))

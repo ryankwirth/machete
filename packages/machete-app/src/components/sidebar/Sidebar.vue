@@ -1,11 +1,14 @@
 <template>
   <nav class="sidebar color-background-variant-bg color-gutter-border">
-    <Button label="Recommendations" path="/">
-      <IconGlobe/>
+    <Button
+      label="Recommendations"
+      path="/"
+    >
+      <IconGlobe />
     </Button>
-    <Library/>
-    <Playlists/>
-    <Sources/>
+    <Library />
+    <Playlists />
+    <Sources />
   </nav>
 </template>
 

@@ -1,7 +1,12 @@
 <template>
   <div class="renderer">
-    <div class="title color-header">{{ title }}</div>
-    <component :is="type" :items="items"/>
+    <div class="title color-header">
+      {{ title }}
+    </div>
+    <component
+      :is="type"
+      :items="items"
+    />
   </div>
 </template>
 

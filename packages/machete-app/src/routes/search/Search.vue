@@ -1,5 +1,8 @@
 <template>
-  <Renderer :title="title" type="Grid" :items="results"/>
+  <Renderer
+    type="Grid"
+    v-bind="results"
+  />
 </template>
 
 <script>
@@ -39,7 +42,7 @@ export default {
 
       // Query all services for search results
       CoreService.get(QueryType.SEARCH, { query: this.query })
-        .then((results) => this.reults = results)
+        .then((results) => this.results = results[0])
     }
   }
 }

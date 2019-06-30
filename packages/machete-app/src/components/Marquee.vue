@@ -1,10 +1,20 @@
 <template>
-  <div class="marquee" ref="container">
-    <div class="marquee-item" :style="firstStyles" ref="item">
-      <slot/>
+  <div
+    ref="container"
+    class="marquee"
+  >
+    <div
+      ref="item"
+      class="marquee-item"
+      :style="firstStyles"
+    >
+      <slot />
     </div>
-    <div class="marquee-item" :style="secondStyles">
-      <slot/>
+    <div
+      class="marquee-item"
+      :style="secondStyles"
+    >
+      <slot />
     </div>
   </div>
 </template>

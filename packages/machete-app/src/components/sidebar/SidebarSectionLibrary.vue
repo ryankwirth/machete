@@ -1,22 +1,40 @@
 <template>
   <Section name="Your Library">
-    <Button label="Recently Played" path="/recently-played">
-      <IconClock/>
+    <Button
+      label="Recently Played"
+      path="/recently-played"
+    >
+      <IconClock />
     </Button>
-    <Button label="Songs" path="/songs">
-      <IconMusic/>
+    <Button
+      label="Songs"
+      path="/songs"
+    >
+      <IconMusic />
     </Button>
-    <Button label="Albums" path="/albums">
-      <IconLibrary/>
+    <Button
+      label="Albums"
+      path="/albums"
+    >
+      <IconLibrary />
     </Button>
-    <Button label="Artists" path="/artists">
-      <IconPerson/>
+    <Button
+      label="Artists"
+      path="/artists"
+    >
+      <IconPerson />
     </Button>
-    <Button label="Liked" path="/liked">
-      <IconFavourite/>
+    <Button
+      label="Liked"
+      path="/liked"
+    >
+      <IconFavourite />
     </Button>
-    <Button label="Local Files" path="/local-files">
-      <IconFolder/>
+    <Button
+      label="Local Files"
+      path="/local-files"
+    >
+      <IconFolder />
     </Button>
   </Section>
 </template>

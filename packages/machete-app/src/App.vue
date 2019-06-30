@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <main>
-      <Sidebar/>
+      <Sidebar />
       <section>
-        <TopBar/>
-        <router-view/>
+        <TopBar />
+        <router-view />
       </section>
     </main>
-    <MusicControls/>
+    <MusicControls />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ import TopBar from './components/top-bar'
 import './assets/styles/index.scss'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     MusicControls,
     Sidebar,

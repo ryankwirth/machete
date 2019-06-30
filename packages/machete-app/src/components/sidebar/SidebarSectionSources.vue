@@ -1,7 +1,10 @@
 <template>
   <Section name="Sources">
-    <Button label="YouTube" path="/sources/youtube">
-      <IconYouTube/>
+    <Button
+      label="YouTube"
+      path="/sources/youtube"
+    >
+      <IconYouTube />
     </Button>
   </Section>
 </template>

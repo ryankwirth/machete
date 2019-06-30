@@ -1,7 +1,13 @@
 <template>
-  <div :class="classes" @click="onClick">
-    <BaseIcon width="20" height="20">
-      <slot/>
+  <div
+    :class="classes"
+    @click="onClick"
+  >
+    <BaseIcon
+      width="20"
+      height="20"
+    >
+      <slot />
     </BaseIcon>
     <span class="label">{{ label }}</span>
   </div>

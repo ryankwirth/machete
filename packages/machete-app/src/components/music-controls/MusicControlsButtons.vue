@@ -1,14 +1,14 @@
 <template>
   <div class="music-controls-buttons">
     <Button @click="onPreviousClicked">
-      <IconPrevious/>
+      <IconPrevious />
     </Button>
     <Button @click="onPlayPauseClicked">
-      <IconPause v-if="isPlaying"/>
-      <IconPlay v-else/>
+      <IconPause v-if="isPlaying" />
+      <IconPlay v-else />
     </Button>
     <Button @click="onNextClicked">
-      <IconNext/>
+      <IconNext />
     </Button>
   </div>
 </template>

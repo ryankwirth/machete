@@ -51,11 +51,13 @@ export default {
     return this.injectable.get(config.urls.searchUrl + query)
     .then((root) => root.querySelectorAll('.yt-lockup-video'))
     .then((els) => els.map((el) => parseSearchVideo(el)))
+    .then((items) => ({ title: `Search: "${query}"`, items }))
   },
 
-  scrapePlaylist(playlistId) {
+  scrapePlaylist(title, playlistId) {
     return this.injectable.get(config.urls.playlistUrl + playlistId)
       .then((root) => root.querySelectorAll('.pl-video-title'))
       .then((els) => els.map((el) => parsePlaylistVideo(el)))
+      .then((items) => ({ title, items }))
   }
 }

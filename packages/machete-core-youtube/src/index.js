@@ -1,5 +1,4 @@
 import { QueryType } from 'machete-core'
-
 import config from './config'
 import parser from './parser'
 import player from './player'
@@ -40,7 +39,7 @@ const YouTubeService = {
       case QueryType.SHOWCASE:
         return parser.scrapeShowcase()
       case QueryType.MOST_POPULAR:
-        return parser.scrapePlaylist(config.playlistIds.mostPopular)
+        return parser.scrapePlaylist('Most Popular', config.playlistIds.mostPopular)
     }
   }
 }
