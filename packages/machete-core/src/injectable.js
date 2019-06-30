@@ -1,5 +1,5 @@
 import axios from 'axios'
-import cheerio from 'cheerio'
+import { parse } from 'node-html-parser'
 import EventBus from './event-bus'
 
 const Injectable = {
@@ -10,7 +10,7 @@ const Injectable = {
   get(url, options) {
     return axios.get(this.proxy + url, options)
       .then((response) => response.data)
-      .then((data) => cheerio.load(data))
+      .then((data) => parse(data))
   },
 
   post(url, data, options) {
