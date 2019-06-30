@@ -1,16 +1,16 @@
 <template>
   <div class="renderer-showcase">
-    <TrackLarge v-for="(item, i) in renderedItems" :key="i" :data="item"/>
+    <Track v-for="(item, i) in renderedItems" :key="i" :data="item"/>
   </div>
 </template>
 
 <script>
-import TrackLarge from '@/components/tracks/TrackLarge.vue'
+import Track from './RendererShowcaseTrack.vue'
 
 export default {
   name: 'RendererShowcase',
   components: {
-      TrackLarge
+      Track
   },
   props: {
     items: Array,

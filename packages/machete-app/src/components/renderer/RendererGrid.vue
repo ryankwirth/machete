@@ -1,16 +1,16 @@
 <template>
   <div class="renderer-grid">
-    <TrackMedium v-for="(item, i) in renderedItems" :key="i" :data="item"/>
+    <Track v-for="(item, i) in renderedItems" :key="i" :data="item"/>
   </div>
 </template>
 
 <script>
-import TrackMedium from '@/components/tracks/TrackMedium.vue'
+import Track from './RendererGridTrack.vue'
 
 export default {
   name: 'RendererGrid',
   components: {
-      TrackMedium
+      Track
   },
   props: {
     items: Array,

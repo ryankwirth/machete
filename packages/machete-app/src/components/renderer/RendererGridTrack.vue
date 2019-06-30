@@ -1,6 +1,6 @@
 <template>
   <TrackWrapper
-    class="track-medium"
+    class="renderer-grid-track"
     v-bind="data"
   >
     <template v-slot:default="props">
@@ -27,10 +27,10 @@
 
 <script>
 import Artwork from '@/components/artwork'
-import TrackWrapper from './TrackWrapper.vue'
+import TrackWrapper from './RendererTrackWrapper.vue'
 
 export default {
-  name: 'TrackMedium',
+  name: 'RendererGridTrack',
   components: {
     Artwork,
     TrackWrapper
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.track-medium {
+.renderer-grid-track {
   display: flex;
 
   padding-bottom: 32px;

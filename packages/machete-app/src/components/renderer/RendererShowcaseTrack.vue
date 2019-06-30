@@ -1,6 +1,6 @@
 <template>
   <TrackWrapper
-    class="track-large"
+    class="renderer-showcase-track"
     v-bind="data"
   >
     <template v-slot:default="props">
@@ -27,10 +27,10 @@
 
 <script>
 import Artwork from '@/components/artwork'
-import TrackWrapper from './TrackWrapper.vue'
+import TrackWrapper from './RendererTrackWrapper.vue'
 
 export default {
-  name: 'TrackLarge',
+  name: 'RendererShowcaseTrack',
   components: {
     Artwork,
     TrackWrapper
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.track-large {
+.renderer-showcase-track {
   display: flex;
   flex-direction: column;
 

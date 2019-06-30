@@ -1,6 +1,6 @@
 <template>
   <div
-    class="track-wrapper"
+    class="renderer-track-wrapper"
     @click="onClick"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -33,7 +33,7 @@ import { CoreService } from 'machete-core'
 import { ContentLoader } from 'vue-content-loader'
 
 export default {
-  name: 'TrackWrapper',
+  name: 'RendererTrackWrapper',
   components: {
     ContentLoader
   },
@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.track-wrapper {
+.renderer-track-wrapper {
   cursor: pointer;
   max-width: 100%;
 
