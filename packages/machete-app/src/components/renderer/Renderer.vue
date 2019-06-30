@@ -39,12 +39,13 @@ export default {
 
 <style lang="scss" scoped>
 .renderer {
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 
   .title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     margin-bottom: 24px;
+    cursor: default;
   }
 }
 </style>

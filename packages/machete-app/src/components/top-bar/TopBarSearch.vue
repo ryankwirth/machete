@@ -5,12 +5,13 @@
       class="color-text"
       type="text"
       placeholder="Type to search..."
+      @focus="$event.target.select()"
       @keyup.enter="onSubmit"
     >
     <Button
       class="button"
-      width="32"
-      height="32"
+      width="24"
+      height="24"
       padding="8"
       @click="onSubmit"
     >
@@ -59,9 +60,9 @@ export default {
     background: none;
     border: none;
     caret-color: $accent-light;
-    font-size: 16px;
-    padding: 12px;
-
+    font-size: 14px;
+    padding: 8px 16px;
+  
     &:focus {
       outline: none;
     }

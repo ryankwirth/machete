@@ -9,7 +9,7 @@
         :radius="3"
         :show-hovering="props.isHovering"
         :show-playing="props.isPlaying"
-        :size="72"
+        :size="60"
       />
       <div class="details">
         <span class="title color-text">{{ props.title }}</span>
@@ -23,20 +23,20 @@
         y="0"
         rx="3"
         ry="3"
-        width="72"
-        height="72"
+        width="60"
+        height="60"
       />
       <rect
-        x="82"
-        y="16"
+        x="70"
+        y="12"
         rx="3"
         ry="3"
-        width="256"
-        height="19"
+        width="168"
+        height="18"
       />
       <rect
-        x="82"
-        y="40"
+        x="70"
+        y="34"
         rx="3"
         ry="3"
         width="96"
@@ -68,9 +68,7 @@ export default {
 <style lang="scss" scoped>
 .renderer-grid-track {
   display: flex;
-
-  padding-bottom: 32px;
-  height: 72px;
+  height: 60px;
 
   .details {
     display: flex;

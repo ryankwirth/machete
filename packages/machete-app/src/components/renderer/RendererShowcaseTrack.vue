@@ -1,8 +1,8 @@
 <template>
   <TrackWrapper
     class="renderer-showcase-track"
-    :width="225"
-    :height="280"
+    :width="200"
+    :height="270"
     v-bind="data"
   >
     <template v-slot:default="props">
@@ -11,7 +11,7 @@
         :radius="3"
         :show-hovering="props.isHovering"
         :show-playing="props.isPlaying"
-        :size="225"
+        :size="200"
       />
       <div class="details">
         <span class="title color-text">{{ props.title }}</span>
@@ -25,20 +25,20 @@
         y="0"
         rx="3"
         ry="3"
-        width="225"
-        height="225"
+        width="200"
+        height="200"
       />
       <rect
         x="0"
-        y="240"
+        y="216"
         rx="3"
         ry="3"
         width="192"
-        height="19"
+        height="18"
       />
       <rect
         x="0"
-        y="262"
+        y="238"
         rx="3"
         ry="3"
         width="128"
@@ -72,8 +72,8 @@ export default {
   display: flex;
   flex-direction: column;
 
-  height: 280px;
-  padding-right: 48px;
+  height: 270px;
+  padding-right: 40px;
 
   .details {
     display: flex;
