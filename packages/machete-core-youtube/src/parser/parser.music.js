@@ -1,6 +1,6 @@
 import config from '../config'
 import utils from '../utils'
-import * as payload from '../assets/payload.json'
+import payload from '../assets/payload.music'
 
 function parseShowcase(data) {
   const home = data.contents.singleColumnBrowseResultsRenderer.tabs[0]
