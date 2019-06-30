@@ -57,12 +57,7 @@ app.on('activate', () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
-    // Install Vue Devtools
-    try {
-      await installVueDevtools()
-    } catch (e) {
-      console.error('Vue Devtools failed to install:', e.toString())
-    }
+    await installVueDevtools()
   }
   createWindow()
 })

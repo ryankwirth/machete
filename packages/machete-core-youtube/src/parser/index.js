@@ -9,12 +9,12 @@ export default {
     ])
   },
 
-  search(query) {
-    return DefaultParser.search(query)
+  search(options) {
+    return DefaultParser.search(options)
   },
 
-  scrapePlaylist(playlistId) {
-    return DefaultParser.scrapePlaylist(playlistId)
+  scrapePlaylist(title, playlistId) {
+    return DefaultParser.scrapePlaylist(title, playlistId)
   },
 
   scrapeShowcase() {

@@ -1,5 +1,5 @@
-import CoreService from 'machete-core'
-import YouTubeService from 'machete-core-youtube'
+import { CoreService } from 'machete-core'
+import { YouTubeService } from 'machete-core-youtube'
 
 // Define which services we want to use
 const services = [ YouTubeService ]
@@ -8,12 +8,9 @@ const services = [ YouTubeService ]
 const proxy = 'https://machete-proxy.herokuapp.com/'
 
 const CoreServicePlugin = {
-  install(Vue) {
-    // Initialize the service first
+  install() {
+    // Initialize the service
     CoreService.init(services, { proxy })
-
-    // Make the service available to every component
-    Vue.prototype.$coreService = CoreService
   }
 }
 

@@ -1,10 +1,10 @@
 <template>
   <div class="music-controls-playback">
-    <Artwork :url="url"/>
+    <Artwork :url="url" />
     <div class="scrubber-stack">
       <div class="details">
-        <Details/>
-        <Timestamp :timestamp="timestamp"/>
+        <Details />
+        <Timestamp :timestamp="timestamp" />
       </div>
       <Scrubber
         :total="duration"
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { CoreService } from 'machete-core'
 import Artwork from '@/components/artwork'
 import Details from './MusicControlsPlaybackDetails.vue'
 import Scrubber from './MusicControlsScrubber.vue'
@@ -50,7 +51,7 @@ export default {
   methods: {
     onSetTimestamp(timestamp) {
       this.modified = false
-      this.$coreService.seekTo(timestamp)
+      CoreService.seekTo(timestamp)
     },
     onUpdateTimestamp(timestamp) {
       this.modified = true

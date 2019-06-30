@@ -1,11 +1,18 @@
 <template>
   <div class="home">
-    <Renderer type="Showcase" v-bind="showcase"/>
-    <Renderer type="Grid" title="Most Popular" v-bind="mostPopular"/>
+    <Renderer
+      type="Showcase"
+      v-bind="showcase"
+    />
+    <Renderer
+      type="Grid"
+      v-bind="mostPopular"
+    />
   </div>
 </template>
 
 <script>
+import { CoreService, QueryType } from 'machete-core'
 import Renderer from '@/components/renderer'
 
 export default {
@@ -20,15 +27,11 @@ export default {
     }
   },
   mounted() {
-    this.$coreService.getMostPopular()
-      .then((items) => {
-        this.mostPopular = { items }
-      })
+    CoreService.get(QueryType.MOST_POPULAR)
+      .then((results) => this.mostPopular = results[0])
     
-    this.$coreService.getShowcase()
-      .then((showcase) => {
-        this.showcase = showcase[0]
-      })
+    CoreService.get(QueryType.SHOWCASE)
+      .then((results) => this.showcase = results[0])
   }
 }
 </script>

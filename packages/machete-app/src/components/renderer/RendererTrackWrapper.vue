@@ -1,6 +1,6 @@
 <template>
   <div
-    class="track-wrapper"
+    class="renderer-track-wrapper"
     @click="onClick"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -17,31 +17,52 @@
     <ContentLoader
       v-else
       class="color-gutter"
-      primaryColor="currentColor"
-      secondaryColor="currentColor"
-      preserveAspectRatio="xMinYMin"
+      primary-color="currentColor"
+      secondary-color="currentColor"
+      preserve-aspect-ratio="xMinYMin"
       :animate="false"
       :height="height"
+      :width="width"
     >
-      <slot name="skeleton"/>
+      <slot name="skeleton" />
     </ContentLoader>
   </div>
 </template>
 
 <script>
+import { CoreService } from 'machete-core'
 import { ContentLoader } from 'vue-content-loader'
 
 export default {
-  name: 'TrackWrapper',
+  name: 'RendererTrackWrapper',
   components: {
     ContentLoader
   },
   props: {
-    id: String,
-    title: String,
-    subtitle: String,
-    thumbnail: String,
-    height: Number
+    id: {
+      type: String,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    },
+    subtitle: {
+      type: String,
+      default: null
+    },
+    thumbnail: {
+      type: String,
+      default: null
+    },
+    height: {
+      type: Number,
+      default: 72
+    },
+    width: {
+      type: Number,
+      default: 360
+    }
   },
   data() {
     return {
@@ -59,7 +80,7 @@ export default {
   methods: {
     onClick() {
       if (this.hasLoaded) {
-        this.$coreService.play(this.id)
+        CoreService.play(this.id)
       }
     },
     onMouseEnter() {
@@ -73,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.track-wrapper {
+.renderer-track-wrapper {
   cursor: pointer;
   max-width: 100%;
 

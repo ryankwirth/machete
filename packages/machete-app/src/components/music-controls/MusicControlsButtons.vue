@@ -1,19 +1,20 @@
 <template>
   <div class="music-controls-buttons">
     <Button @click="onPreviousClicked">
-      <IconPrevious/>
+      <IconPrevious />
     </Button>
     <Button @click="onPlayPauseClicked">
-      <IconPause v-if="isPlaying"/>
-      <IconPlay v-else/>
+      <IconPause v-if="isPlaying" />
+      <IconPlay v-else />
     </Button>
     <Button @click="onNextClicked">
-      <IconNext/>
+      <IconNext />
     </Button>
   </div>
 </template>
 
 <script>
+import { CoreService } from 'machete-core'
 import Button from '@/components/BaseButton.vue'
 import IconNext from '@/components/icons/IconNext.vue'
 import IconPause from '@/components/icons/IconPause.vue'
@@ -40,15 +41,15 @@ export default {
     },
     onPlayPauseClicked() {
       if (this.isPlaying) {
-        this.$coreService.pause()
+        CoreService.pause()
       } else {
-        this.$coreService.play()
+        CoreService.play()
       }
     },
     onPreviousClicked() {
       // If we're more than 5 seconds into the song, go back to the beginning
       if (this.$coreData.timestamp > 5) {
-        this.$coreService.seekTo(0)
+        CoreService.seekTo(0)
       }
     }
   }

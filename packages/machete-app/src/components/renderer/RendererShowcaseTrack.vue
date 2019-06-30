@@ -1,14 +1,16 @@
 <template>
   <TrackWrapper
-    class="track-large"
+    class="renderer-showcase-track"
+    :width="225"
+    :height="280"
     v-bind="data"
   >
     <template v-slot:default="props">
       <Artwork
         :url="props.thumbnail"
         :radius="3"
-        :showHovering="props.isHovering"
-        :showPlaying="props.isPlaying"
+        :show-hovering="props.isHovering"
+        :show-playing="props.isPlaying"
         :size="225"
       />
       <div class="details">
@@ -18,31 +20,55 @@
     </template>
 
     <template v-slot:skeleton>
-      <rect x="82" y="16" rx="3" ry="3" width="256" height="19" /> 
-      <rect x="82" y="40" rx="3" ry="3" width="96" height="15" /> 
-      <rect x="0" y="0" rx="3" ry="3" width="72" height="72" />
+      <rect
+        x="0"
+        y="0"
+        rx="3"
+        ry="3"
+        width="225"
+        height="225"
+      />
+      <rect
+        x="0"
+        y="240"
+        rx="3"
+        ry="3"
+        width="192"
+        height="19"
+      />
+      <rect
+        x="0"
+        y="262"
+        rx="3"
+        ry="3"
+        width="128"
+        height="15"
+      />
     </template>
   </TrackWrapper>
 </template>
 
 <script>
 import Artwork from '@/components/artwork'
-import TrackWrapper from './TrackWrapper.vue'
+import TrackWrapper from './RendererTrackWrapper.vue'
 
 export default {
-  name: 'TrackLarge',
+  name: 'RendererShowcaseTrack',
   components: {
     Artwork,
     TrackWrapper
   },
   props: {
-    data: Object
+    data: {
+      type: Object,
+      default: null
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.track-large {
+.renderer-showcase-track {
   display: flex;
   flex-direction: column;
 

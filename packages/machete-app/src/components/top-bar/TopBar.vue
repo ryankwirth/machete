@@ -1,6 +1,6 @@
 <template>
   <aside class="top-bar color-background-variant-bg color-gutter-border">
-    <Search/>
+    <Search />
   </aside>
 </template>
 

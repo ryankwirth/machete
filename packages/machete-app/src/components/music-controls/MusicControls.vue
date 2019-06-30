@@ -1,8 +1,8 @@
 <template>
   <footer class="music-controls color-background-bg color-gutter-border">
-    <Buttons/>
-    <Playback/>
-    <Volume/>
+    <Buttons />
+    <Playback />
+    <Volume />
   </footer>
 </template>
 

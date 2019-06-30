@@ -1,6 +1,6 @@
 import config from '../config'
 import utils from '../utils'
-import * as payload from '../assets/payload.json'
+import payload from '../assets/payload.music'
 
 function parseShowcase(data) {
   const home = data.contents.singleColumnBrowseResultsRenderer.tabs[0]
@@ -10,12 +10,13 @@ function parseShowcase(data) {
     .map((content) => content.musicImmersiveCarouselShelfRenderer || content.musicCarouselShelfRenderer)
     .filter((renderer) => !!renderer)
 
-  return renderers.map(parseShowcaseCarouselRenderer)
+  return parseShowcaseCarouselRenderer(renderers[0])
 }
 
 function parseShowcaseCarouselRenderer(renderer) {
   const headerRenderer = renderer.header.musicCarouselShelfBasicHeaderRenderer
   const title = headerRenderer.title.runs[0].text
+    .replace(/ \w/g, (t) => t.toUpperCase())
 
   const items = renderer.contents
     .map((content) => parseShowcaseMusicTwoRowItemRenderer(content.musicTwoRowItemRenderer))

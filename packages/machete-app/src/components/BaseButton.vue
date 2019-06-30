@@ -8,7 +8,7 @@
       :width="width"
       :height="height"
     >
-      <slot/>
+      <slot />
     </BaseIcon>
   </div>
 </template>

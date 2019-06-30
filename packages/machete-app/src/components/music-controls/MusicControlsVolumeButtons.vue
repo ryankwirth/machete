@@ -6,7 +6,7 @@
       padding="8"
       @click="onRepeatClicked"
     >
-      <IconRepeat/>
+      <IconRepeat />
     </Button>
     <Button
       width="36"
@@ -14,9 +14,9 @@
       padding="8"
       @click="onVolumeClicked"
     >
-      <IconVolumeOff v-if="volume === 0"/>
-      <IconVolumeDown v-else-if="volume < 50"/>
-      <IconVolumeUp v-else/>
+      <IconVolumeOff v-if="volume === 0" />
+      <IconVolumeDown v-else-if="volume < 50" />
+      <IconVolumeUp v-else />
     </Button>
   </div>
 </template>
@@ -38,7 +38,10 @@ export default {
     IconVolumeUp
   },
   props: {
-    volume: Number
+    volume: {
+      type: Number,
+      default: 100
+    }
   },
   data() {
     return {

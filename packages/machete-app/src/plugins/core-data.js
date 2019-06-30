@@ -1,4 +1,4 @@
-import CoreService from 'machete-core'
+import { CoreService, EventType } from 'machete-core'
 
 const CoreDataPlugin = {
   install(Vue) {
@@ -11,9 +11,9 @@ const CoreDataPlugin = {
 
     // When the Core Service emits a data-related events, update our reactive
     // observable object
-    CoreService.on('metadata', (metadata) => observable.metadata = metadata)
-    CoreService.on('status', (status) => observable.status = status)
-    CoreService.on('timestamp', (timestamp) => observable.timestamp = timestamp)
+    CoreService.on(EventType.METADATA, (metadata) => observable.metadata = metadata)
+    CoreService.on(EventType.STATUS, (status) => observable.status = status)
+    CoreService.on(EventType.TIMESTAMP, (timestamp) => observable.timestamp = timestamp)
 
     // Expose the observable object to every component
     Vue.prototype.$coreData = observable

@@ -45,6 +45,8 @@
     },
     "extends": [
       "plugin:vue/essential",
+      "plugin:vue/strongly-recommended",
+      "plugin:vue/recommended",
       "eslint:recommended"
     ],
     "rules": {},

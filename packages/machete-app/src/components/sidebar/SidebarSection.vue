@@ -1,7 +1,9 @@
 <template>
   <div class="sidebar-section">
-    <div class="name color-navigation">{{ name }}</div>
-    <slot/>
+    <div class="name color-navigation">
+      {{ name }}
+    </div>
+    <slot />
   </div>
 </template>
 

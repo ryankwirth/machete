@@ -1,5 +1,4 @@
-import EventBus from './event-bus'
-import Injectable from './injectable'
+import { EventBus, Injectable } from './utils'
 
 const CoreService = {
   init(services, options) {
@@ -60,20 +59,9 @@ const CoreService = {
     }
   },
 
-  search(query) {
-    // Search within every service
-    return this.forEveryService((service) => service.search(query))
-      .then((results) => results.flat())
-  },
-
-  getShowcase() {
-    return this.forEveryService((service) => service.getShowcase())
-      .then((results) => results.flat())
-  },
-
-  getMostPopular() {
-    // Get the most popular tracks from every service
-    return this.forEveryService((service) => service.getMostPopular())
+  get(type, options) {
+    // `get` from every service
+    return this.forEveryService((service) => service.get(type, options))
       .then((results) => results.flat())
   },
 

@@ -1,16 +1,19 @@
 <template>
-  <div class="artwork" :style="styles">
+  <div
+    class="artwork"
+    :style="styles"
+  >
     <Overlay
       v-if="showPlaying"
       :radius="radius"
     >
-      <IconPlaying/>
+      <IconPlaying />
     </Overlay>
     <Overlay
       v-else-if="showHovering"
       :radius="radius"
     >
-      <IconPlay/>
+      <IconPlay />
     </Overlay>
   </div>
 </template>
