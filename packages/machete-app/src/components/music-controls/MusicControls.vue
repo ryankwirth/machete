@@ -1,5 +1,8 @@
 <template>
-  <footer class="music-controls color-background-bg color-gutter-border">
+  <footer
+    v-if="isPlaying"
+    class="music-controls color-background-bg color-gutter-border"
+  >
     <Buttons />
     <Playback />
     <Volume />
@@ -17,6 +20,11 @@ export default {
     Buttons,
     Playback,
     Volume
+  },
+  computed: {
+    isPlaying() {
+      return !!this.$coreData.metadata.id
+    }
   }
 }
 </script>
