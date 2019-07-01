@@ -1,6 +1,14 @@
 import config from './config'
 
 const Utils = {
+  encodeUri(id) {
+    return id && `${config.slug}://${id}`
+  },
+
+  decodeUri(uri) {
+    return uri && uri.split('://')[1]
+  },
+
   parseLabel(title, artist = '') {
     // Strip any "(Official ...)" or otherwise extraneous subtitles
     title = title.replace(/ (\(|\[)(?!feat|ft|Remix).+(\)|\])/g, '')

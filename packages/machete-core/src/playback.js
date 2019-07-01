@@ -36,10 +36,12 @@ function playFromItem(item) {
   EventBus.dispatch(EventType.PLAYBACK_TIMESTAMP, 0)
 
   // Find the new service to use for this item.
-  Playback.activeService = Playback.services[item.slug]
+  const [slug, id] = item.uri.split('://')
+  Playback.activeService = Playback.services[slug]
+
   if (item.type === ItemType.PLAYLIST) {
     // Queue the playlist items individually.
-    Playback.activeService.get(QueryType.PLAYLIST, { id: item.id })
+    Playback.activeService.get(QueryType.PLAYLIST, { id })
       .then((result) => {
         Playback.queue(result.items)
         Playback.play(0)

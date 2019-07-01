@@ -21,27 +21,28 @@ function parsePlaylistVideo(el, playlistId) {
 
 // Given a video element and a collection of XPaths/selectors,
 // extract the track information
-function parseVideo(el, opts) {
+function parseVideo(el, { link, owner, playlistId }) {
   // Locate the pieces of data within the video element
-  const link = el.querySelector(opts.link)
-  const owner = el.querySelector(opts.owner)
+  const linkEl = el.querySelector(link)
+  const ownerEl = el.querySelector(owner)
 
   // Parse the link's `href` to find our video ID
-  const href = link.attributes.href.match(/v=([^&]+)/)
-  const id = href && href[1]
+  const href = linkEl.attributes.href.match(/v=([^&]+)/)
+  const videoId = href && href[1]
 
   // Generate the result object properties
-  const thumbnail = `${config.urls.thumbnailUrl}${id}/mqdefault.jpg`
-  const { title, artist: subtitle } = utils.parseLabel(link.text.trim(), owner.text.trim())
+  const uri = utils.encodeUri(videoId)
+  const playlistUri = utils.encodeUri(playlistId)
+  const thumbnail = `${config.urls.thumbnailUrl}${videoId}/mqdefault.jpg`
+  const { title, artist: subtitle } = utils.parseLabel(linkEl.text.trim(), ownerEl.text.trim())
 
   return {
-    id,
+    uri,
     title,
     subtitle,
     thumbnail,
-    slug: config.slug,
-    type: ItemType.SONG,
-    playlistId: opts.playlistId
+    playlistUri,
+    type: ItemType.SONG
   }
 }
 

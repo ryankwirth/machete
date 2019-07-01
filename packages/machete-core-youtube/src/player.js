@@ -92,7 +92,10 @@ export default {
     if (item) {
       this.item = item
       this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
-      this.player.loadVideoById(item.id)
+
+      // Get the video ID from the slugged URI.
+      const videoId = utils.decodeUri(item.uri)
+      this.player.loadVideoById(videoId)
     } else {
       this.player.playVideo()
     }

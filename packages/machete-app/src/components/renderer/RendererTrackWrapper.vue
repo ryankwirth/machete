@@ -6,7 +6,7 @@
   >
     <slot
       v-if="hasLoaded"
-      :id="id"
+      :uri="uri"
       :title="title"
       :subtitle="subtitle"
       :thumbnail="thumbnail"
@@ -37,7 +37,7 @@ export default {
     ContentLoader
   },
   props: {
-    id: {
+    uri: {
       type: String,
       default: null
     },
@@ -69,11 +69,11 @@ export default {
   },
   computed: {
     isPlaying() {
-      const { id, playlistId } = this.$coreData.metadata
-      return this.id === id || this.id === playlistId
+      const { uri, playlistUri } = this.$coreData.metadata
+      return this.uri === uri || this.uri === playlistUri
     },
     hasLoaded() {
-      return !!this.id
+      return !!this.uri
     }
   }
 }
