@@ -37,6 +37,14 @@ export const CoreService = {
     Playback.stop()
   },
 
+  next() {
+    Playback.next()
+  },
+
+  previous() {
+    Playback.previous()
+  },
+
   seekTo(timestamp) {
     Playback.seekTo(timestamp)
   },

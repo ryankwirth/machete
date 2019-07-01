@@ -3,16 +3,16 @@ import { EventBus, Queue } from './utils'
 
 function onPlaybackStatus(state) {
   if (state === StateType.FINISHED) {
-    playNext()
+    Playback.next()
   }
 }
 
-function playNext() {
+function play(delta = 1) {
   // If another service is playing, stop it.
   Playback.stop(false)
 
   // Get the next URI to play.
-  const uri = Queue.next()
+  const uri = Queue.get(delta)
 
   // Extract the service slug and track ID from the URI.
   const [slug, id] = uri.split('://')
@@ -35,7 +35,7 @@ export const Playback = {
 
     // If we preempted the current song, start playing the new one.
     if (preempt) {
-      playNext()
+      this.next()
     }
   },
 
@@ -62,6 +62,14 @@ export const Playback = {
     if (resetQueue) {
       Queue.reset()
     }
+  },
+
+  next() {
+    play(1)
+  },
+
+  previous() {
+    play(-1)
   },
 
   seekTo(timestamp) {

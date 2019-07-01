@@ -32,6 +32,16 @@ export default {
       .then(() => CoreService.stop())
   },
 
+  next() {
+    return init
+      .then(() => CoreService.next())
+  },
+
+  previous() {
+    return init
+      .then(() => CoreService.previous())
+  },
+
   seekTo(timestamp) {
     return init
       .then(() => CoreService.seekTo(timestamp))

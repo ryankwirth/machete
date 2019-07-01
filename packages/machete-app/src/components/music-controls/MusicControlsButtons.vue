@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     onNextClicked() {
-      // Handle next...
+      CoreService.next()
     },
     onPlayPauseClicked() {
       if (this.isPlaying) {
@@ -50,6 +50,8 @@ export default {
       // If we're more than 5 seconds into the song, go back to the beginning
       if (this.$coreData.timestamp > 5) {
         CoreService.seekTo(0)
+      } else {
+        CoreService.previous()
       }
     }
   }

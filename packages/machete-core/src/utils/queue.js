@@ -1,6 +1,6 @@
 export const Queue = {
   init() {
-    this.index = 0
+    this.index = -1
     this.items = []
   },
 
@@ -16,13 +16,16 @@ export const Queue = {
     }
   },
 
-  next() {
+  get(delta = 0) {
     if (this.items.length === 0) {
       return null
     } else {
-      const item = this.items[this.index]
-      this.index = (this.index + 1) % this.items.length
-      return item
+      // Move the index forward/backward by `delta` and wrap if necessary.
+      let newIndex = (this.index + delta) % this.items.length
+      newIndex = newIndex < 0 ? this.items.length - 1 : newIndex
+
+      this.index = newIndex
+      return this.items[newIndex]
     }
   }
 }
