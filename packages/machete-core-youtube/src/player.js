@@ -53,6 +53,7 @@ function dispatchState(status) {
       this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PAUSED)
       break
     case 3:
+      dispatchMetadata.call(this)
       this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
       break
   }
@@ -112,7 +113,6 @@ export default {
   stop() {
     this.item = null
     this.player.stopVideo()
-    this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.STOPPED)
     stopTimestampPolling.call(this)
   },
 

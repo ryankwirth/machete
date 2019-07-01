@@ -2,13 +2,8 @@ import { EventType, ItemType, QueryType, StateType } from 'machete-core'
 import { EventBus, Queue } from './utils'
 
 function onPlaybackStatus(state) {
-  switch (state) {
-    case StateType.STOPPED:
-      EventBus.dispatch(EventType.SONG_METADATA, {})
-      return
-    case StateType.FINISHED:
-      Playback.next()
-      return
+  if (state === StateType.FINISHED) {
+    Playback.next()
   }
 }
 
@@ -22,6 +17,10 @@ function playFromQueue(delta) {
   } else {
     // Otherwise, the queue is empty.
     Playback.stop()
+
+    // Clear our playback states.
+    EventBus.dispatch(EventType.SONG_METADATA, {})
+    EventBus.dispatch(EventType.PLAYBACK_STATE, StateType.STOPPED)
   }
 }
 
@@ -40,6 +39,9 @@ function playFromItem(item) {
   Playback.activeService = Playback.services[slug]
 
   if (item.type === ItemType.PLAYLIST) {
+    // Broadcast that we're loading a playlist.
+    EventBus.dispatch(EventType.SONG_METADATA, { playlistUri: item.uri })
+
     // Queue the playlist items individually.
     Playback.activeService.get(QueryType.PLAYLIST, { id })
       .then((result) => {
