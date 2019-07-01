@@ -25,6 +25,7 @@ const Utils = {
     artist = artist.replace(/ - Topic$/, '')
 
     // Format any "feat" or "ft" tags as "ft."
+    title = title.replace(/(feat|ft)\.?/i, 'ft.')
     artist = artist.replace(/(feat|ft)\.?/i, 'ft.')
 
     // Move any "ft." tags in the title to the artist
