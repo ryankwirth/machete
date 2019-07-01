@@ -4,14 +4,18 @@
       type="Showcase"
       v-bind="showcase"
     />
-    <Renderer
-      type="Grid"
-      v-bind="mostPopular"
-    />
-    <Renderer
-      type="Grid"
-      v-bind="recentlyIssued"
-    />
+    <section>
+      <Renderer
+        class="most-popular"
+        type="Grid"
+        v-bind="mostPopular"
+      />
+      <Renderer
+        class="recently-issued"
+        type="Grid"
+        v-bind="recentlyIssued"
+      />
+    </section>
   </div>
 </template>
 
@@ -43,3 +47,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+section {
+  display: flex;
+
+  .most-popular {
+    flex: 3;
+    margin-right: 32px;
+  }
+
+  .recently-issued {
+    flex: 2;
+  }
+}
+</style>
