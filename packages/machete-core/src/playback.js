@@ -1,9 +1,11 @@
+import { Queue } from './utils'
+
 function playNext() {
   // If another service is playing, stop it.
   this.stop()
 
   // Get the next URI to play.
-  const uri = this.queue.shift()
+  const uri = Queue.pop()
 
   // Extract the service slug and track ID from the URI.
   const [slug, id] = uri.split('://')
@@ -13,18 +15,15 @@ function playNext() {
 
 export const Playback = {
   init(services) {
+    Queue.init()
+
     this.activeService = null
-    this.queue = []
     this.services = services
   },
 
   queue(uri, preempt = false) {
     // Add the new URI to the queue.
-    if (preempt) {
-      this.queue.unshift(uri)
-    } else {
-      this.queue.push(uri)
-    }
+    Queue.push(uri, preempt)
 
     // If we're not playing anything or we're supposed to preempt the current
     // song, play the given URI immediately.

@@ -11,9 +11,9 @@ const CoreDataPlugin = {
 
     // When the Core Service emits a data-related events, update our reactive
     // observable object
-    CoreService.on(EventType.METADATA, (metadata) => observable.metadata = metadata)
-    CoreService.on(EventType.STATUS, (status) => observable.status = status)
-    CoreService.on(EventType.TIMESTAMP, (timestamp) => observable.timestamp = timestamp)
+    CoreService.on(EventType.SONG_METADATA, (metadata) => observable.metadata = metadata)
+    CoreService.on(EventType.PLAYBACK_STATUS, (status) => observable.status = status)
+    CoreService.on(EventType.PLAYBACK_TIMESTAMP, (timestamp) => observable.timestamp = timestamp)
 
     // Expose the observable object to every component
     Vue.prototype.$coreData = observable

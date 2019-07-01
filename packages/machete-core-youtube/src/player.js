@@ -1,5 +1,4 @@
-import { EventType } from 'machete-core'
-
+import { EventType, StateType } from 'machete-core'
 import config from './config'
 import utils from './utils'
 
@@ -33,13 +32,16 @@ function injectPlayer() {
 }
 
 function onStateChange(e) {
-  console.log('onStateChange')
-  console.log(e)
   // Ensure the video isn't muted; the user can change the volume later
   if (this.player.isMuted()) {
     this.player.unMute()
   }
 
+  dispatchMetadata.call(this)
+  dispatchStatus.call(this, e.data)
+}
+
+function dispatchMetadata() {
   // Dispatch the latest video data
   const videoData = this.player.getVideoData()
   const duration = this.player.getDuration()
@@ -48,17 +50,28 @@ function onStateChange(e) {
   const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
   const thumbnail = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
 
-  this.injectable.dispatch(EventType.METADATA, { id, title, artist, thumbnail, duration })
+  this.injectable.dispatch(EventType.SONG_METADATA, { id, title, artist, thumbnail, duration })
+}
 
-  // Dispatch the current video status
-  const isPlaying = e.data === 1
-  this.injectable.dispatch(EventType.STATUS, { isPlaying })
+function dispatchStatus(status) {
+  switch (status) {
+    case 0:
+      this.injectable.dispatch(EventType.PLAYBACK_STATUS, StateType.FINISHED)
+      break
+    case 1:
+      this.injectable.dispatch(EventType.PLAYBACK_STATUS, StateType.PLAYING)
+      break
+    case 2:
+    case 3:
+      this.injectable.dispatch(EventType.PLAYBACK_STATUS, StateType.PAUSED)
+      break
+  }
 }
 
 function startTimestampPolling() {
   if (!this.intervalId) {
     this.intervalId = setInterval(() => {
-      this.injectable.dispatch(EventType.TIMESTAMP, this.player.getCurrentTime())
+      this.injectable.dispatch(EventType.PLAYBACK_TIMESTAMP, this.player.getCurrentTime())
     }, 1000)
   }
 }
@@ -70,7 +83,7 @@ function stopTimestampPolling() {
   }
 }
 
-const YouTubePlayer = {
+export default {
   init(injectable) {
     this.injectable = injectable
 
@@ -112,5 +125,3 @@ const YouTubePlayer = {
     this.player.setVolume(volume)
   }
 }
-
-export default YouTubePlayer

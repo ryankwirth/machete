@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { CoreService } from 'machete-core'
+import { CoreService, StateType } from 'machete-core'
 import Button from '@/components/BaseButton.vue'
 import IconNext from '@/components/icons/IconNext.vue'
 import IconPause from '@/components/icons/IconPause.vue'
@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     isPlaying() {
-      return this.$coreData.status.isPlaying || false
+      return this.$coreData.status === StateType.PLAYING
     }
   },
   methods: {
