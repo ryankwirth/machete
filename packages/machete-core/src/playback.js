@@ -3,21 +3,21 @@ import { EventBus, Queue } from './utils'
 
 function onPlaybackStatus(state) {
   if (state === StateType.FINISHED) {
-    playNext.call(this)
+    playNext()
   }
 }
 
 function playNext() {
   // If another service is playing, stop it.
-  this.stop()
+  Playback.stop(false)
 
   // Get the next URI to play.
-  const uri = Queue.pop()
+  const uri = Queue.next()
 
   // Extract the service slug and track ID from the URI.
   const [slug, id] = uri.split('://')
-  this.activeService = this.services[slug]
-  this.activeService.play(id)
+  Playback.activeService = Playback.services[slug]
+  Playback.activeService.play(id)
 }
 
 export const Playback = {
@@ -26,17 +26,16 @@ export const Playback = {
     this.services = services
 
     Queue.init()
-    EventBus.on(EventType.PLAYBACK_STATE, onPlaybackStatus.bind(this))
+    EventBus.on(EventType.PLAYBACK_STATE, onPlaybackStatus)
   },
 
   queue(uri, preempt = false) {
     // Add the new URI to the queue.
-    Queue.push(uri, preempt)
+    Queue.add(uri, preempt)
 
-    // If we're not playing anything or we're supposed to preempt the current
-    // song, play the given URI immediately.
-    if (!this.activeService || preempt) {
-      playNext.call(this)
+    // If we preempted the current song, start playing the new one.
+    if (preempt) {
+      playNext()
     }
   },
 
@@ -54,10 +53,14 @@ export const Playback = {
     }
   },
 
-  stop() {
+  stop(resetQueue = true) {
     if (this.activeService) {
       this.activeService.stop()
       this.activeService = null
+    }
+
+    if (resetQueue) {
+      Queue.reset()
     }
   },
 

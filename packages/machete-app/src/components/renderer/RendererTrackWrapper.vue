@@ -80,7 +80,7 @@ export default {
   methods: {
     onClick() {
       if (this.hasLoaded) {
-        CoreService.queue(this.id)
+        CoreService.play(this.id)
       }
     },
     onMouseEnter() {
