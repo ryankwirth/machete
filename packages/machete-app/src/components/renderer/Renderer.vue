@@ -38,19 +38,10 @@ export default {
   },
   methods: {
     onPlay(index) {
-      // Stop playing the current song and reset the current queue.
+      // Stop playing the current song, resetting the queue, then play the new
+      // item immediately.
       CoreService.stop()
-
-      const item = this.items[index]
-      if (item.type === ItemType.PLAYLIST) {
-        // Don't queue this playlist -- just start playing it.
-        CoreService.play(item)
-      } else {
-        // Queue all of the items in this renderer and play the one that was
-        // clicked.
-        CoreService.queue(this.items)
-        CoreService.play(index)
-      }
+      CoreService.play(this.items[index])
     }
   }
 }

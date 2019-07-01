@@ -38,7 +38,7 @@ function onStateChange(e) {
   }
 
   dispatchMetadata.call(this)
-  dispatchStatus.call(this, e.data)
+  dispatchState.call(this, e.data)
 }
 
 function dispatchMetadata() {
@@ -54,7 +54,7 @@ function dispatchMetadata() {
   this.injectable.dispatch(EventType.SONG_METADATA, { id, slug, title, artist, thumbnail, duration })
 }
 
-function dispatchStatus(status) {
+function dispatchState(status) {
   switch (status) {
     case 0:
       this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.FINISHED)
@@ -63,8 +63,10 @@ function dispatchStatus(status) {
       this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PLAYING)
       break
     case 2:
-    case 3:
       this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PAUSED)
+      break
+    case 3:
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
       break
   }
 }
@@ -94,6 +96,7 @@ export default {
 
   play(item) {
     if (item) {
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
       this.player.loadVideoById(item.id)
     } else {
       this.player.playVideo()
@@ -110,6 +113,7 @@ export default {
 
   stop() {
     this.player.stopVideo()
+    this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.STOPPED)
     stopTimestampPolling.call(this)
   },
 

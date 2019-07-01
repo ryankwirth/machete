@@ -38,8 +38,7 @@ function parseShowcaseMusicTwoRowItemRenderer(renderer) {
   const overlayRenderer = renderer.thumbnailOverlay.musicItemThumbnailOverlayRenderer
   const playButtonRenderer = overlayRenderer.content.musicPlayButtonRenderer
   const navigationEndpoint = playButtonRenderer.playNavigationEndpoint
-  const watchEndpoint = navigationEndpoint.watchEndpoint || navigationEndpoint.watchPlaylistEndpoint
-  const id = watchEndpoint.playlistId
+  const { id, type } = parsePlayNavigationEndpoint(playButtonRenderer.playNavigationEndpoint)
 
   // Get all of the thumbnail URLs, then return the last (best) one.
   const thumbnails = renderer.thumbnailRenderer.musicThumbnailRenderer.thumbnail.thumbnails
@@ -47,11 +46,29 @@ function parseShowcaseMusicTwoRowItemRenderer(renderer) {
 
   return {
     id,
+    type,
     title,
     subtitle,
     thumbnail,
-    slug: config.slug,
-    type: ItemType.PLAYLIST
+    slug: config.slug
+  }
+}
+
+function parsePlayNavigationEndpoint(playNavigationEndpoint) {
+  if (playNavigationEndpoint.watchEndpoint) {
+    // If we have a `watchEndpoint,` then this item is a single video.
+    return {
+      id: playNavigationEndpoint.watchEndpoint.videoId,
+      type: ItemType.SONG
+    }
+  } else if (playNavigationEndpoint.watchPlaylistEndpoint) {
+    // If we have a `watchPlaylistEndpoint`, the item is a playlist.
+    return {
+      id: playNavigationEndpoint.watchPlaylistEndpoint.playlistId,
+      type: ItemType.PLAYLIST
+    }
+  } else {
+    throw new Error('Unknown `playNavigationEndpoint', playNavigationEndpoint)
   }
 }
 

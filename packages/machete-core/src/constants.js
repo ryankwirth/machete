@@ -17,7 +17,9 @@ export const QueryType = {
 }
 
 export const StateType = {
-  PLAYING: 1,
-  PAUSED: 2,
-  FINISHED: 3
+  STOPPED: 1,
+  LOADING: 2,
+  PLAYING: 3,
+  PAUSED: 4,
+  FINISHED: 5
 }

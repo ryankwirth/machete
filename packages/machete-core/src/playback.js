@@ -8,8 +8,16 @@ function onPlaybackStatus(state) {
 }
 
 function playFromQueue(delta) {
+  // Get the next item in the queue, offset by `delta`.
   const item = Queue.get(delta)
-  playFromItem(item)
+
+  if (item) {
+    // If we can, play it.
+    playFromItem(item)
+  } else {
+    // Otherwise, the queue is empty.
+    Playback.stop()
+  }
 }
 
 function playFromItem(item) {
@@ -20,6 +28,7 @@ function playFromItem(item) {
   Playback.activeService = Playback.services[item.slug]
   if (item.type === ItemType.PLAYLIST) {
     // If the item is a playlist, get its items individually.
+    EventBus.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
     Playback.activeService.get(QueryType.PLAYLIST, { id: item.id })
       .then((result) => {
         // Queue each one, then play the first item.
@@ -28,6 +37,7 @@ function playFromItem(item) {
       })
   } else {
     // Play the new item directly.
+    EventBus.dispatch(EventType.PLAYBACK_TIMESTAMP, 0)
     Playback.activeService.play(item)
   }
 }

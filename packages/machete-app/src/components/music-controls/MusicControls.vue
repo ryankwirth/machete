@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { StateType } from 'machete-core'
 import Buttons from './MusicControlsButtons.vue'
 import Playback from './MusicControlsPlayback.vue'
 import Volume from './MusicControlsVolume'
@@ -23,7 +24,7 @@ export default {
   },
   computed: {
     isPlaying() {
-      return !!this.$coreData.metadata.id
+      return this.$coreData.state !== StateType.STOPPED
     }
   }
 }

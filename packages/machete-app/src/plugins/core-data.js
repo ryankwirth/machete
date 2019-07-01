@@ -1,11 +1,11 @@
-import { CoreService, EventType } from 'machete-core'
+import { CoreService, EventType, StateType } from 'machete-core'
 
 const CoreDataPlugin = {
   install(Vue) {
     // Define an observable object so that each property is reactive
     const observable = Vue.observable({
       metadata: {},
-      state: 0,
+      state: StateType.STOPPED,
       timestamp: 0,
     })
 
