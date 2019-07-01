@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { CoreService, ItemType } from 'machete-core'
+import { CoreService } from 'machete-core'
 import Grid from './RendererGrid.vue'
 import Showcase from './RendererShowcase.vue'
 
