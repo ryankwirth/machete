@@ -43,6 +43,11 @@ const YouTubeService = {
           title: 'Most Popular',
           id: config.playlistIds.mostPopular,
         });
+      case QueryType.RECENTLY_ISSUED:
+        return parser.scrapePlaylist({
+          title: 'Recently Issued',
+          id: config.playlistIds.recentlyIssued,
+        });
       case QueryType.PLAYLIST:
         return parser.scrapePlaylist(options);
     }

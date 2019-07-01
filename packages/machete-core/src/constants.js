@@ -12,8 +12,9 @@ export const ItemType = {
 export const QueryType = {
   SEARCH: 1,
   SHOWCASE: 2,
-  MOST_POPULAR: 3,
-  PLAYLIST: 4,
+  PLAYLIST: 3,
+  MOST_POPULAR: 4,
+  RECENTLY_ISSUED: 5,
 };
 
 export const StateType = {

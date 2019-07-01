@@ -8,6 +8,10 @@
       type="Grid"
       v-bind="mostPopular"
     />
+    <Renderer
+      type="Grid"
+      v-bind="recentlyIssued"
+    />
   </div>
 </template>
 
@@ -22,16 +26,20 @@ export default {
   },
   data() {
     return {
+      showcase: null,
       mostPopular: null,
-      showcase: null
+      recentlyIssued: null
     }
   },
   mounted() {
-    CoreService.get(QueryType.MOST_POPULAR)
-      .then((results) => this.mostPopular = results[0])
-    
     CoreService.get(QueryType.SHOWCASE)
       .then((results) => this.showcase = results[0])
+
+    CoreService.get(QueryType.MOST_POPULAR)
+      .then((results) => this.mostPopular = results[0])
+
+    CoreService.get(QueryType.RECENTLY_ISSUED)
+      .then((results) => this.recentlyIssued = results[0])
   }
 }
 </script>
