@@ -1,1 +1,1 @@
-export { default as YouTubeService } from './src/index'
+export {default as YouTubeService} from './src/index';
