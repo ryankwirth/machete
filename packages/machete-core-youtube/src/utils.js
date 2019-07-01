@@ -27,6 +27,12 @@ const Utils = {
     // Format any "feat" or "ft" tags as "ft."
     artist = artist.replace(/(feat|ft)\.?/i, 'ft.')
 
+    // Move any "ft." tags in the title to the artist
+    title = title.replace(/ \(?(ft\. [^)]+)\)?/, (match) => {
+      artist += match
+      return ''
+    })
+
     return { title, artist }
   },
 
