@@ -1,45 +1,45 @@
-import config from './config'
+import config from './config';
 
 const Utils = {
   encodeUri(id) {
-    return id && `${config.slug}://${id}`
+    return id && `${config.slug}://${id}`;
   },
 
   decodeUri(uri) {
-    return uri && uri.split('://')[1]
+    return uri && uri.split('://')[1];
   },
 
-  parseLabel(title, artist = '') {
-    // Strip any "(Official ...)" or otherwise extraneous subtitles
-    title = title.replace(/ (\(|\[)(?!feat|ft|Remix).+(\)|\])/g, '')
+  parseLabel(title, subtitle = '') {
+    // Strip any "(Official ...)" or otherwise extraneous subtitles.
+    title = title.replace(/ (\(|\[)(?!feat|ft|Remix).+(\)|\])/g, '');
 
-    // Attempt to extract the title/artist information
-    const standardFormatMatch = title.match(/^(.+) - (.+)/)
+    // Attempt to extract the title/subtitle information.
+    const standardFormatMatch = title.match(/^(.+) - (.+)/);
     if (standardFormatMatch) {
-      artist = standardFormatMatch[1]
-      title = standardFormatMatch[2]
+      subtitle = standardFormatMatch[1];
+      title = standardFormatMatch[2];
     }
 
-    // Clean up any extra symbols
-    title = title.replace(/(^")|("$)/g, '')
-    artist = artist.replace(/ - Topic$/, '')
+    // Clean up any extra symbols.
+    title = title.replace(/(^")|("$)/g, '');
+    subtitle = subtitle.replace(/ - Topic$/, '');
 
     // Format any "feat" or "ft" tags as "ft."
-    title = title.replace(/(feat|ft)\.?/i, 'ft.')
-    artist = artist.replace(/(feat|ft)\.?/i, 'ft.')
+    title = title.replace(/(feat|ft)\.?/i, 'ft.');
+    subtitle = subtitle.replace(/(feat|ft)\.?/i, 'ft.');
 
-    // Move any "ft." tags in the title to the artist
+    // Move any "ft." tags in the title to the subtitle.
     title = title.replace(/ \(?(ft\. [^)]+)\)?/, (match) => {
-      artist += match
-      return ''
-    })
+      subtitle += match;
+      return '';
+    });
 
-    return { title, artist }
+    return {title, subtitle};
   },
 
   parseTimestamp(timestamp) {
-    return timestamp
-  }
-}
+    return timestamp;
+  },
+};
 
-export default Utils
+export default Utils;
