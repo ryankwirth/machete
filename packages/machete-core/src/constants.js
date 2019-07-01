@@ -1,6 +1,6 @@
 export const EventType = {
   SONG_METADATA: 1,
-  PLAYBACK_STATUS: 2,
+  PLAYBACK_STATE: 2,
   PLAYBACK_TIMESTAMP: 3
 }
 

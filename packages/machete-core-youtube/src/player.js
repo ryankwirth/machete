@@ -56,14 +56,14 @@ function dispatchMetadata() {
 function dispatchStatus(status) {
   switch (status) {
     case 0:
-      this.injectable.dispatch(EventType.PLAYBACK_STATUS, StateType.FINISHED)
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.FINISHED)
       break
     case 1:
-      this.injectable.dispatch(EventType.PLAYBACK_STATUS, StateType.PLAYING)
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PLAYING)
       break
     case 2:
     case 3:
-      this.injectable.dispatch(EventType.PLAYBACK_STATUS, StateType.PAUSED)
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PAUSED)
       break
   }
 }

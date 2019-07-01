@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     isPlaying() {
-      return this.$coreData.status === StateType.PLAYING
+      return this.$coreData.state === StateType.PLAYING
     }
   },
   methods: {

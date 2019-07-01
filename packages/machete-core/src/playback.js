@@ -1,4 +1,11 @@
-import { Queue } from './utils'
+import { EventType, StateType } from 'machete-core'
+import { EventBus, Queue } from './utils'
+
+function onPlaybackStatus(state) {
+  if (state === StateType.FINISHED) {
+    playNext.call(this)
+  }
+}
 
 function playNext() {
   // If another service is playing, stop it.
@@ -15,10 +22,11 @@ function playNext() {
 
 export const Playback = {
   init(services) {
-    Queue.init()
-
     this.activeService = null
     this.services = services
+
+    Queue.init()
+    EventBus.on(EventType.PLAYBACK_STATE, onPlaybackStatus.bind(this))
   },
 
   queue(uri, preempt = false) {
