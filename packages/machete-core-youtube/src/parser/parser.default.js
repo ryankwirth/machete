@@ -5,16 +5,17 @@ import utils from '../utils'
 function parseSearchVideo(el) {
   return parseVideo(el, {
     link: '.yt-lockup-title a',
-    owner: '.yt-lockup-byline'
+    owner: '.yt-lockup-byline',
   })
 }
 
 // Given a cheerio instance and a video row element,
 // extract the track information
-function parsePlaylistVideo(el) {
+function parsePlaylistVideo(el, playlistId) {
   return parseVideo(el, {
     link: '.pl-video-title-link',
-    owner: '.pl-video-owner a'
+    owner: '.pl-video-owner a',
+    playlistId
   })
 }
 
@@ -39,7 +40,8 @@ function parseVideo(el, opts) {
     subtitle,
     thumbnail,
     slug: config.slug,
-    type: ItemType.SONG
+    type: ItemType.SONG,
+    playlistId: opts.playlistId
   }
 }
 
@@ -59,7 +61,7 @@ export default {
   scrapePlaylist({ id, title }) {
     return this.injectable.get(config.urls.playlistUrl + id)
       .then((root) => root.querySelectorAll('.pl-video-title'))
-      .then((els) => els.map((el) => parsePlaylistVideo(el)))
+      .then((els) => els.map((el) => parsePlaylistVideo(el, id)))
       .then((items) => ({ title, items }))
   }
 }

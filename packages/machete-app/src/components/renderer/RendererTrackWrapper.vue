@@ -69,7 +69,8 @@ export default {
   },
   computed: {
     isPlaying() {
-      return this.id === this.$coreData.metadata.id
+      const { id, playlistId } = this.$coreData.metadata
+      return this.id === id || this.id === playlistId
     },
     hasLoaded() {
       return !!this.id

@@ -59,16 +59,10 @@ function dispatchState(status) {
 }
 
 function dispatchMetadata() {
-  // Dispatch the latest video data.
-  const videoData = this.player.getVideoData()
+  // The only data we can't scrape is the duration; we'll get it from the
+  // player, then dispatch it and the current item.
   const duration = this.player.getDuration()
-
-  const id = videoData.video_id
-  const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
-  const thumbnail = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
-  const slug = config.slug
-
-  this.injectable.dispatch(EventType.SONG_METADATA, { id, slug, title, artist, thumbnail, duration })
+  this.injectable.dispatch(EventType.SONG_METADATA, { duration, ...this.item })
 }
 
 function startTimestampPolling() {
@@ -96,6 +90,7 @@ export default {
 
   play(item) {
     if (item) {
+      this.item = item
       this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
       this.player.loadVideoById(item.id)
     } else {
@@ -112,6 +107,7 @@ export default {
   },
 
   stop() {
+    this.item = null
     this.player.stopVideo()
     this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.STOPPED)
     stopTimestampPolling.call(this)
