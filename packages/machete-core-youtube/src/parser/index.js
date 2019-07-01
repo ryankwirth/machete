@@ -13,8 +13,8 @@ export default {
     return DefaultParser.search(options)
   },
 
-  scrapePlaylist(title, playlistId) {
-    return DefaultParser.scrapePlaylist(title, playlistId)
+  scrapePlaylist(options) {
+    return DefaultParser.scrapePlaylist(options)
   },
 
   scrapeShowcase() {

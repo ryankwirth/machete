@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { CoreService } from 'machete-core'
+import { CoreService, StateType } from 'machete-core'
 import Button from '@/components/BaseButton.vue'
 import IconNext from '@/components/icons/IconNext.vue'
 import IconPause from '@/components/icons/IconPause.vue'
@@ -32,12 +32,12 @@ export default {
   },
   computed: {
     isPlaying() {
-      return this.$coreData.status.isPlaying || false
+      return this.$coreData.state === StateType.PLAYING
     }
   },
   methods: {
     onNextClicked() {
-      // Handle next...
+      CoreService.next()
     },
     onPlayPauseClicked() {
       if (this.isPlaying) {
@@ -50,6 +50,8 @@ export default {
       // If we're more than 5 seconds into the song, go back to the beginning
       if (this.$coreData.timestamp > 5) {
         CoreService.seekTo(0)
+      } else {
+        CoreService.previous()
       }
     }
   }

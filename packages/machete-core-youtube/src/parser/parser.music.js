@@ -1,3 +1,4 @@
+import { ItemType } from 'machete-core'
 import config from '../config'
 import utils from '../utils'
 import payload from '../assets/payload.music'
@@ -25,22 +26,50 @@ function parseShowcaseCarouselRenderer(renderer) {
 }
 
 function parseShowcaseMusicTwoRowItemRenderer(renderer) {
-  const title = renderer.title.runs[0].text
+  // Combine all of the title/subtitle runs into a single string.
+  const title = renderer.title.runs
+    .map((run) => run.text)
+    .join('')
+  const subtitle = renderer.subtitle.runs
+    .map((run) => run.text)
+    .join('')
 
+  // Dig deep to find a `watchEndpoint` or `watchPlaylistEndpoint` so we can
+  // extract this item's playlistId.
   const overlayRenderer = renderer.thumbnailOverlay.musicItemThumbnailOverlayRenderer
   const playButtonRenderer = overlayRenderer.content.musicPlayButtonRenderer
-  const playlistId = playButtonRenderer.playNavigationEndpoint.watchPlaylistEndpoint.playlistId
+  const { uri, type } = parsePlayNavigationEndpoint(playButtonRenderer.playNavigationEndpoint)
 
+  // Get all of the thumbnail URLs, then return the last (best) one.
   const thumbnails = renderer.thumbnailRenderer.musicThumbnailRenderer.thumbnail.thumbnails
-  const thumbnail = thumbnails[0].url
-
-  const id = utils.encodeId('playlist', playlistId)
+  const thumbnail = thumbnails.pop().url
 
   return {
-    id,
+    uri,
+    type,
     title,
-    subtitle: 'YouTube Playlist',
-    thumbnail
+    subtitle,
+    thumbnail,
+  }
+}
+
+function parsePlayNavigationEndpoint(playNavigationEndpoint) {
+  if (playNavigationEndpoint.watchEndpoint) {
+    // If we have a `watchEndpoint,` then this item is a single video.
+    const videoId = playNavigationEndpoint.watchEndpoint.videoId
+    return {
+      uri: utils.encodeUri(videoId),
+      type: ItemType.SONG
+    }
+  } else if (playNavigationEndpoint.watchPlaylistEndpoint) {
+    // If we have a `watchPlaylistEndpoint`, the item is a playlist.
+    const playlistId = playNavigationEndpoint.watchPlaylistEndpoint.playlistId
+    return {
+      uri: utils.encodeUri(playlistId),
+      type: ItemType.PLAYLIST
+    }
+  } else {
+    throw new Error('Unknown `playNavigationEndpoint', playNavigationEndpoint)
   }
 }
 

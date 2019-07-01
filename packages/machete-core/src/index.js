@@ -1,4 +1,4 @@
-import CoreService from './core'
+import { CoreService } from './core'
 
 // Create a promise that will resolve once the service has been initialized
 let resolve
@@ -7,14 +7,19 @@ const init = new Promise((_resolve) => {
 })
 
 // Define a "promisified" interface for the service
-const CoreServiceInterface = {
+export default {
   init(services, options) {
     return CoreService.init(services, options).then(resolve)
   },
 
-  play(uri) {
+  queue(items) {
     return init
-      .then(() => CoreService.play(uri))
+      .then(() => CoreService.queue(items))
+  },
+
+  play(item) {
+    return init
+      .then(() => CoreService.play(item))
   },
 
   pause() {
@@ -25,6 +30,16 @@ const CoreServiceInterface = {
   stop() {
     return init
       .then(() => CoreService.stop())
+  },
+
+  next() {
+    return init
+      .then(() => CoreService.next())
+  },
+
+  previous() {
+    return init
+      .then(() => CoreService.previous())
   },
 
   seekTo(timestamp) {
@@ -52,5 +67,3 @@ const CoreServiceInterface = {
       .then(() => CoreService.off(type, callback))
   }
 }
-
-export default CoreServiceInterface

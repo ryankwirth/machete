@@ -4,6 +4,7 @@
       v-for="(item, i) in renderedItems"
       :key="i"
       :data="item"
+      @click.native="$emit('play', i)"
     />
   </div>
 </template>

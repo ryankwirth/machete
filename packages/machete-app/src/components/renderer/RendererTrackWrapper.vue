@@ -1,13 +1,12 @@
 <template>
   <div
     class="renderer-track-wrapper"
-    @click="onClick"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
+    @mouseenter="isHovering = true"
+    @mouseleave="isHovering = false"
   >
     <slot
       v-if="hasLoaded"
-      :id="id"
+      :uri="uri"
       :title="title"
       :subtitle="subtitle"
       :thumbnail="thumbnail"
@@ -30,7 +29,6 @@
 </template>
 
 <script>
-import { CoreService } from 'machete-core'
 import { ContentLoader } from 'vue-content-loader'
 
 export default {
@@ -39,7 +37,7 @@ export default {
     ContentLoader
   },
   props: {
-    id: {
+    uri: {
       type: String,
       default: null
     },
@@ -71,23 +69,11 @@ export default {
   },
   computed: {
     isPlaying() {
-      return this.id === this.$coreData.metadata.id
+      const { uri, playlistUri } = this.$coreData.metadata
+      return this.uri === uri || this.uri === playlistUri
     },
     hasLoaded() {
-      return !!this.id
-    }
-  },
-  methods: {
-    onClick() {
-      if (this.hasLoaded) {
-        CoreService.play(this.id)
-      }
-    },
-    onMouseEnter() {
-      this.isHovering = true
-    },
-    onMouseLeave() {
-      this.isHovering = false
+      return !!this.uri
     }
   }
 }

@@ -1,13 +1,12 @@
 import config from './config'
 
 const Utils = {
-  encodeId(type, assetId) {
-    return `${config.slug}://${type}:${assetId}`
+  encodeUri(id) {
+    return id && `${config.slug}://${id}`
   },
 
-  decodeId(id) {
-    const [type, assetId] = id.split(':')
-    return { type, assetId }
+  decodeUri(uri) {
+    return uri && uri.split('://')[1]
   },
 
   parseLabel(title, artist = '') {

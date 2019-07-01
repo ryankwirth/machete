@@ -1,5 +1,4 @@
-import { EventType } from 'machete-core'
-
+import { EventType, StateType } from 'machete-core'
 import config from './config'
 import utils from './utils'
 
@@ -33,30 +32,43 @@ function injectPlayer() {
 }
 
 function onStateChange(e) {
-  // Ensure the video isn't muted; the user can change the volume later
+  // Ensure the video isn't muted; the user can change the volume later.
   if (this.player.isMuted()) {
     this.player.unMute()
   }
 
-  // Dispatch the latest video data
-  const videoData = this.player.getVideoData()
+  dispatchState.call(this, e.data)
+}
+
+function dispatchState(status) {
+  switch (status) {
+    case 0:
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.FINISHED)
+      break
+    case 1:
+      dispatchMetadata.call(this)
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PLAYING)
+      break
+    case 2:
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PAUSED)
+      break
+    case 3:
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
+      break
+  }
+}
+
+function dispatchMetadata() {
+  // The only data we can't scrape is the duration; we'll get it from the
+  // player, then dispatch it and the current item.
   const duration = this.player.getDuration()
-
-  const id = utils.encodeId('video', videoData.video_id)
-  const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
-  const thumbnail = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
-
-  this.injectable.dispatch(EventType.METADATA, { id, title, artist, thumbnail, duration })
-
-  // Dispatch the current video status
-  const isPlaying = e.data === 1
-  this.injectable.dispatch(EventType.STATUS, { isPlaying })
+  this.injectable.dispatch(EventType.SONG_METADATA, { duration, ...this.item })
 }
 
 function startTimestampPolling() {
   if (!this.intervalId) {
     this.intervalId = setInterval(() => {
-      this.injectable.dispatch(EventType.TIMESTAMP, this.player.getCurrentTime())
+      this.injectable.dispatch(EventType.PLAYBACK_TIMESTAMP, this.player.getCurrentTime())
     }, 1000)
   }
 }
@@ -68,7 +80,7 @@ function stopTimestampPolling() {
   }
 }
 
-const YouTubePlayer = {
+export default {
   init(injectable) {
     this.injectable = injectable
 
@@ -76,14 +88,14 @@ const YouTubePlayer = {
       .then(() => injectPlayer.call(this))
   },
 
-  play(id) {
-    if (id) {
-      const { type, assetId } = utils.decodeId(id)
-      if (type === 'video') {
-        this.player.loadVideoById(assetId)
-      } else {
-        this.player.loadPlaylist({ list: assetId })
-      }
+  play(item) {
+    if (item) {
+      this.item = item
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
+
+      // Get the video ID from the slugged URI.
+      const videoId = utils.decodeUri(item.uri)
+      this.player.loadVideoById(videoId)
     } else {
       this.player.playVideo()
     }
@@ -98,7 +110,9 @@ const YouTubePlayer = {
   },
 
   stop() {
+    this.item = null
     this.player.stopVideo()
+    this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.STOPPED)
     stopTimestampPolling.call(this)
   },
 
@@ -110,5 +124,3 @@ const YouTubePlayer = {
     this.player.setVolume(volume)
   }
 }
-
-export default YouTubePlayer

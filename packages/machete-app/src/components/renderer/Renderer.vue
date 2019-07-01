@@ -6,11 +6,13 @@
     <component
       :is="type"
       :items="items"
+      @play="onPlay"
     />
   </div>
 </template>
 
 <script>
+import { CoreService } from 'machete-core'
 import Grid from './RendererGrid.vue'
 import Showcase from './RendererShowcase.vue'
 
@@ -32,6 +34,14 @@ export default {
     items: {
       type: Array,
       default: null
+    }
+  },
+  methods: {
+    onPlay(index) {
+      // Stop playing the current song, resetting the queue, then play the new
+      // item immediately.
+      CoreService.stop()
+      CoreService.play(this.items[index])
     }
   }
 }

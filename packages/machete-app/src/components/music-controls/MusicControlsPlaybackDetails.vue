@@ -2,7 +2,7 @@
   <Marquee>
     <span class="title color-header">{{ title }}</span>
     <span class="bullet color-navigation">{{ bullet }}</span>
-    <span class="artist color-navigation">{{ artist }}</span>
+    <span class="artist color-navigation">{{ subtitle }}</span>
   </Marquee>
 </template>
 
@@ -15,14 +15,14 @@ export default {
     Marquee
   },
   computed: {
-    artist() {
-      return this.$coreData.metadata.artist || ''
+    title() {
+      return this.$coreData.metadata.title || 'Loading...'
     },
     bullet() {
       return this.$coreData.metadata.title ? '•' : ''
     },
-    title() {
-      return this.$coreData.metadata.title || 'Loading...'
+    subtitle() {
+      return this.$coreData.metadata.subtitle || ''
     }
   }
 }

@@ -1,2 +1,3 @@
-export { default as EventBus } from './event-bus'
-export { default as Injectable } from './injectable'
+export { EventBus } from './event-bus'
+export { Injectable } from './injectable'
+export { Queue } from './queue'
