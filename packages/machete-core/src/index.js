@@ -12,14 +12,14 @@ export default {
     return CoreService.init(services, options).then(resolve)
   },
 
-  queue(uri) {
+  queue(items) {
     return init
-      .then(() => CoreService.queue(uri))
+      .then(() => CoreService.queue(items))
   },
 
-  play(uri) {
+  play(item) {
     return init
-      .then(() => CoreService.play(uri))
+      .then(() => CoreService.play(item))
   },
 
   pause() {

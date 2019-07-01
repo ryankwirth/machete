@@ -7,15 +7,17 @@ function onPlaybackStatus(state) {
   }
 }
 
-function playAt(delta = 1) {
+function playFromQueue(delta) {
+  const item = Queue.get(delta)
+  playFromItem(item)
+}
+
+function playFromItem(item) {
   // If another service is playing, stop it.
   Playback.stop(false)
-
-  // Get the next URI to play.
-  const uri = Queue.get(delta)
-
+  
   // Extract the service slug and track ID from the URI.
-  const [slug, id] = uri.split('://')
+  const [slug, id] = item.id.split('://')
   Playback.activeService = Playback.services[slug]
   Playback.activeService.play(id)
 }
@@ -29,29 +31,21 @@ export const Playback = {
     EventBus.on(EventType.PLAYBACK_STATE, onPlaybackStatus)
   },
 
-  queue(uri, preempt = false) {
-    // Add the new URI to the queue.
-    Queue.add(uri, preempt)
-
-    // If we preempted the current song, start playing the new one.
-    if (preempt) {
-      this.next()
-    }
+  queue(items) {
+    Queue.add(items)
   },
 
-  play(uri) {
-    switch (typeof uri) {
+  play(item) {
+    switch (typeof item) {
       case 'number':
         // Move the queue to the given position and play from there.
-        Queue.set(uri)
-        playAt(0)
-        return
+        item = Queue.set(item)
       case 'string':
-        // Insert the given URI into the queue and start playing.
-        this.queue(uri, true)
+        // Fall-through from above.
+        playFromItem(item)
         return
       default:
-        // Otherwise, play the current track
+        // Otherwise, play the current track.
         if (this.activeService) {
           this.activeService.play()
         }
@@ -76,11 +70,11 @@ export const Playback = {
   },
 
   next() {
-    playAt(1)
+    playFromQueue(1)
   },
 
   previous() {
-    playAt(-1)
+    playFromQueue(-1)
   },
 
   seekTo(timestamp) {

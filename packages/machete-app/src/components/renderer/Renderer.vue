@@ -43,7 +43,7 @@ export default {
 
       // Queue all of the items in this renderer and play the one that was
       // clicked.
-      this.items.forEach((item) => CoreService.queue(item.id))
+      CoreService.queue(this.items)
       CoreService.play(index)
     }
   }

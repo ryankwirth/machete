@@ -21,12 +21,12 @@ export const CoreService = {
       })
   },
 
-  queue(uri) {
-    Playback.queue(uri)
+  queue(items) {
+    Playback.queue(items)
   },
 
-  play(uri) {
-    Playback.play(uri)
+  play(item) {
+    Playback.play(item)
   },
 
   pause() {

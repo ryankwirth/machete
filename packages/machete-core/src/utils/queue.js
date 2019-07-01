@@ -8,11 +8,11 @@ export const Queue = {
     this.init()
   },
 
-  add(item, toFront = false) {
+  add(items, toFront = false) {
     if (toFront) {
-      this.items.splice(this.index, 0, item)
+      this.items.splice(this.index, 0, ...items)
     } else {
-      this.items.push(item)
+      this.items.push(...items)
     }
   },
 
@@ -21,9 +21,12 @@ export const Queue = {
       return null
     } else {
       // Move the index forward/backward by `delta` and wrap if necessary.
-      this.set(this.index + delta)
-      return this.items[this.index]
+      return this.move(delta)
     }
+  },
+
+  move(delta) {
+    return this.set(this.index + delta)
   },
 
   set(newIndex) {
@@ -33,5 +36,6 @@ export const Queue = {
       newIndex = newIndex % this.items.length
       this.index = newIndex < 0 ? this.items.length - 1 : newIndex
     }
+    return this.items[this.index]
   }
 }
