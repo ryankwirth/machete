@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { parse } from 'node-html-parser'
-import EventBus from './event-bus'
+import { EventBus } from './event-bus'
 
-const Injectable = {
+export const Injectable = {
   init({ proxy }) {
     this.proxy = proxy || ''
   },
@@ -21,5 +21,3 @@ const Injectable = {
     EventBus.dispatch(type, payload)
   }
 }
-
-export default Injectable

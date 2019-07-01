@@ -1,4 +1,4 @@
-const EventBus = {
+export const EventBus = {
   init() {
     this.listeners = {}
   },
@@ -26,5 +26,3 @@ const EventBus = {
     }
   }
 }
-
-export default EventBus

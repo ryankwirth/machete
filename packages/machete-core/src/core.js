@@ -1,6 +1,7 @@
+import { Playback } from './playback'
 import { EventBus, Injectable } from './utils'
 
-const CoreService = {
+export const CoreService = {
   init(services, options) {
     EventBus.init()
     Injectable.init(options)
@@ -9,65 +10,49 @@ const CoreService = {
     const promises = services.map((service) => service.init(Injectable))
     return Promise.all(promises)
       .then((slugs) => {
-        // Map each service's slug to its instance
+        // Map each service's slug to its instance.
         // (eg. { "youtube": YouTubeService})
         this.services = slugs.reduce((obj, slug, i) => {
           obj[slug] = services[i]
           return obj
         }, {})
+
+        Playback.init(this.services)
       })
   },
 
-  play(uri) {
-    if (uri) {
-      // If a URI is provided, stop the current service
-      if (this.activeService) {
-        this.activeService.stop()
-      }
+  queue(uri) {
+    Playback.queue(uri)
+  },
 
-      // Extract the service slug and track ID from the URI
-      const [slug, id] = uri.split('://')
-      this.activeService = this.services[slug]
-      this.activeService.play(id)
-    } else if (this.activeService) {
-      // If no URI is provided, we're continuing to play from the same service
-      this.activeService.play()
-    }
+  play(uri) {
+    Playback.play(uri)
   },
 
   pause() {
-    if (this.activeService) {
-      this.activeService.pause()
-    }
+    Playback.pause()
   },
 
   stop() {
-    if (this.activeService) {
-      this.activeService.stop()
-    }
+    Playback.stop()
   },
 
   seekTo(timestamp) {
-    if (this.activeService) {
-      this.activeService.seekTo(timestamp)
-    }
+    Playback.seekTo(timestamp)
   },
 
   setVolume(volume) {
-    if (this.activeService) {
-      this.activeService.setVolume(volume)
-    }
+    Playback.setVolume(volume)
   },
 
   get(type, options) {
-    // `get` from every service
-    return this.forEveryService((service) => service.get(type, options))
-      .then((results) => results.flat())
-  },
-
-  forEveryService(handler) {
-    const promises = Object.values(this.services).map(handler)
+    // Call `get` on each registered service.
+    const promises = Object.values(this.services)
+      .map((service) => service.get(type, options))
+    
+    // Wait for all of the services to provide their results, then merge them.
     return Promise.all(promises)
+      .then((results) => results.flat())
   },
 
   on(type, callback) {
@@ -78,5 +63,3 @@ const CoreService = {
     EventBus.off(type, callback)
   }
 }
-
-export default CoreService

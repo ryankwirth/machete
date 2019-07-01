@@ -33,6 +33,8 @@ function injectPlayer() {
 }
 
 function onStateChange(e) {
+  console.log('onStateChange')
+  console.log(e)
   // Ensure the video isn't muted; the user can change the volume later
   if (this.player.isMuted()) {
     this.player.unMute()
