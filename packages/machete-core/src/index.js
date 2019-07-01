@@ -1,69 +1,69 @@
-import { CoreService } from './core'
+import {CoreService} from './core';
 
 // Create a promise that will resolve once the service has been initialized
-let resolve
+let resolve;
 const init = new Promise((_resolve) => {
-  resolve = _resolve
-})
+  resolve = _resolve;
+});
 
 // Define a "promisified" interface for the service
 export default {
   init(services, options) {
-    return CoreService.init(services, options).then(resolve)
+    return CoreService.init(services, options).then(resolve);
   },
 
   queue(items) {
     return init
-      .then(() => CoreService.queue(items))
+        .then(() => CoreService.queue(items));
   },
 
   play(item) {
     return init
-      .then(() => CoreService.play(item))
+        .then(() => CoreService.play(item));
   },
 
   pause() {
     return init
-      .then(() => CoreService.pause())
+        .then(() => CoreService.pause());
   },
 
   stop() {
     return init
-      .then(() => CoreService.stop())
+        .then(() => CoreService.stop());
   },
 
   next() {
     return init
-      .then(() => CoreService.next())
+        .then(() => CoreService.next());
   },
 
   previous() {
     return init
-      .then(() => CoreService.previous())
+        .then(() => CoreService.previous());
   },
 
   seekTo(timestamp) {
     return init
-      .then(() => CoreService.seekTo(timestamp))
+        .then(() => CoreService.seekTo(timestamp));
   },
 
   setVolume(volume) {
     return init
-      .then(() => CoreService.setVolume(volume))
+        .then(() => CoreService.setVolume(volume));
   },
 
   get(type, options) {
     return init
-      .then(() => CoreService.get(type, options))
+        .then(() => CoreService.get(type, options));
   },
 
   on(type, callback) {
     return init
-      .then(() => CoreService.on(type, callback))
+        .then(() => CoreService.on(type, callback));
   },
 
   off(type, callback) {
     return init
-      .then(() => CoreService.off(type, callback))
-  }
-}
+        .then(() => CoreService.off(type, callback));
+  },
+};
