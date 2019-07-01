@@ -37,8 +37,25 @@ function onStateChange(e) {
     this.player.unMute()
   }
 
-  dispatchMetadata.call(this)
   dispatchState.call(this, e.data)
+}
+
+function dispatchState(status) {
+  switch (status) {
+    case 0:
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.FINISHED)
+      break
+    case 1:
+      dispatchMetadata.call(this)
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PLAYING)
+      break
+    case 2:
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PAUSED)
+      break
+    case 3:
+      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
+      break
+  }
 }
 
 function dispatchMetadata() {
@@ -52,23 +69,6 @@ function dispatchMetadata() {
   const slug = config.slug
 
   this.injectable.dispatch(EventType.SONG_METADATA, { id, slug, title, artist, thumbnail, duration })
-}
-
-function dispatchState(status) {
-  switch (status) {
-    case 0:
-      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.FINISHED)
-      break
-    case 1:
-      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PLAYING)
-      break
-    case 2:
-      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PAUSED)
-      break
-    case 3:
-      this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
-      break
-  }
 }
 
 function startTimestampPolling() {

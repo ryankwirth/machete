@@ -1,8 +1,8 @@
 <template>
   <div
     class="renderer-track-wrapper"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
+    @mouseenter="isHovering = true"
+    @mouseleave="isHovering = false"
   >
     <slot
       v-if="hasLoaded"
@@ -73,14 +73,6 @@ export default {
     },
     hasLoaded() {
       return !!this.id
-    }
-  },
-  methods: {
-    onMouseEnter() {
-      this.isHovering = true
-    },
-    onMouseLeave() {
-      this.isHovering = false
     }
   }
 }

@@ -2,8 +2,13 @@ import { EventType, ItemType, QueryType, StateType } from 'machete-core'
 import { EventBus, Queue } from './utils'
 
 function onPlaybackStatus(state) {
-  if (state === StateType.FINISHED) {
-    Playback.next()
+  switch (state) {
+    case StateType.STOPPED:
+      EventBus.dispatch(EventType.SONG_METADATA, {})
+      return
+    case StateType.FINISHED:
+      Playback.next()
+      return
   }
 }
 
@@ -24,20 +29,23 @@ function playFromItem(item) {
   // If another service is playing, stop it.
   Playback.stop(false)
 
+  // Broadcast that we're loading the next item.
+  EventBus.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
+
+  // Reset the timestamp to keep it from "jumping".
+  EventBus.dispatch(EventType.PLAYBACK_TIMESTAMP, 0)
+
   // Find the new service to use for this item.
   Playback.activeService = Playback.services[item.slug]
   if (item.type === ItemType.PLAYLIST) {
-    // If the item is a playlist, get its items individually.
-    EventBus.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING)
+    // Queue the playlist items individually.
     Playback.activeService.get(QueryType.PLAYLIST, { id: item.id })
       .then((result) => {
-        // Queue each one, then play the first item.
         Playback.queue(result.items)
         Playback.play(0)
       })
   } else {
     // Play the new item directly.
-    EventBus.dispatch(EventType.PLAYBACK_TIMESTAMP, 0)
     Playback.activeService.play(item)
   }
 }
