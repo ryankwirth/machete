@@ -1,4 +1,4 @@
-import { EventType, StateType } from 'machete-core'
+import { EventType, ItemType, QueryType, StateType } from 'machete-core'
 import { EventBus, Queue } from './utils'
 
 function onPlaybackStatus(state) {
@@ -15,11 +15,21 @@ function playFromQueue(delta) {
 function playFromItem(item) {
   // If another service is playing, stop it.
   Playback.stop(false)
-  
-  // Extract the service slug and track ID from the URI.
-  const [slug, id] = item.id.split('://')
-  Playback.activeService = Playback.services[slug]
-  Playback.activeService.play(id)
+
+  // Find the new service to use for this item.
+  Playback.activeService = Playback.services[item.slug]
+  if (item.type === ItemType.PLAYLIST) {
+    // If the item is a playlist, get its items individually.
+    Playback.activeService.get(QueryType.PLAYLIST, { id: item.id })
+      .then((result) => {
+        // Queue each one, then play the first item.
+        Playback.queue(result.items)
+        Playback.play(0)
+      })
+  } else {
+    // Play the new item directly.
+    Playback.activeService.play(item)
+  }
 }
 
 export const Playback = {
@@ -40,7 +50,7 @@ export const Playback = {
       case 'number':
         // Move the queue to the given position and play from there.
         item = Queue.set(item)
-      case 'string':
+      case 'object':
         // Fall-through from above.
         playFromItem(item)
         return

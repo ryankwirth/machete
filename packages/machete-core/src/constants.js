@@ -4,10 +4,16 @@ export const EventType = {
   PLAYBACK_TIMESTAMP: 3
 }
 
+export const ItemType = {
+  SONG: 1,
+  PLAYLIST: 2
+}
+
 export const QueryType = {
   SEARCH: 1,
   SHOWCASE: 2,
-  MOST_POPULAR: 3
+  MOST_POPULAR: 3,
+  PLAYLIST: 4
 }
 
 export const StateType = {

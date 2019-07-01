@@ -12,8 +12,8 @@ const YouTubeService = {
     .then(() => config.slug)
   },
 
-  play(id) {
-    player.play(id)
+  play(item) {
+    player.play(item)
   },
 
   pause() {
@@ -39,7 +39,9 @@ const YouTubeService = {
       case QueryType.SHOWCASE:
         return parser.scrapeShowcase()
       case QueryType.MOST_POPULAR:
-        return parser.scrapePlaylist('Most Popular', config.playlistIds.mostPopular)
+        return parser.scrapePlaylist({ title: 'Most Popular', id: config.playlistIds.mostPopular })
+      case QueryType.PLAYLIST:
+        return parser.scrapePlaylist(options)
     }
   }
 }

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { CoreService } from 'machete-core'
+import { CoreService, ItemType } from 'machete-core'
 import Grid from './RendererGrid.vue'
 import Showcase from './RendererShowcase.vue'
 
@@ -38,13 +38,19 @@ export default {
   },
   methods: {
     onPlay(index) {
-      // Stop playing the current song.
+      // Stop playing the current song and reset the current queue.
       CoreService.stop()
 
-      // Queue all of the items in this renderer and play the one that was
-      // clicked.
-      CoreService.queue(this.items)
-      CoreService.play(index)
+      const item = this.items[index]
+      if (item.type === ItemType.PLAYLIST) {
+        // Don't queue this playlist -- just start playing it.
+        CoreService.play(item)
+      } else {
+        // Queue all of the items in this renderer and play the one that was
+        // clicked.
+        CoreService.queue(this.items)
+        CoreService.play(index)
+      }
     }
   }
 }

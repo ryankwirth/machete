@@ -1,15 +1,6 @@
 import config from './config'
 
 const Utils = {
-  encodeId(type, assetId) {
-    return `${config.slug}://${type}:${assetId}`
-  },
-
-  decodeId(id) {
-    const [type, assetId] = id.split(':')
-    return { type, assetId }
-  },
-
   parseLabel(title, artist = '') {
     // Strip any "(Official ...)" or otherwise extraneous subtitles
     title = title.replace(/ (\(|\[)(?!feat|ft|Remix).+(\)|\])/g, '')

@@ -1,3 +1,4 @@
+import { ItemType } from 'machete-core'
 import config from '../config'
 import utils from '../utils'
 
@@ -26,18 +27,19 @@ function parseVideo(el, opts) {
 
   // Parse the link's `href` to find our video ID
   const href = link.attributes.href.match(/v=([^&]+)/)
-  const videoId = href && href[1]
+  const id = href && href[1]
 
   // Generate the result object properties
-  const id = utils.encodeId('video', videoId)
-  const thumbnail = `${config.urls.thumbnailUrl}${videoId}/mqdefault.jpg`
+  const thumbnail = `${config.urls.thumbnailUrl}${id}/mqdefault.jpg`
   const { title, artist: subtitle } = utils.parseLabel(link.text.trim(), owner.text.trim())
 
   return {
     id,
     title,
     subtitle,
-    thumbnail
+    thumbnail,
+    slug: config.slug,
+    type: ItemType.SONG
   }
 }
 
@@ -54,8 +56,8 @@ export default {
     .then((items) => ({ title: `Search: "${query}"`, items }))
   },
 
-  scrapePlaylist(title, playlistId) {
-    return this.injectable.get(config.urls.playlistUrl + playlistId)
+  scrapePlaylist({ id, title }) {
+    return this.injectable.get(config.urls.playlistUrl + id)
       .then((root) => root.querySelectorAll('.pl-video-title'))
       .then((els) => els.map((el) => parsePlaylistVideo(el)))
       .then((items) => ({ title, items }))

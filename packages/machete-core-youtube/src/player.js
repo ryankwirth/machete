@@ -32,7 +32,7 @@ function injectPlayer() {
 }
 
 function onStateChange(e) {
-  // Ensure the video isn't muted; the user can change the volume later
+  // Ensure the video isn't muted; the user can change the volume later.
   if (this.player.isMuted()) {
     this.player.unMute()
   }
@@ -42,15 +42,16 @@ function onStateChange(e) {
 }
 
 function dispatchMetadata() {
-  // Dispatch the latest video data
+  // Dispatch the latest video data.
   const videoData = this.player.getVideoData()
   const duration = this.player.getDuration()
 
-  const id = utils.encodeId('video', videoData.video_id)
+  const id = videoData.video_id
   const { artist, title } = utils.parseLabel(videoData.title, videoData.author)
   const thumbnail = `${config.urls.thumbnailUrl}${videoData.video_id}/mqdefault.jpg`
+  const slug = config.slug
 
-  this.injectable.dispatch(EventType.SONG_METADATA, { id, title, artist, thumbnail, duration })
+  this.injectable.dispatch(EventType.SONG_METADATA, { id, slug, title, artist, thumbnail, duration })
 }
 
 function dispatchStatus(status) {
@@ -91,14 +92,9 @@ export default {
       .then(() => injectPlayer.call(this))
   },
 
-  play(id) {
-    if (id) {
-      const { type, assetId } = utils.decodeId(id)
-      if (type === 'video') {
-        this.player.loadVideoById(assetId)
-      } else {
-        this.player.loadPlaylist({ list: assetId })
-      }
+  play(item) {
+    if (item) {
+      this.player.loadVideoById(item.id)
     } else {
       this.player.playVideo()
     }

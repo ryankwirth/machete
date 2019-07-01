@@ -1,5 +1,5 @@
+import { ItemType } from 'machete-core'
 import config from '../config'
-import utils from '../utils'
 import payload from '../assets/payload.music'
 
 function parseShowcase(data) {
@@ -39,19 +39,19 @@ function parseShowcaseMusicTwoRowItemRenderer(renderer) {
   const playButtonRenderer = overlayRenderer.content.musicPlayButtonRenderer
   const navigationEndpoint = playButtonRenderer.playNavigationEndpoint
   const watchEndpoint = navigationEndpoint.watchEndpoint || navigationEndpoint.watchPlaylistEndpoint
-  const playlistId = watchEndpoint.playlistId
+  const id = watchEndpoint.playlistId
 
   // Get all of the thumbnail URLs, then return the last (best) one.
   const thumbnails = renderer.thumbnailRenderer.musicThumbnailRenderer.thumbnail.thumbnails
   const thumbnail = thumbnails.pop().url
 
-  const id = utils.encodeId('playlist', playlistId)
-
   return {
     id,
     title,
     subtitle,
-    thumbnail
+    thumbnail,
+    slug: config.slug,
+    type: ItemType.PLAYLIST
   }
 }
 
