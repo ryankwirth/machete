@@ -7,6 +7,7 @@
   >
     <template v-slot:default="props">
       <Artwork
+        class="artwork"
         :url="props.thumbnail"
         :radius="3"
         :show-hovering="props.isHovering"
@@ -68,6 +69,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/styles/variables.scss';
+
 .renderer-showcase-track {
   display: flex;
   flex-direction: column;
@@ -99,5 +102,13 @@ export default {
       }
     }
   }
+}
+
+body:not([dark]) .artwork {
+  box-shadow: 0px 12px 16px -8px $navigation-light;
+}
+
+body[dark] .marquee:after {
+  box-shadow: 0px 12px 16px -8px $navigation-dark;
 }
 </style>
