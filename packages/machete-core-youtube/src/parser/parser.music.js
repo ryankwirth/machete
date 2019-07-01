@@ -25,21 +25,32 @@ function parseShowcaseCarouselRenderer(renderer) {
 }
 
 function parseShowcaseMusicTwoRowItemRenderer(renderer) {
-  const title = renderer.title.runs[0].text
+  // Combine all of the title/subtitle runs into a single string.
+  const title = renderer.title.runs
+    .map((run) => run.text)
+    .join('')
+  const subtitle = renderer.subtitle.runs
+    .map((run) => run.text)
+    .join('')
 
+  // Dig deep to find a `watchEndpoint` or `watchPlaylistEndpoint` so we can
+  // extract this item's playlistId.
   const overlayRenderer = renderer.thumbnailOverlay.musicItemThumbnailOverlayRenderer
   const playButtonRenderer = overlayRenderer.content.musicPlayButtonRenderer
-  const playlistId = playButtonRenderer.playNavigationEndpoint.watchPlaylistEndpoint.playlistId
+  const navigationEndpoint = playButtonRenderer.playNavigationEndpoint
+  const watchEndpoint = navigationEndpoint.watchEndpoint || navigationEndpoint.watchPlaylistEndpoint
+  const playlistId = watchEndpoint.playlistId
 
+  // Get all of the thumbnail URLs, then return the last (best) one.
   const thumbnails = renderer.thumbnailRenderer.musicThumbnailRenderer.thumbnail.thumbnails
-  const thumbnail = thumbnails[0].url
+  const thumbnail = thumbnails.pop().url
 
   const id = utils.encodeId('playlist', playlistId)
 
   return {
     id,
     title,
-    subtitle: 'YouTube Playlist',
+    subtitle,
     thumbnail
   }
 }
