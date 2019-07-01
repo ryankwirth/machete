@@ -72,6 +72,7 @@ export default {
   display: flex;
   flex-direction: column;
 
+  width: 200px;
   height: 270px;
   padding-right: 40px;
 
