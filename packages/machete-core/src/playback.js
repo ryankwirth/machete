@@ -7,7 +7,7 @@ function onPlaybackStatus(state) {
   }
 }
 
-function play(delta = 1) {
+function playAt(delta = 1) {
   // If another service is playing, stop it.
   Playback.stop(false)
 
@@ -40,10 +40,21 @@ export const Playback = {
   },
 
   play(uri) {
-    if (uri) {
-      this.queue(uri, true)
-    } else if (this.activeService) {
-      this.activeService.play()
+    switch (typeof uri) {
+      case 'number':
+        // Move the queue to the given position and play from there.
+        Queue.set(uri)
+        playAt(0)
+        return
+      case 'string':
+        // Insert the given URI into the queue and start playing.
+        this.queue(uri, true)
+        return
+      default:
+        // Otherwise, play the current track
+        if (this.activeService) {
+          this.activeService.play()
+        }
     }
   },
 
@@ -65,11 +76,11 @@ export const Playback = {
   },
 
   next() {
-    play(1)
+    playAt(1)
   },
 
   previous() {
-    play(-1)
+    playAt(-1)
   },
 
   seekTo(timestamp) {

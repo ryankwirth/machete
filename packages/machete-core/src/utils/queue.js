@@ -21,11 +21,17 @@ export const Queue = {
       return null
     } else {
       // Move the index forward/backward by `delta` and wrap if necessary.
-      let newIndex = (this.index + delta) % this.items.length
-      newIndex = newIndex < 0 ? this.items.length - 1 : newIndex
+      this.set(this.index + delta)
+      return this.items[this.index]
+    }
+  },
 
-      this.index = newIndex
-      return this.items[newIndex]
+  set(newIndex) {
+    if (this.items.length === 0) {
+      this.index = -1
+    } else {
+      newIndex = newIndex % this.items.length
+      this.index = newIndex < 0 ? this.items.length - 1 : newIndex
     }
   }
 }

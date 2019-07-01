@@ -1,7 +1,6 @@
 <template>
   <div
     class="renderer-track-wrapper"
-    @click="onClick"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
   >
@@ -30,7 +29,6 @@
 </template>
 
 <script>
-import { CoreService } from 'machete-core'
 import { ContentLoader } from 'vue-content-loader'
 
 export default {
@@ -78,11 +76,6 @@ export default {
     }
   },
   methods: {
-    onClick() {
-      if (this.hasLoaded) {
-        CoreService.play(this.id)
-      }
-    },
     onMouseEnter() {
       this.isHovering = true
     },
