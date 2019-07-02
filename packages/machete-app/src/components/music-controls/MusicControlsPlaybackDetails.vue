@@ -1,19 +1,14 @@
 <template>
-  <Marquee>
+  <div class="music-controls-playback-details">
     <span class="title color-header">{{ title }}</span>
     <span class="bullet color-navigation">{{ bullet }}</span>
     <span class="artist color-navigation">{{ subtitle }}</span>
-  </Marquee>
+  </div>
 </template>
 
 <script>
-import Marquee from '@/components/Marquee.vue'
-
 export default {
   name: 'MusicControlsPlaybackDetails',
-  components: {
-    Marquee
-  },
   computed: {
     title() {
       return this.$coreData.song.title || 'Loading...'
@@ -29,21 +24,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-span {
-  white-space: nowrap;
-  font-weight: 500;
+.music-controls-playback-details {
+  display: flex;
+  align-items: center;
 
-  &.title {
-    font-size: 22px;
-  }
+  span {
+    white-space: nowrap;
+    font-weight: 600;
 
-  &.bullet {
-    font-size: 16px;
-    margin: 0px 8px;
-  }
+    &.title {
+      font-size: 22px;
+    }
 
-  &.artist {
-    font-size: 16px;
+    &.bullet {
+      font-size: 16px;
+      margin: 0px 8px;
+    }
+
+    &.artist {
+      font-size: 16px;
+    }
   }
 }
 </style>
