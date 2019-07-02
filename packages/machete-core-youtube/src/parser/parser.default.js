@@ -45,7 +45,6 @@ function parseVideo(el, {link, owner, playlistId}) {
 
   // Generate the result object properties
   const uri = utils.encodeUri(videoId);
-  const playlistUri = utils.encodeUri(playlistId);
   const thumbnail = `${config.urls.thumbnailUrl}${videoId}/mqdefault.jpg`;
   const {title, subtitle} = utils.parseLabel(
       linkEl.text.trim(),
@@ -57,7 +56,6 @@ function parseVideo(el, {link, owner, playlistId}) {
     title,
     subtitle,
     thumbnail,
-    playlistUri,
     type: ItemType.SONG,
   };
 }

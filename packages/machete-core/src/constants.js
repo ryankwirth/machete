@@ -1,7 +1,8 @@
 export const EventType = {
-  SONG_METADATA: 1,
-  PLAYBACK_STATE: 2,
-  PLAYBACK_TIMESTAMP: 3,
+  CURRENT_SONG: 1,
+  CURRENT_PLAYLIST: 2,
+  PLAYBACK_STATE: 3,
+  PLAYBACK_TIMESTAMP: 4,
 };
 
 export const ItemType = {
@@ -12,8 +13,9 @@ export const ItemType = {
 export const QueryType = {
   SEARCH: 1,
   SHOWCASE: 2,
-  MOST_POPULAR: 3,
-  PLAYLIST: 4,
+  PLAYLIST: 3,
+  MOST_POPULAR: 4,
+  RECENTLY_ISSUED: 5,
 };
 
 export const StateType = {

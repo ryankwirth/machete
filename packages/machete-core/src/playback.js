@@ -25,11 +25,7 @@ function playFromQueue(delta) {
     playFromItem(item);
   } else {
     // Otherwise, the queue is empty.
-    Playback.stop();
-
-    // Clear our playback states.
-    EventBus.dispatch(EventType.SONG_METADATA, {});
-    EventBus.dispatch(EventType.PLAYBACK_STATE, StateType.STOPPED);
+    Playback.stop(true);
   }
 }
 
@@ -52,8 +48,8 @@ function playFromItem(item) {
   Playback.activeService = Playback.services[slug];
 
   if (item.type === ItemType.PLAYLIST) {
-    // Broadcast that we're loading a playlist.
-    EventBus.dispatch(EventType.SONG_METADATA, {playlistUri: item.uri});
+    // Broadcast this playlist.
+    EventBus.dispatch(EventType.CURRENT_PLAYLIST, item);
 
     // Queue the playlist items individually.
     Playback.activeService.get(QueryType.PLAYLIST, {id})
@@ -74,6 +70,14 @@ export const Playback = {
 
     Queue.init();
     EventBus.on(EventType.PLAYBACK_STATE, onPlaybackState);
+  },
+
+  reset() {
+    Queue.reset();
+    EventBus.dispatch(EventType.CURRENT_SONG, {});
+    EventBus.dispatch(EventType.CURRENT_PLAYLIST, {});
+    EventBus.dispatch(EventType.PLAYBACK_STATE, StateType.STOPPED);
+    EventBus.dispatch(EventType.PLAYBACK_TIMESTAMP, 0);
   },
 
   queue(items) {
@@ -103,14 +107,14 @@ export const Playback = {
     }
   },
 
-  stop(resetQueue = true) {
+  stop(reset = true) {
     if (this.activeService) {
       this.activeService.stop();
       this.activeService = null;
     }
 
-    if (resetQueue) {
-      Queue.reset();
+    if (reset) {
+      this.reset();
     }
   },
 

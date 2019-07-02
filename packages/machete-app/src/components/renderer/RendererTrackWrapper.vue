@@ -15,7 +15,7 @@
     />
     <ContentLoader
       v-else
-      class="color-gutter"
+      class="content-loader color-gutter"
       primary-color="currentColor"
       secondary-color="currentColor"
       preserve-aspect-ratio="xMinYMin"
@@ -69,8 +69,9 @@ export default {
   },
   computed: {
     isPlaying() {
-      const { uri, playlistUri } = this.$coreData.metadata
-      return this.uri === uri || this.uri === playlistUri
+      const isCurrentSong = this.uri === this.$coreData.song.uri
+      const isCurrentPlaylist = this.uri === this.$coreData.playlist.uri
+      return isCurrentSong || isCurrentPlaylist
     },
     hasLoaded() {
       return !!this.uri
@@ -84,7 +85,7 @@ export default {
   cursor: pointer;
   max-width: 100%;
 
-  > svg {
+  .content-loader {
     height: 100%;
   }
 }

@@ -83,7 +83,7 @@ function dispatchMetadata() {
   // player, then dispatch it and the current item.
   const duration = Player.player.getDuration();
   const payload = {duration, ...Player.item};
-  Player.injectable.dispatch(EventType.SONG_METADATA, payload);
+  Player.injectable.dispatch(EventType.CURRENT_SONG, payload);
 }
 
 /**
