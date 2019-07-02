@@ -16,13 +16,13 @@ export default {
   },
   computed: {
     title() {
-      return this.$coreData.metadata.title || 'Loading...'
+      return this.$coreData.song.title || 'Loading...'
     },
     bullet() {
-      return this.$coreData.metadata.title ? '•' : ''
+      return this.$coreData.song.uri ? '•' : ''
     },
     subtitle() {
-      return this.$coreData.metadata.subtitle || ''
+      return this.$coreData.song.subtitle || ''
     }
   }
 }

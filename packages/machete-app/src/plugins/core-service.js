@@ -13,7 +13,7 @@ export const CoreServicePlugin = {
     CoreService.init(services, { proxy })
 
     // When the song metadata changes, update the document title.
-    CoreService.on(EventType.SONG_METADATA, ({ title, subtitle }) => {
+    CoreService.on(EventType.CURRENT_SONG, ({ title, subtitle }) => {
       document.title = title ? `${title} - ${subtitle}` : 'Machete'
     })
   }

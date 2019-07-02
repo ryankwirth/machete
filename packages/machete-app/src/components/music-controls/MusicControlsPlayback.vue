@@ -39,10 +39,10 @@ export default {
   },
   computed: {
     url() {
-      return this.$coreData.metadata.thumbnail || ''
+      return this.$coreData.song.thumbnail || ''
     },
     duration() {
-      return this.$coreData.metadata.duration || 1
+      return this.$coreData.song.duration || 1
     },
     timestamp() {
       return this.modified ? this.modifiedTimestamp : this.$coreData.timestamp

@@ -4,14 +4,16 @@ export const CoreDataPlugin = {
   install(Vue) {
     // Define an observable object so that each property is reactive
     const observable = Vue.observable({
-      metadata: {},
+      song: {},
+      playlist: {},
       state: StateType.STOPPED,
       timestamp: 0,
     })
 
     // When the Core Service emits a data-related events, update our reactive
     // observable object
-    CoreService.on(EventType.SONG_METADATA, (metadata) => observable.metadata = metadata)
+    CoreService.on(EventType.CURRENT_SONG, (song) => observable.song = song)
+    CoreService.on(EventType.CURRENT_PLAYLIST, (playlist) => observable.playlist = playlist)
     CoreService.on(EventType.PLAYBACK_STATE, (state) => observable.state = state)
     CoreService.on(EventType.PLAYBACK_TIMESTAMP, (timestamp) => observable.timestamp = timestamp)
 

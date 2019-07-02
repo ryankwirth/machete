@@ -69,8 +69,9 @@ export default {
   },
   computed: {
     isPlaying() {
-      const { uri, playlistUri } = this.$coreData.metadata
-      return this.uri === uri || this.uri === playlistUri
+      const isCurrentSong = this.uri === this.$coreData.song.uri
+      const isCurrentPlaylist = this.uri === this.$coreData.playlist.uri
+      return isCurrentSong || isCurrentPlaylist
     },
     hasLoaded() {
       return !!this.uri

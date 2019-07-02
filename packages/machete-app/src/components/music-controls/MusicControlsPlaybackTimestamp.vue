@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     duration() {
-      return this.$coreData.metadata.duration || 0
+      return this.$coreData.song.duration || 0
     }
   },
   methods: {
