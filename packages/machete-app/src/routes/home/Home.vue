@@ -58,7 +58,7 @@ section {
   }
 
   .most-popular {
-    flex-basis: 500px;
+    flex-basis: 400px;
   }
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="renderer-list">
-    <div class="header">
-      <span class="title color-navigation">Title</span>
-      <span class="artist color-navigation">Artist</span>
+    <div class="header color-navigation">
+      <span>Title</span>
+      <span>Artist</span>
     </div>
 
     <Track
@@ -29,7 +29,7 @@ export default {
     },
     skeletonItems: {
       type: Number,
-      default: 30
+      default: 10
     }
   },
   computed: {
@@ -46,21 +46,13 @@ export default {
 
   .header {
     display: flex;
+    margin-bottom: 8px;
     cursor: default;
 
     span {
+      flex: 1;
       font-size: 12px;
       font-weight: 700;
-
-      height: 100%;
-
-      &.title {
-        flex: 3;
-      }
-
-      &.artist {
-        flex: 4;
-      }
     }
   }
 }

@@ -1,37 +1,31 @@
 <template>
   <TrackWrapper
     class="renderer-list-track color-text color-accent-hover"
+    :height="50"
+    :width="400"
     v-bind="data"
   >
     <template v-slot:default="props">
-      <span class="title">{{ props.title }}</span>
-      <span class="artist">{{ props.subtitle }}</span>
+      <span>{{ props.title }}</span>
+      <span>{{ props.subtitle }}</span>
     </template>
 
     <template v-slot:skeleton>
       <rect
         x="0"
-        y="0"
+        y="16"
         rx="3"
         ry="3"
-        width="60"
-        height="60"
-      />
-      <rect
-        x="70"
-        y="12"
-        rx="3"
-        ry="3"
-        width="168"
+        width="175"
         height="18"
       />
       <rect
-        x="70"
-        y="34"
+        x="200"
+        y="16"
         rx="3"
         ry="3"
-        width="96"
-        height="15"
+        width="175"
+        height="18"
       />
     </template>
   </TrackWrapper>
@@ -61,24 +55,17 @@ export default {
   display: flex;
   align-items: center;
 
-  height: 60px;
+  height: 50px;
   min-width: 0px;
 
   span {
+    flex: 1;
     font-size: 14px;
     font-weight: 600;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-    &.title {
-      flex: 3;
-    }
-
-    &.artist {
-      flex: 4;
-    }
   }
 }
 </style>
