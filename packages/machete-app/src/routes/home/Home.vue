@@ -8,13 +8,13 @@
       <Renderer
         class="recently-issued"
         type="Grid"
-        :queueOnPlay="true"
+        :queue-on-play="true"
         v-bind="recentlyIssued"
       />
       <Renderer
         class="most-popular"
         type="List"
-        :queueOnPlay="true"
+        :queue-on-play="true"
         v-bind="mostPopular"
       />
     </section>
