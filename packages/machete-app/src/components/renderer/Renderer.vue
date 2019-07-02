@@ -36,14 +36,25 @@ export default {
     items: {
       type: Array,
       default: null
+    },
+    queueOnPlay: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
     onPlay(index) {
-      // Stop playing the current song, resetting the queue, then play the new
-      // item immediately.
+      // Stop playing the current song and reset the queue.
       CoreService.stop()
-      CoreService.play(this.items[index])
+
+      if (this.queueOnPlay) {
+        // Queue all of the items in this renderer, then play the clicked item.
+        CoreService.queue(this.items)
+        CoreService.play(index)
+      } else {
+        // Simply play the clicked item.
+        CoreService.play(this.items[index])
+      }
     }
   }
 }
