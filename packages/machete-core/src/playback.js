@@ -25,7 +25,7 @@ function playFromQueue(delta) {
     playFromItem(item);
   } else {
     // Otherwise, the queue is empty.
-    Playback.reset();
+    Playback.stop(true);
   }
 }
 
@@ -73,11 +73,9 @@ export const Playback = {
   },
 
   reset() {
-    Playback.stop(true);
-
-    // Clear our playback states.
+    Queue.reset();
     EventBus.dispatch(EventType.CURRENT_SONG, {});
-    EventBus.dispatch(EventTYpe.CURRENT_PLAYLIST, {});
+    EventBus.dispatch(EventType.CURRENT_PLAYLIST, {});
     EventBus.dispatch(EventType.PLAYBACK_STATE, StateType.STOPPED);
     EventBus.dispatch(EventType.PLAYBACK_TIMESTAMP, 0);
   },
@@ -109,14 +107,14 @@ export const Playback = {
     }
   },
 
-  stop(resetQueue = true) {
+  stop(reset = true) {
     if (this.activeService) {
       this.activeService.stop();
       this.activeService = null;
     }
 
-    if (resetQueue) {
-      Queue.reset();
+    if (reset) {
+      this.reset();
     }
   },
 

@@ -14,7 +14,7 @@ export const CoreServicePlugin = {
 
     // When the song metadata changes, update the document title.
     CoreService.on(EventType.CURRENT_SONG, ({ title, subtitle }) => {
-      document.title = title ? `${title} - ${subtitle}` : 'Machete'
+      document.title = title ? `${title} • ${subtitle}` : 'Machete'
     })
   }
 }
