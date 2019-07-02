@@ -14,12 +14,14 @@
 <script>
 import { CoreService } from 'machete-core'
 import Grid from './RendererGrid.vue'
+import List from './RendererList.vue'
 import Showcase from './RendererShowcase.vue'
 
 export default {
   name: 'Renderer',
   components: {
     Grid,
+    List,
     Showcase
   },
   props: {

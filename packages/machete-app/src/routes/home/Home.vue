@@ -12,7 +12,7 @@
       />
       <Renderer
         class="recently-issued"
-        type="Grid"
+        type="List"
         v-bind="recentlyIssued"
       />
     </section>
@@ -54,7 +54,7 @@ section {
 
   .most-popular {
     flex: 3;
-    margin-right: 32px;
+    margin-right: 48px;
   }
 
   .recently-issued {

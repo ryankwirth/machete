@@ -7,7 +7,7 @@ const services = [ YouTubeService ]
 // Avoid CORS issues
 const proxy = 'https://machete-proxy.herokuapp.com/'
 
-const CoreServicePlugin = {
+export const CoreServicePlugin = {
   install() {
     // Initialize the service.
     CoreService.init(services, { proxy })
@@ -18,5 +18,3 @@ const CoreServicePlugin = {
     })
   }
 }
-
-export default CoreServicePlugin
