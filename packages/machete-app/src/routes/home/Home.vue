@@ -6,14 +6,14 @@
     />
     <section>
       <Renderer
-        class="most-popular"
+        class="recently-issued"
         type="Grid"
-        v-bind="mostPopular"
+        v-bind="recentlyIssued"
       />
       <Renderer
-        class="recently-issued"
+        class="most-popular"
         type="List"
-        v-bind="recentlyIssued"
+        v-bind="mostPopular"
       />
     </section>
   </div>
@@ -31,19 +31,19 @@ export default {
   data() {
     return {
       showcase: null,
-      mostPopular: null,
-      recentlyIssued: null
+      recentlyIssued: null,
+      mostPopular: null
     }
   },
   mounted() {
     CoreService.get(QueryType.SHOWCASE)
       .then((results) => this.showcase = results[0])
 
-    CoreService.get(QueryType.MOST_POPULAR)
-      .then((results) => this.mostPopular = results[0])
-
     CoreService.get(QueryType.RECENTLY_ISSUED)
       .then((results) => this.recentlyIssued = results[0])
+
+    CoreService.get(QueryType.MOST_POPULAR)
+      .then((results) => this.mostPopular = results[0])
   }
 }
 </script>
@@ -52,12 +52,12 @@ export default {
 section {
   display: flex;
 
-  .most-popular {
+  .recently-issued {
     flex: 1;
     margin-right: 48px;
   }
 
-  .recently-issued {
+  .most-popular {
     flex-basis: 500px;
   }
 }
