@@ -53,12 +53,12 @@ section {
   display: flex;
 
   .most-popular {
-    flex: 3;
+    flex: 1;
     margin-right: 48px;
   }
 
   .recently-issued {
-    flex: 2;
+    flex-basis: 500px;
   }
 }
 </style>

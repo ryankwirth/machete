@@ -1,20 +1,11 @@
 <template>
   <TrackWrapper
-    class="renderer-list-track"
+    class="renderer-list-track color-text color-accent-hover"
     v-bind="data"
   >
     <template v-slot:default="props">
-      <Artwork
-        :url="props.thumbnail"
-        :radius="3"
-        :show-hovering="props.isHovering"
-        :show-playing="props.isPlaying"
-        :size="60"
-      />
-      <div class="details">
-        <span class="title color-text">{{ props.title }}</span>
-        <span class="artist color-navigation">{{ props.subtitle }}</span>
-      </div>
+      <span class="title">{{ props.title }}</span>
+      <span class="artist">{{ props.subtitle }}</span>
     </template>
 
     <template v-slot:skeleton>
@@ -68,31 +59,25 @@ export default {
 <style lang="scss" scoped>
 .renderer-list-track {
   display: flex;
+  align-items: center;
+
   height: 60px;
+  min-width: 0px;
 
-  .details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  span {
+    font-size: 14px;
+    font-weight: 600;
 
-    padding: 0px 12px;
-    text-align: left;
-    min-width: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-    > span {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    &.title {
+      flex: 3;
+    }
 
-      &.title {
-        font-weight: 600;
-        margin-bottom: 2px;
-      }
-
-      &.artist {
-        font-weight: 700;
-        font-size: 12px;
-      }
+    &.artist {
+      flex: 4;
     }
   }
 }
