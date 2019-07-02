@@ -6,8 +6,16 @@
     v-bind="data"
   >
     <template v-slot:default="props">
-      <span>{{ props.title }}</span>
-      <span>{{ props.subtitle }}</span>
+      <BaseIcon
+        v-if="props.isPlaying"
+        class="icon color-accent"
+        width="16"
+        height="16"
+      >
+        <IconPlaying />
+      </BaseIcon>
+      <span :class="{ 'color-accent': props.isPlaying }">{{ props.title }}</span>
+      <span :class="{ 'color-accent': props.isPlaying }">{{ props.subtitle }}</span>
     </template>
 
     <template v-slot:skeleton>
@@ -32,13 +40,15 @@
 </template>
 
 <script>
-import Artwork from '@/components/artwork'
+import BaseIcon from '@/components/BaseIcon.vue'
+import IconPlaying from '@/components/icons/IconPlaying.vue'
 import TrackWrapper from './RendererTrackWrapper.vue'
 
 export default {
   name: 'RendererListTrack',
   components: {
-    Artwork,
+    BaseIcon,
+    IconPlaying,
     TrackWrapper
   },
   props: {
@@ -54,9 +64,17 @@ export default {
 .renderer-list-track {
   display: flex;
   align-items: center;
+  position: relative;
 
   height: 50px;
   min-width: 0px;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: -24px;
+    transform: translateY(-50%);
+  }
 
   span {
     flex: 1;

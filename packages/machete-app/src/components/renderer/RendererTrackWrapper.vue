@@ -15,7 +15,7 @@
     />
     <ContentLoader
       v-else
-      class="color-gutter"
+      class="content-loader color-gutter"
       primary-color="currentColor"
       secondary-color="currentColor"
       preserve-aspect-ratio="xMinYMin"
@@ -85,7 +85,7 @@ export default {
   cursor: pointer;
   max-width: 100%;
 
-  > svg {
+  .content-loader {
     height: 100%;
   }
 }
