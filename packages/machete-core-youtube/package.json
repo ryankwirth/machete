@@ -12,7 +12,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "machete-core": "file:../machete-core"
+    "machete-core": "file:../machete-core",
+    "to-title-case": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^6.0.1",
