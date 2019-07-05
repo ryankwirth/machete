@@ -1,8 +1,13 @@
 import config from './config';
+import {Player} from './player';
 
 const SpotifyService = {
-  init(/* injectable */) {
-    return Promise.resolve(config.slug);
+  init(injectable) {
+    console.log('SpotifyService; init');
+    return Promise.all([
+      Player.init(injectable),
+    ])
+        .then(() => config.slug);
   },
 
   play(/* item */) {
