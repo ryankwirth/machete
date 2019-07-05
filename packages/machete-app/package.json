@@ -21,6 +21,7 @@
     "core-js": "^2.6.5",
     "hotkeys-js": "^3.6.11",
     "machete-core": "file:../machete-core",
+    "machete-core-spotify": "file:../machete-core-spotify",
     "machete-core-youtube": "file:../machete-core-youtube",
     "vue": "^2.6.10",
     "vue-content-loader": "^0.2.2",

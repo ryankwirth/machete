@@ -1,8 +1,9 @@
 import { CoreService, EventType } from 'machete-core'
+import { SpotifyService } from 'machete-core-spotify'
 import { YouTubeService } from 'machete-core-youtube'
 
 // Define which services we want to use.
-const services = [ YouTubeService ]
+const services = [ SpotifyService, YouTubeService ]
 
 // Avoid CORS issues
 const proxy = 'https://machete-proxy.herokuapp.com/'
