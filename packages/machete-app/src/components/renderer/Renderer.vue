@@ -44,6 +44,11 @@ export default {
   },
   methods: {
     onPlay(index) {
+      if (!this.items) {
+        // If we haven't loaded any items yet, don't do anything.
+        return
+      }
+
       // Stop playing the current song and reset the queue.
       CoreService.stop()
 
