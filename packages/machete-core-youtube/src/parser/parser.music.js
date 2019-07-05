@@ -1,4 +1,5 @@
 import {ItemType} from 'machete-core';
+import toTitleCase from 'to-title-case';
 import config from '../config';
 import utils from '../utils';
 import payload from '../assets/payload.music';
@@ -28,8 +29,7 @@ function parseShowcase(data) {
  */
 function parseShowcaseCarouselRenderer(renderer) {
   const headerRenderer = renderer.header.musicCarouselShelfBasicHeaderRenderer;
-  const title = headerRenderer.title.runs[0].text
-      .replace(/ \w/g, (t) => t.toUpperCase());
+  const title = toTitleCase(headerRenderer.title.runs[0].text);
 
   const items = renderer.contents
       .map((content) =>
