@@ -1,7 +1,7 @@
 export const listenToPlaylist = (state, playlist) => {
-  state.playlists.push(playlist)
+  state.playlists.unshift(playlist)
 }
 
 export const listenToSong = (state, song) => {
-  state.songs.push(song)
+  state.songs.unshift(song)
 }
