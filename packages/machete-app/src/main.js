@@ -6,6 +6,7 @@ import store from './store'
 
 import {
   CoreDataPlugin,
+  CoreHistoryPlugin,
   CoreServicePlugin,
   KeyboardShortcutsPlugin
 } from './plugins'
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 
 // Install plugins
 Vue.use(CoreDataPlugin)
+Vue.use(CoreHistoryPlugin)
 Vue.use(CoreServicePlugin)
 Vue.use(KeyboardShortcutsPlugin)
 

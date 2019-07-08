@@ -69,7 +69,6 @@ function dispatchState(status) {
       Player.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.PAUSED);
       break;
     case 3:
-      dispatchMetadata();
       Player.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING);
       break;
   }

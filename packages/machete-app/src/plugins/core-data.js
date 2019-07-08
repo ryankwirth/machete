@@ -18,6 +18,6 @@ export const CoreDataPlugin = {
     CoreService.on(EventType.PLAYBACK_TIMESTAMP, (timestamp) => observable.timestamp = timestamp)
 
     // Expose the observable object to every component
-    Vue.prototype.$coreData = observable
+    Vue.$coreData = Vue.prototype.$coreData = observable
   }
 }

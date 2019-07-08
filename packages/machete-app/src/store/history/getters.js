@@ -1,3 +1,2 @@
-export const count = (state) => {
-  return state.count
-}
+export const playlists = ({ playlists }) => playlists
+export const songs = ({ songs }) => songs
