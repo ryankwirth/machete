@@ -20,9 +20,6 @@ export default {
     }
   },
   computed: {
-    title() {
-      return `Search: "${this.query}"`
-    },
     query() {
       return this.$route.query.q
     }

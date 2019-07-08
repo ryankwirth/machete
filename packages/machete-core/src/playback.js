@@ -80,8 +80,8 @@ export const Playback = {
     EventBus.dispatch(EventType.PLAYBACK_TIMESTAMP, 0);
   },
 
-  queue(items) {
-    Queue.add(items);
+  queue(items, toFront = false) {
+    Queue.add(items, toFront);
   },
 
   play(item) {

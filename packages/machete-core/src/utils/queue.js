@@ -8,7 +8,7 @@ export const Queue = {
     this.init();
   },
 
-  add(items, toFront = false) {
+  add(items, toFront) {
     if (toFront) {
       this.items.splice(this.index, 0, ...items);
     } else {

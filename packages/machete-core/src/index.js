@@ -12,9 +12,9 @@ export default {
     return CoreService.init(services, options).then(resolve);
   },
 
-  queue(items) {
+  queue(items, toFront) {
     return init
-        .then(() => CoreService.queue(items));
+        .then(() => CoreService.queue(items, toFront));
   },
 
   play(item) {

@@ -21,8 +21,8 @@ export const CoreService = {
         });
   },
 
-  queue(items) {
-    Playback.queue(items);
+  queue(items, toFront) {
+    Playback.queue(items, toFront);
   },
 
   play(item) {
