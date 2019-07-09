@@ -120,14 +120,14 @@ export const Player = {
         .then(injectPlayer);
   },
 
-  play(item) {
+  play(item, timestamp) {
     if (item) {
       this.item = item;
       this.injectable.dispatch(EventType.PLAYBACK_STATE, StateType.LOADING);
 
       // Get the video ID from the slugged URI.
       const videoId = utils.decodeUri(item.uri);
-      this.player.loadVideoById(videoId);
+      this.player.loadVideoById(videoId, timestamp);
     } else {
       this.player.playVideo();
     }

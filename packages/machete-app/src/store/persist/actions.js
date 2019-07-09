@@ -7,5 +7,8 @@ export const setCurrentSong = ({ commit }, song) => {
 }
 
 export const setCurrentTimestamp = ({ commit }, timestamp) => {
-  commit('setCurrentTimestamp', timestamp)
+  // Only commit a mutation every 10 seconds.
+  if (Math.floor(timestamp) % 10 === 0) {
+    commit('setCurrentTimestamp', timestamp)
+  }
 }

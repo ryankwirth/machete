@@ -17,9 +17,9 @@ export default {
         .then(() => CoreService.queue(items, toFront));
   },
 
-  play(item) {
+  play(item, timestamp) {
     return init
-        .then(() => CoreService.play(item));
+        .then(() => CoreService.play(item, timestamp));
   },
 
   pause() {

@@ -9,8 +9,7 @@ export const CorePersistPlugin = {
 
     // If the user was listening to a song, restore it.
     if (currentSong) {
-      CoreService.play(currentSong)
-      CoreService.seekTo(currentTimestamp)
+      CoreService.play(currentSong, currentTimestamp)
     }
 
     // Hook up event listeners to update the store.
