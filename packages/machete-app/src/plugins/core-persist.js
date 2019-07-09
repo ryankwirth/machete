@@ -8,7 +8,7 @@ export const CorePersistPlugin = {
     const currentTimestamp = getters['persist/currentTimestamp']
 
     // If the user was listening to a song, restore it.
-    if (currentSong) {
+    if (currentSong && currentSong.uri) {
       CoreService.play(currentSong, currentTimestamp)
     }
 
