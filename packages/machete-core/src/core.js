@@ -25,8 +25,8 @@ export const CoreService = {
     Playback.queue(items, toFront);
   },
 
-  play(item) {
-    Playback.play(item);
+  play(item, timestamp) {
+    Playback.play(item, timestamp);
   },
 
   pause() {

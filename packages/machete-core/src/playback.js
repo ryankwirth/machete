@@ -32,8 +32,9 @@ function playFromQueue(delta) {
 /**
  * Plays an item with its respective service.
  * @param {Item} item The item to play.
+ * @param {Number} timestamp The timestamp to begin playing at.
  */
-function playFromItem(item) {
+function playFromItem(item, timestamp) {
   // If another service is playing, stop it.
   Playback.stop(false);
 
@@ -59,7 +60,7 @@ function playFromItem(item) {
         });
   } else {
     // Play the new item directly.
-    Playback.activeService.play(item);
+    Playback.activeService.play(item, timestamp);
   }
 }
 
@@ -84,14 +85,14 @@ export const Playback = {
     Queue.add(items, toFront);
   },
 
-  play(item) {
+  play(item, timestamp = 0) {
     switch (typeof item) {
       case 'number':
         // Move the queue to the given position and play from there.
         item = Queue.set(item);
       case 'object':
         // Fall-through from above.
-        playFromItem(item);
+        playFromItem(item, timestamp);
         return;
       default:
         // Otherwise, play the current track.

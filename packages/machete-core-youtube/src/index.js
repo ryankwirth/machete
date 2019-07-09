@@ -12,8 +12,8 @@ const YouTubeService = {
         .then(() => config.slug);
   },
 
-  play(item) {
-    Player.play(item);
+  play(item, timestamp) {
+    Player.play(item, timestamp);
   },
 
   pause() {
