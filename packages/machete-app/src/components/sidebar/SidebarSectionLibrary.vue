@@ -42,7 +42,7 @@
 <script>
 import IconAlbum from '@/components/icons/IconAlbum.vue'
 import IconClock from '@/components/icons/IconClock.vue'
-import IconFavourite from '@/components/icons/IconFavourite.vue'
+import IconFavourite from '@/components/icons/IconFavouriteOutline.vue'
 import IconFolder from '@/components/icons/IconFolder.vue'
 import IconMusic from '@/components/icons/IconMusic.vue'
 import IconPerson from '@/components/icons/IconPerson.vue'

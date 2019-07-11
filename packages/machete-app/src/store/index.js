@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
 
 // Import each module.
+import favourite from './favourite'
 import history from './history'
 import persist from './persist'
 
@@ -15,6 +16,7 @@ const vuexPersist = new VuexPersist()
 // Construct a new Vuex Store instance.
 export default new Vuex.Store({
   modules: {
+    favourite,
     history,
     persist
   },
