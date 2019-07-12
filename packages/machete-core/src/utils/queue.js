@@ -1,3 +1,6 @@
+import {EventType} from '../constants';
+import {EventBus} from './event-bus';
+
 export const Queue = {
   init() {
     this.index = -1;
@@ -14,6 +17,9 @@ export const Queue = {
     } else {
       this.items.push(...items);
     }
+
+    // Inform listeners of the new queue items.
+    this.dispatchState();
   },
 
   get(delta = 0) {
@@ -36,6 +42,17 @@ export const Queue = {
       newIndex = newIndex % this.items.length;
       this.index = newIndex < 0 ? this.items.length - 1 : newIndex;
     }
+
+    // Inform listeners of the new queue index.
+    this.dispatchState();
+
     return this.items[this.index];
+  },
+
+  dispatchState() {
+    EventBus.dispatch(EventType.CURRENT_QUEUE, {
+      index: this.index,
+      items: this.items,
+    });
   },
 };

@@ -2,6 +2,10 @@ export const setCurrentPlaylist = (state, playlist) => {
   state.currentPlaylist = playlist;
 };
 
+export const setCurrentQueue = (state, queue) => {
+  state.currentQueue = queue;
+};
+
 export const setCurrentSong = (state, song) => {
   state.currentSong = song;
 };

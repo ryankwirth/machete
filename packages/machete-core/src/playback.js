@@ -1,4 +1,4 @@
-import {EventType, ItemType, QueryType, StateType} from 'machete-core';
+import {EventType, ItemType, QueryType, StateType} from './constants';
 import {EventBus, Queue} from './utils';
 
 /**
@@ -81,8 +81,12 @@ export const Playback = {
     EventBus.dispatch(EventType.PLAYBACK_TIMESTAMP, 0);
   },
 
-  queue(items, toFront = false) {
+  queue(items, toFront = false, newIndex = -1) {
     Queue.add(items, toFront);
+
+    if (newIndex > -1) {
+      Queue.set(newIndex);
+    }
   },
 
   play(item, timestamp = 0) {

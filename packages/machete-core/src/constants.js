@@ -1,8 +1,9 @@
 export const EventType = {
   CURRENT_SONG: 1,
   CURRENT_PLAYLIST: 2,
-  PLAYBACK_STATE: 3,
-  PLAYBACK_TIMESTAMP: 4,
+  CURRENT_QUEUE: 3,
+  PLAYBACK_STATE: 4,
+  PLAYBACK_TIMESTAMP: 5,
 };
 
 export const ItemType = {
