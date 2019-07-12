@@ -1,20 +1,24 @@
-import {CoreService, StateType} from 'machete-core'
-import hotkeys from 'hotkeys-js'
+import {CoreService, StateType} from 'machete-core';
+import hotkeys from 'hotkeys-js';
 
-function togglePlayback($coreData) {
-  if ($coreData.state === StateType.PLAYING) {
-    CoreService.pause()
+/**
+ * Toggles the playing/paused state of the CoreService.
+ * @param {StateType} state The current state of the CoreService.
+ */
+function togglePlayback(state) {
+  if (state === StateType.PLAYING) {
+    CoreService.pause();
   } else {
-    CoreService.play()
+    CoreService.play();
   }
 }
 
 export const KeyboardShortcutsPlugin = {
-  install({ $coreData }) {
+  install({$coreData}) {
     // When the spacebar is tapped, toggle the play/paused state.
     hotkeys('space', (e) => {
-      e.preventDefault()
-      togglePlayback($coreData)
-    })
-  }
-}
+      e.preventDefault();
+      togglePlayback($coreData.state);
+    });
+  },
+};

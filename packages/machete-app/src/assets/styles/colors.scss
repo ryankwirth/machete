@@ -39,6 +39,7 @@ body:not([dark]) {
   @include def('text', $text-light);
   @include def('header', $header-light);
   @include def('accent', $accent-light);
+  @include def('error', $error-light);
 }
 
 /* Dark Theme */
@@ -53,4 +54,5 @@ body[dark] {
   @include def('text', $text-dark);
   @include def('header', $header-dark);
   @include def('accent', $accent-dark);
+  @include def('error', $error-light);
 }

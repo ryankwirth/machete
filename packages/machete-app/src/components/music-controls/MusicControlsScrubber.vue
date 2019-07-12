@@ -26,56 +26,56 @@ export default {
   props: {
     total: {
       type: Number,
-      default: 1
+      default: 1,
     },
     value: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   computed: {
     bounds() {
-      return this.$refs.scrubber.getBoundingClientRect()
+      return this.$refs.scrubber.getBoundingClientRect();
     },
     percentage() {
-      return (this.value / this.total) * 100
+      return (this.value / this.total) * 100;
     },
     fillStyle() {
-      return { width: `${this.percentage}%` }
+      return {width: `${this.percentage}%`};
     },
     handleStyle() {
-      return { left: `${this.percentage}%` }
-    }
+      return {left: `${this.percentage}%`};
+    },
   },
   methods: {
     computeValue(event) {
-      const xPosition = event.clientX - this.bounds.left
-      const value = Math.floor((xPosition / this.bounds.width) * this.total)
-      return Math.min(Math.max(value, 0), this.total)
+      const xPosition = event.clientX - this.bounds.left;
+      const value = Math.floor((xPosition / this.bounds.width) * this.total);
+      return Math.min(Math.max(value, 0), this.total);
     },
     onClick(event) {
-      this.setValue(event)
+      this.setValue(event);
     },
     onMouseDown() {
-      document.addEventListener('mousemove', this.onMouseMove)
-      document.addEventListener('mouseup', this.onMouseUp)
+      document.addEventListener('mousemove', this.onMouseMove);
+      document.addEventListener('mouseup', this.onMouseUp);
     },
     onMouseUp(event) {
-      this.setValue(event)
-      document.removeEventListener('mousemove', this.onMouseMove)
-      document.removeEventListener('mouseup', this.onMouseUp)
+      this.setValue(event);
+      document.removeEventListener('mousemove', this.onMouseMove);
+      document.removeEventListener('mouseup', this.onMouseUp);
     },
     onMouseMove(event) {
-      this.updateValue(event)
+      this.updateValue(event);
     },
     setValue(event) {
-      this.$emit('setValue', this.computeValue(event))
+      this.$emit('setValue', this.computeValue(event));
     },
     updateValue(event) {
-      this.$emit('updateValue', this.computeValue(event))
-    }
-  }
-}
+      this.$emit('updateValue', this.computeValue(event));
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

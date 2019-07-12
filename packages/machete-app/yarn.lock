@@ -3684,6 +3684,11 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
+eslint-config-google@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-google/-/eslint-config-google-0.13.0.tgz#e277d16d2cb25c1ffd3fd13fb0035ad7421382fe"
+  integrity sha512-ELgMdOIpn0CFdsQS+FuxO+Ttu4p+aLaXHv9wA9yVnzqlUGV7oN/eRRnJekk7TCur6Cu2FXX0fqfIXRBaM14lpQ==
+
 eslint-loader@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/eslint-loader/-/eslint-loader-2.1.2.tgz#453542a1230d6ffac90e4e7cb9cadba9d851be68"
@@ -5936,7 +5941,7 @@ lru-cache@^5.1.1:
 "machete-core-youtube@file:../machete-core-youtube":
   version "0.1.0"
   dependencies:
-    machete-core "file:../../../../Library/Caches/Yarn/v4/npm-machete-core-youtube-0.1.0-a4555107-8d93-46d1-aebc-ac5d91b40495-1562561252407/node_modules/machete-core"
+    machete-core "file:../../../../Library/Caches/Yarn/v4/npm-machete-core-youtube-0.1.0-2951a044-4647-49f3-b6c5-255f72026166-1562898649565/node_modules/machete-core"
     to-title-case "^1.0.0"
 
 "machete-core@file:../machete-core":

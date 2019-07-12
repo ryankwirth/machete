@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import IconGlobe from '@/components/icons/IconGlobe.vue'
+import IconGlobe from '@/components/icons/IconGlobe.vue';
 
-import Button from './SidebarSectionButton.vue'
-import Library from './SidebarSectionLibrary.vue'
-import Playlists from './SidebarSectionPlaylists.vue'
-import Sources from './SidebarSectionSources.vue'
+import Button from './SidebarSectionButton.vue';
+import Library from './SidebarSectionLibrary.vue';
+import Playlists from './SidebarSectionPlaylists.vue';
+import Sources from './SidebarSectionSources.vue';
 
 export default {
   name: 'Sidebar',
@@ -27,9 +27,9 @@ export default {
     IconGlobe,
     Library,
     Playlists,
-    Sources
-  }
-}
+    Sources,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

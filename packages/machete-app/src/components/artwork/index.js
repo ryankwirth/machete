@@ -1,1 +1,1 @@
-export { default } from './Artwork.vue'
+export {default} from './Artwork.vue';

@@ -1,1 +1,1 @@
-export { default } from './Renderer.vue'
+export {default} from './Renderer.vue';

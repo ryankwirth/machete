@@ -14,26 +14,26 @@
 </template>
 
 <script>
-import BaseIcon from '@/components/BaseIcon.vue'
+import BaseIcon from '@/components/BaseIcon.vue';
 
 export default {
   name: 'SidebarSectionButton',
   components: {
-    BaseIcon
+    BaseIcon,
   },
   props: {
     label: {
       type: String,
-      required: true
+      required: true,
     },
     path: {
       type: String,
-      default: '/'
-    }
+      default: '/',
+    },
   },
   computed: {
     active() {
-      return this.$route.path === this.path
+      return this.$route.path === this.path;
     },
     classes() {
       return {
@@ -42,16 +42,16 @@ export default {
         'color-background': this.active,
         'color-background-hover': true,
         'color-accent-bg': this.active,
-        'color-accent-bg-hover': true
-      }
-    }
+        'color-accent-bg-hover': true,
+      };
+    },
   },
   methods: {
     onClick() {
-      this.$router.push(this.path)
-    }
-  }
-}
+      this.$router.push(this.path);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

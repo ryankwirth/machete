@@ -14,28 +14,28 @@
 </template>
 
 <script>
-import { CoreService } from 'machete-core'
-import Buttons from './MusicControlsVolumeButtons.vue'
-import Scrubber from './MusicControlsScrubber.vue'
+import {CoreService} from 'machete-core';
+import Buttons from './MusicControlsVolumeButtons.vue';
+import Scrubber from './MusicControlsScrubber.vue';
 
 export default {
   name: 'MusicControlsVolume',
   components: {
     Buttons,
-    Scrubber
+    Scrubber,
   },
   data() {
     return {
-      volume: 100
-    }
+      volume: 100,
+    };
   },
   methods: {
     onSetVolume(volume) {
-      this.volume = volume
-      CoreService.setVolume(volume)
-    }
-  }
-}
+      this.volume = volume;
+      CoreService.setVolume(volume);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

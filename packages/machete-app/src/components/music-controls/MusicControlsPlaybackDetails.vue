@@ -11,16 +11,16 @@ export default {
   name: 'MusicControlsPlaybackDetails',
   computed: {
     title() {
-      return this.$coreData.song.title || 'Loading...'
+      return this.$coreData.song.title || 'Loading...';
     },
     bullet() {
-      return this.$coreData.song.uri ? '•' : ''
+      return this.$coreData.song.uri ? '•' : '';
     },
     subtitle() {
-      return this.$coreData.song.subtitle || ''
-    }
-  }
-}
+      return this.$coreData.song.subtitle || '';
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <template>
   <Renderer
-    title="Recently Played"
+    title="Liked Songs"
     type="Grid"
     :items="songs"
   />
@@ -10,13 +10,13 @@
 import Renderer from '@/components/renderer';
 
 export default {
-  name: 'Search',
+  name: 'Liked',
   components: {
     Renderer,
   },
   computed: {
     songs() {
-      return this.$store.getters['history/songs'];
+      return this.$store.getters['favourite/songs'];
     },
   },
 };

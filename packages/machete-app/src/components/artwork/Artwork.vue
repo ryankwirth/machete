@@ -19,38 +19,38 @@
 </template>
 
 <script>
-import IconPlay from '@/components/icons/IconPlay.vue'
-import IconPlaying from '@/components/icons/IconPlaying.vue'
-import Overlay from './ArtworkOverlay.vue'
+import IconPlay from '@/components/icons/IconPlay.vue';
+import IconPlaying from '@/components/icons/IconPlaying.vue';
+import Overlay from './ArtworkOverlay.vue';
 
 export default {
   name: 'Artwork',
   components: {
     IconPlay,
     IconPlaying,
-    Overlay
+    Overlay,
   },
   props: {
     radius: {
       type: Number,
-      default: 0
+      default: 0,
     },
     showHovering: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showPlaying: {
       type: Boolean,
-      default: false
+      default: false,
     },
     size: {
       type: Number,
-      default: 80
+      default: 80,
     },
     url: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     styles() {
@@ -60,17 +60,17 @@ export default {
           height: `${this.size}px`,
           backgroundImage: `url(${this.url})`,
           backgroundSize: 'cover',
-          borderRadius: `${this.radius}px`
-        }
+          borderRadius: `${this.radius}px`,
+        };
       } else {
         return {
           width: `${this.size}px`,
-          height: `${this.size}px`
-        }
+          height: `${this.size}px`,
+        };
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

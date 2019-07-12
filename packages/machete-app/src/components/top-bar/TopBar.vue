@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import Search from './TopBarSearch.vue'
+import Search from './TopBarSearch.vue';
 
 export default {
   name: 'TopBar',
   components: {
-    Search
-  }
-}
+    Search,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

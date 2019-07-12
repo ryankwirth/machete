@@ -14,8 +14,16 @@
       >
         <IconPlaying />
       </BaseIcon>
-      <span :class="{ 'color-accent': props.isPlaying }">{{ props.title }}</span>
-      <span :class="{ 'color-accent': props.isPlaying }">{{ props.subtitle }}</span>
+      <span
+        :class="{ 'color-accent': props.isPlaying }"
+      >
+        {{ props.title }}
+      </span>
+      <span
+        :class="{ 'color-accent': props.isPlaying }"
+      >
+        {{ props.subtitle }}
+      </span>
     </template>
 
     <template v-slot:skeleton>
@@ -40,24 +48,24 @@
 </template>
 
 <script>
-import BaseIcon from '@/components/BaseIcon.vue'
-import IconPlaying from '@/components/icons/IconPlaying.vue'
-import TrackWrapper from './RendererTrackWrapper.vue'
+import BaseIcon from '@/components/BaseIcon.vue';
+import IconPlaying from '@/components/icons/IconPlaying.vue';
+import TrackWrapper from './RendererTrackWrapper.vue';
 
 export default {
   name: 'RendererListTrack',
   components: {
     BaseIcon,
     IconPlaying,
-    TrackWrapper
+    TrackWrapper,
   },
   props: {
     data: {
       type: Object,
-      default: null
-    }
-  }
-}
+      default: null,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

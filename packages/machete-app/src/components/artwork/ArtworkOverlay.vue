@@ -13,25 +13,25 @@
 </template>
 
 <script>
-import BaseIcon from '@/components/BaseIcon.vue'
+import BaseIcon from '@/components/BaseIcon.vue';
 
 export default {
   name: 'ArtworkPlay',
   components: {
-    BaseIcon
+    BaseIcon,
   },
   props: {
     radius: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   computed: {
     styles() {
-      return { borderRadius: `${this.radius}px` }
-    }
-  }
-}
+      return {borderRadius: `${this.radius}px`};
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

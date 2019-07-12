@@ -1,1 +1,1 @@
-export { default } from './RecentlyPlayed.vue'
+export {default} from './RecentlyPlayed.vue';
