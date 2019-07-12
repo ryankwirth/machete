@@ -7,17 +7,17 @@
 </template>
 
 <script>
-import Renderer from '@/components/renderer'
+import Renderer from '@/components/renderer';
 
 export default {
   name: 'Liked',
   components: {
-    Renderer
+    Renderer,
   },
   computed: {
     songs() {
-      return this.$store.getters['favourite/songs']
-    }
-  }
-}
+      return this.$store.getters['favourite/songs'];
+    },
+  },
+};
 </script>

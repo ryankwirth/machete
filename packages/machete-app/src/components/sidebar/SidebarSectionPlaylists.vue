@@ -22,17 +22,17 @@
 </template>
 
 <script>
-import IconPlaylist from '@/components/icons/IconPlaylist.vue'
+import IconPlaylist from '@/components/icons/IconPlaylist.vue';
 
-import Button from './SidebarSectionButton.vue'
-import Section from './SidebarSection.vue'
+import Button from './SidebarSectionButton.vue';
+import Section from './SidebarSection.vue';
 
 export default {
   name: 'SidebarSectionPlaylists',
   components: {
     Button,
     IconPlaylist,
-    Section
-  }
-}
+    Section,
+  },
+};
 </script>

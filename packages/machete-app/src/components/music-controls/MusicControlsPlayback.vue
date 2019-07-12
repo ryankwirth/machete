@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import { CoreService } from 'machete-core'
-import Artwork from '@/components/artwork'
-import Details from './MusicControlsPlaybackDetails.vue'
-import Scrubber from './MusicControlsScrubber.vue'
-import Timestamp from './MusicControlsPlaybackTimestamp.vue'
+import {CoreService} from 'machete-core';
+import Artwork from '@/components/artwork';
+import Details from './MusicControlsPlaybackDetails.vue';
+import Scrubber from './MusicControlsScrubber.vue';
+import Timestamp from './MusicControlsPlaybackTimestamp.vue';
 
 export default {
   name: 'MusicControlsPlayback',
@@ -29,41 +29,41 @@ export default {
     Artwork,
     Details,
     Scrubber,
-    Timestamp
+    Timestamp,
   },
   data() {
     return {
       modified: false,
-      modifiedTimestamp: 0
-    }
+      modifiedTimestamp: 0,
+    };
   },
   computed: {
     url() {
-      return this.$coreData.song.thumbnail || ''
+      return this.$coreData.song.thumbnail || '';
     },
     duration() {
-      return this.$coreData.song.duration || 1
+      return this.$coreData.song.duration || 1;
     },
     timestamp() {
-      return this.modified ? this.modifiedTimestamp : this.$coreData.timestamp
-    }
+      return this.modified ? this.modifiedTimestamp : this.$coreData.timestamp;
+    },
   },
   methods: {
     onSetTimestamp(timestamp) {
-      CoreService.seekTo(timestamp)
+      CoreService.seekTo(timestamp);
 
       // Mark the timestamp as unmodified, but change the value in $coreData
       // until we get a new `timestamp` event from the service. This will
       // prevent the scrubber from "jumping" back to its previous position.
-      this.modified = false
-      this.$coreData.timestamp = timestamp
+      this.modified = false;
+      this.$coreData.timestamp = timestamp;
     },
     onUpdateTimestamp(timestamp) {
-      this.modified = true
-      this.modifiedTimestamp = timestamp
-    }
-  }
-}
+      this.modified = true;
+      this.modifiedTimestamp = timestamp;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

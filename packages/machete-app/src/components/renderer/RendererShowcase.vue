@@ -10,29 +10,29 @@
 </template>
 
 <script>
-import Track from './RendererShowcaseTrack.vue'
+import Track from './RendererShowcaseTrack.vue';
 
 export default {
   name: 'RendererShowcase',
   components: {
-      Track
+    Track,
   },
   props: {
     items: {
       type: Array,
-      default: null
+      default: null,
     },
     skeletonItems: {
       type: Number,
-      default: 10
-    }
+      default: 10,
+    },
   },
   computed: {
     renderedItems() {
-      return this.items || Array(this.skeletonItems).fill({})
-    }
-  }
-}
+      return this.items || Array(this.skeletonItems).fill({});
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

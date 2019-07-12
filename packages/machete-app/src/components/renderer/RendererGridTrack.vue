@@ -47,22 +47,22 @@
 </template>
 
 <script>
-import Artwork from '@/components/artwork'
-import TrackWrapper from './RendererTrackWrapper.vue'
+import Artwork from '@/components/artwork';
+import TrackWrapper from './RendererTrackWrapper.vue';
 
 export default {
   name: 'RendererGridTrack',
   components: {
     Artwork,
-    TrackWrapper
+    TrackWrapper,
   },
   props: {
     data: {
       type: Object,
-      default: null
-    }
-  }
-}
+      default: null,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

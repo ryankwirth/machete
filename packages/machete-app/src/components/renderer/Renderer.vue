@@ -12,57 +12,57 @@
 </template>
 
 <script>
-import { CoreService } from 'machete-core'
-import Grid from './RendererGrid.vue'
-import List from './RendererList.vue'
-import Showcase from './RendererShowcase.vue'
+import {CoreService} from 'machete-core';
+import Grid from './RendererGrid.vue';
+import List from './RendererList.vue';
+import Showcase from './RendererShowcase.vue';
 
 export default {
   name: 'Renderer',
   components: {
     Grid,
     List,
-    Showcase
+    Showcase,
   },
   props: {
     title: {
       type: String,
-      default: 'Loading...'
+      default: 'Loading...',
     },
     type: {
       type: String,
-      default: 'Grid'
+      default: 'Grid',
     },
     items: {
       type: Array,
-      default: null
+      default: null,
     },
     queueOnPlay: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     onPlay(index) {
       if (!this.items) {
         // If we haven't loaded any items yet, don't do anything.
-        return
+        return;
       }
 
       // Stop playing the current song and reset the queue.
-      CoreService.stop()
+      CoreService.stop();
 
       if (this.queueOnPlay) {
         // Queue all of the items in this renderer, then play the clicked item.
-        CoreService.queue(this.items)
-        CoreService.play(index)
+        CoreService.queue(this.items);
+        CoreService.play(index);
       } else {
         // Simply play the clicked item.
-        CoreService.play(this.items[index])
+        CoreService.play(this.items[index]);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

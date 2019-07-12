@@ -14,27 +14,27 @@
 </template>
 
 <script>
-import BaseIcon from './BaseIcon.vue'
+import BaseIcon from './BaseIcon.vue';
 
 export default {
   components: {
-    BaseIcon
+    BaseIcon,
   },
   props: {
     width: {
       type: [Number, String],
-      default: 48
+      default: 48,
     },
     height: {
       type: [Number, String],
-      default: 48
+      default: 48,
     },
     padding: {
       type: [Number, String],
-      default: 16
-    }
-  }
-}
+      default: 16,
+    },
+  },
+};
 </script>
 
 <style scoped>

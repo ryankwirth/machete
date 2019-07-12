@@ -12,20 +12,20 @@
 </template>
 
 <script>
-import MusicControls from './components/music-controls'
-import Sidebar from './components/sidebar'
-import TopBar from './components/top-bar'
+import MusicControls from './components/music-controls';
+import Sidebar from './components/sidebar';
+import TopBar from './components/top-bar';
 
-import './assets/styles/index.scss'
+import './assets/styles/index.scss';
 
 export default {
   name: 'App',
   components: {
     MusicControls,
     Sidebar,
-    TopBar
-  }
-}
+    TopBar,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { CoreService, StateType } from 'machete-core'
-import Button from '@/components/BaseButton.vue'
-import IconNext from '@/components/icons/IconNext.vue'
-import IconPause from '@/components/icons/IconPause.vue'
-import IconPlay from '@/components/icons/IconPlay.vue'
-import IconPrevious from '@/components/icons/IconPrevious.vue'
+import {CoreService, StateType} from 'machete-core';
+import Button from '@/components/BaseButton.vue';
+import IconNext from '@/components/icons/IconNext.vue';
+import IconPause from '@/components/icons/IconPause.vue';
+import IconPlay from '@/components/icons/IconPlay.vue';
+import IconPrevious from '@/components/icons/IconPrevious.vue';
 
 export default {
   name: 'MusicControlsButtons',
@@ -28,34 +28,34 @@ export default {
     IconNext,
     IconPause,
     IconPlay,
-    IconPrevious
+    IconPrevious,
   },
   computed: {
     isPlaying() {
-      return this.$coreData.state === StateType.PLAYING
-    }
+      return this.$coreData.state === StateType.PLAYING;
+    },
   },
   methods: {
     onNextClicked() {
-      CoreService.next()
+      CoreService.next();
     },
     onPlayPauseClicked() {
       if (this.isPlaying) {
-        CoreService.pause()
+        CoreService.pause();
       } else {
-        CoreService.play()
+        CoreService.play();
       }
     },
     onPreviousClicked() {
       // If we're more than 5 seconds into the song, go back to the beginning
       if (this.$coreData.timestamp > 5) {
-        CoreService.seekTo(0)
+        CoreService.seekTo(0);
       } else {
-        CoreService.previous()
+        CoreService.previous();
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -32,13 +32,13 @@
 </template>
 
 <script>
-import Button from '@/components/BaseButton.vue'
-import IconFavouriteFilled from '@/components/icons/IconFavouriteFilled.vue'
-import IconFavouriteOutline from '@/components/icons/IconFavouriteOutline.vue'
-import IconRepeat from '@/components/icons/IconRepeat.vue'
-import IconVolumeDown from '@/components/icons/IconVolumeDown.vue'
-import IconVolumeOff from '@/components/icons/IconVolumeOff.vue'
-import IconVolumeUp from '@/components/icons/IconVolumeUp.vue'
+import Button from '@/components/BaseButton.vue';
+import IconFavouriteFilled from '@/components/icons/IconFavouriteFilled.vue';
+import IconFavouriteOutline from '@/components/icons/IconFavouriteOutline.vue';
+import IconRepeat from '@/components/icons/IconRepeat.vue';
+import IconVolumeDown from '@/components/icons/IconVolumeDown.vue';
+import IconVolumeOff from '@/components/icons/IconVolumeOff.vue';
+import IconVolumeUp from '@/components/icons/IconVolumeUp.vue';
 
 export default {
   name: 'MusicControlsVolumeButtons',
@@ -49,44 +49,44 @@ export default {
     IconRepeat,
     IconVolumeDown,
     IconVolumeOff,
-    IconVolumeUp
+    IconVolumeUp,
   },
   props: {
     volume: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
   data() {
     return {
-      mutedVolume: 50
-    }
+      mutedVolume: 50,
+    };
   },
   computed: {
     favouriteClasses() {
       return {
         'color-error': this.isFavourited,
-        'color-error-hover': true
-      }
+        'color-error-hover': true,
+      };
     },
     isFavourited() {
-      const song = this.$coreData.song
-      return this.$store.getters['favourite/isFavourited'](song)
+      const song = this.$coreData.song;
+      return this.$store.getters['favourite/isFavourited'](song);
     },
     isLowVolume() {
-      return this.volume < 50
+      return this.volume < 50;
     },
     isMuted() {
-      return this.volume === 0
-    }
+      return this.volume === 0;
+    },
   },
   methods: {
     onFavouriteClicked() {
-      const song = this.$coreData.song
+      const song = this.$coreData.song;
       if (this.isFavourited) {
-        this.$store.dispatch('favourite/unfavouriteSong', song)
+        this.$store.dispatch('favourite/unfavouriteSong', song);
       } else {
-        this.$store.dispatch('favourite/favouriteSong', song)
+        this.$store.dispatch('favourite/favouriteSong', song);
       }
     },
     onRepeatClicked() {
@@ -94,14 +94,14 @@ export default {
     },
     onVolumeClicked() {
       if (this.isMuted) {
-        this.$emit('setVolume', this.mutedVolume)
+        this.$emit('setVolume', this.mutedVolume);
       } else {
-        this.mutedVolume = this.volume
-        this.$emit('setVolume', 0)
+        this.mutedVolume = this.volume;
+        this.$emit('setVolume', 0);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

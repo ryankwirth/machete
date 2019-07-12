@@ -1,1 +1,1 @@
-export { default } from './MusicControls.vue'
+export {default} from './MusicControls.vue';

@@ -29,55 +29,55 @@
 </template>
 
 <script>
-import { ContentLoader } from 'vue-content-loader'
+import {ContentLoader} from 'vue-content-loader';
 
 export default {
   name: 'RendererTrackWrapper',
   components: {
-    ContentLoader
+    ContentLoader,
   },
   props: {
     uri: {
       type: String,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
+      default: null,
     },
     subtitle: {
       type: String,
-      default: null
+      default: null,
     },
     thumbnail: {
       type: String,
-      default: null
+      default: null,
     },
     height: {
       type: Number,
-      default: 60
+      default: 60,
     },
     width: {
       type: Number,
-      default: 256
-    }
+      default: 256,
+    },
   },
   data() {
     return {
-      isHovering: false
-    }
+      isHovering: false,
+    };
   },
   computed: {
     isPlaying() {
-      const isCurrentSong = this.uri === this.$coreData.song.uri
-      const isCurrentPlaylist = this.uri === this.$coreData.playlist.uri
-      return isCurrentSong || isCurrentPlaylist
+      const isCurrentSong = this.uri === this.$coreData.song.uri;
+      const isCurrentPlaylist = this.uri === this.$coreData.playlist.uri;
+      return isCurrentSong || isCurrentPlaylist;
     },
     hasLoaded() {
-      return !!this.uri
-    }
-  }
-}
+      return !!this.uri;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

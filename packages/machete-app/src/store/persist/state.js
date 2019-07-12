@@ -2,6 +2,5 @@
 export default {
   currentPlaylist: {},
   currentSong: {},
-  currentTimestamp: 0
-}
-  
+  currentTimestamp: 0,
+};

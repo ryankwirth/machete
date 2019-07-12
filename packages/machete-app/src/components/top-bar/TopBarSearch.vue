@@ -1,5 +1,10 @@
 <template>
-  <div class="top-bar-search color-background-bg color-gutter-border color-accent-border-focus">
+  <div
+    class="top-bar-search
+           color-background-bg
+           color-gutter-border
+           color-accent-border-focus"
+  >
     <input
       v-model="query"
       class="color-text"
@@ -21,26 +26,26 @@
 </template>
 
 <script>
-import Button from '@/components/BaseButton.vue'
-import IconSearch from '@/components/icons/IconSearch.vue'
+import Button from '@/components/BaseButton.vue';
+import IconSearch from '@/components/icons/IconSearch.vue';
 
 export default {
   name: 'Search',
   components: {
     Button,
-    IconSearch
+    IconSearch,
   },
   data() {
     return {
-      query: this.$route.query.q || ''
-    }
+      query: this.$route.query.q || '',
+    };
   },
   methods: {
     onSubmit() {
-      this.$router.push({ path: `/search?q=${this.query}` })
-    }
-  }
-}
+      this.$router.push({path: `/search?q=${this.query}`});
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -62,7 +67,7 @@ export default {
     caret-color: $accent-light;
     font-size: 14px;
     padding: 8px 16px;
-  
+
     &:focus {
       outline: none;
     }

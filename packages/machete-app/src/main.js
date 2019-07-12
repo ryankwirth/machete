@@ -1,29 +1,29 @@
-import Vue from 'vue'
+import Vue from 'vue';
 
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
 import {
   CoreDataPlugin,
   CoreHistoryPlugin,
   CorePersistPlugin,
   CoreServicePlugin,
-  KeyboardShortcutsPlugin
-} from './plugins'
+  KeyboardShortcutsPlugin,
+} from './plugins';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // Install plugins
-Vue.use(CoreDataPlugin)
-Vue.use(CoreHistoryPlugin)
-Vue.use(CorePersistPlugin)
-Vue.use(CoreServicePlugin)
-Vue.use(KeyboardShortcutsPlugin)
+Vue.use(CoreDataPlugin);
+Vue.use(CoreHistoryPlugin);
+Vue.use(CorePersistPlugin);
+Vue.use(CoreServicePlugin);
+Vue.use(KeyboardShortcutsPlugin);
 
 // Instantiate Vue and mount the application
 new Vue({
-  render: h => h(App),
+  render: (h) => h(App),
   router,
-  store
-}).$mount('#app')
+  store,
+}).$mount('#app');

@@ -1,1 +1,1 @@
-export { default } from './Liked.vue'
+export {default} from './Liked.vue';

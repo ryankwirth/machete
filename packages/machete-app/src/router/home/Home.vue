@@ -22,32 +22,32 @@
 </template>
 
 <script>
-import { CoreService, QueryType } from 'machete-core'
-import Renderer from '@/components/renderer'
+import {CoreService, QueryType} from 'machete-core';
+import Renderer from '@/components/renderer';
 
 export default {
   name: 'Home',
   components: {
-    Renderer
+    Renderer,
   },
   data() {
     return {
       showcase: null,
       recentlyIssued: null,
-      mostPopular: null
-    }
+      mostPopular: null,
+    };
   },
   mounted() {
     CoreService.get(QueryType.SHOWCASE)
-      .then((results) => this.showcase = results[0])
+        .then((results) => this.showcase = results[0]);
 
     CoreService.get(QueryType.RECENTLY_ISSUED)
-      .then((results) => this.recentlyIssued = results[0])
+        .then((results) => this.recentlyIssued = results[0]);
 
     CoreService.get(QueryType.MOST_POPULAR)
-      .then((results) => this.mostPopular = results[0])
-  }
-}
+        .then((results) => this.mostPopular = results[0]);
+  },
+};
 </script>
 
 <style lang="scss" scoped>
