@@ -1,6 +1,7 @@
 <template>
   <div class="music-controls-volume-buttons">
     <Button
+      :class="favouriteClasses"
       width="36"
       height="36"
       padding="8"
@@ -62,6 +63,12 @@ export default {
     }
   },
   computed: {
+    favouriteClasses() {
+      return {
+        'color-error': this.isFavourited,
+        'color-error-hover': true
+      }
+    },
     isFavourited() {
       const song = this.$coreData.song
       return this.$store.getters['favourite/isFavourited'](song)
@@ -97,7 +104,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .music-controls-volume-buttons {
   display: flex;
   margin-right: 16px;
