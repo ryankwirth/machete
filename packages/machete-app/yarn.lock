@@ -5837,9 +5837,9 @@ locate-path@^3.0.0:
     path-exists "^3.0.0"
 
 lodash.defaultsdeep@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.0.tgz#bec1024f85b1bd96cbea405b23c14ad6443a6f81"
-  integrity sha1-vsECT4WxvZbL6kBbI8FK1kQ6b4E=
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.1.tgz#512e9bd721d272d94e3d3a63653fa17516741ca6"
+  integrity sha512-3j8wdDzYuWO3lM3Reg03MuQR957t287Rpcxp1njpEa8oDrikb+FwGdW3n+FELh/A6qib6yPit0j/pv9G/yeAqA==
 
 lodash.kebabcase@^4.1.1:
   version "4.1.1"
@@ -5941,7 +5941,7 @@ lru-cache@^5.1.1:
 "machete-core-youtube@file:../machete-core-youtube":
   version "0.1.0"
   dependencies:
-    machete-core "file:../../../../Library/Caches/Yarn/v4/npm-machete-core-youtube-0.1.0-2951a044-4647-49f3-b6c5-255f72026166-1562898649565/node_modules/machete-core"
+    machete-core "file:../machete-core"
     to-title-case "^1.0.0"
 
 "machete-core@file:../machete-core":
